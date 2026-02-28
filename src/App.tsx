@@ -3,12 +3,13 @@ import {
   useCallback,
   useEffect,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react'
-import { ArrowLeft, ArrowUpRight } from 'lucide-react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { ArrowLeft, ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import Lenis from 'lenis'
-import { motion } from 'framer-motion'
 import {
   Link,
   Navigate,
@@ -23,9 +24,18 @@ const HEADER_OFFSET = 104
 const CONTACT_EMAIL = 'zoobx@vk.com'
 const CONTACT_TELEGRAM = '@egellans'
 
+type FluidImageProps = {
+  src: string
+  alt: string
+  className?: string
+  imageClassName?: string
+  loading?: 'lazy' | 'eager'
+}
+
 function App() {
   const location = useLocation()
   const lenisRef = useRef<Lenis | null>(null)
+  const [showLoader, setShowLoader] = useState(true)
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -57,6 +67,38 @@ function App() {
     }
   }, [])
 
+  useEffect(() => {
+    let minTimeReached = false
+    let pageLoaded = document.readyState === 'complete'
+
+    const maybeHide = () => {
+      if (minTimeReached && pageLoaded) {
+        setShowLoader(false)
+      }
+    }
+
+    const minTimer = window.setTimeout(() => {
+      minTimeReached = true
+      maybeHide()
+    }, 760)
+
+    const onLoad = () => {
+      pageLoaded = true
+      maybeHide()
+    }
+
+    if (!pageLoaded) {
+      window.addEventListener('load', onLoad, { once: true })
+    } else {
+      maybeHide()
+    }
+
+    return () => {
+      window.clearTimeout(minTimer)
+      window.removeEventListener('load', onLoad)
+    }
+  }, [])
+
   useLayoutEffect(() => {
     const resetToTop = () => {
       lenisRef.current?.scrollTo(0, { immediate: true, force: true })
@@ -76,11 +118,68 @@ function App() {
   }, [location.pathname])
 
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/projects/:slug" element={<ProjectPage />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+    <>
+      <AnimatePresence>{showLoader ? <SiteLoader key="site-loader" /> : null}</AnimatePresence>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/projects/:slug" element={<ProjectPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </>
+  )
+}
+
+function SiteLoader() {
+  return (
+    <motion.div
+      initial={{ opacity: 1 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, transition: { duration: 0.45, ease: 'easeOut' } }}
+      className="site-loader"
+      aria-hidden
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+        className="site-loader-inner"
+      >
+        <BrandMark className="site-loader-logo" />
+        <div className="site-loader-line" />
+      </motion.div>
+    </motion.div>
+  )
+}
+
+function BrandMark({ className = '' }: { className?: string }) {
+  return (
+    <span className={`brand-mark ${className}`} aria-label="K dot logo">
+      <span className="brand-k">K</span>
+      <span className="brand-dot">.</span>
+    </span>
+  )
+}
+
+function FluidImage({
+  src,
+  alt,
+  className = '',
+  imageClassName = '',
+  loading = 'lazy',
+}: FluidImageProps) {
+  const [isLoaded, setIsLoaded] = useState(false)
+
+  return (
+    <div className={`image-shell ${isLoaded ? 'is-loaded' : ''} ${className}`}>
+      <img
+        src={src}
+        alt={alt}
+        loading={loading}
+        onLoad={() => setIsLoaded(true)}
+        onError={() => setIsLoaded(true)}
+        className={imageClassName}
+      />
+    </div>
   )
 }
 
@@ -130,8 +229,8 @@ function HomePage() {
       />
 
       <header className="fixed inset-x-0 top-0 z-40 mx-auto flex h-20 max-w-7xl items-center justify-between px-6 backdrop-blur-md md:px-10">
-        <a href="#top" onClick={onAnchorClick('top')} className="font-serif text-2xl tracking-wide">
-          Katya
+        <a href="#top" onClick={onAnchorClick('top')} className="tracking-wide">
+          <BrandMark />
         </a>
         <nav className="flex gap-5 text-xs uppercase tracking-[0.24em] text-[var(--muted)] md:text-sm">
           <a href="#about" onClick={onAnchorClick('about')} className="hover:text-[var(--ink)]">
@@ -238,14 +337,13 @@ function HomePage() {
                   </div>
                 ) : (
                   <Link to={`/projects/${encodeURIComponent(item.slug)}`} className="group block">
-                    <div className="aspect-[4/5] overflow-hidden">
-                      <img
-                        src={item.image}
-                        alt={`${item.title} wall painting`}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
-                      />
-                    </div>
+                    <FluidImage
+                      key={item.image}
+                      src={item.image}
+                      alt={`${item.title} wall painting`}
+                      className="aspect-[4/5]"
+                      imageClassName="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
+                    />
                     <div className="flex items-center justify-between gap-4 p-5 md:p-6">
                       <div>
                         <h3 className="font-serif text-2xl">{item.title}</h3>
@@ -263,9 +361,7 @@ function HomePage() {
         <section id="contact" className="anchor-section py-18">
           <div className="mb-8 flex items-end justify-between gap-4">
             <h2 className="font-serif text-4xl md:text-5xl">Contact</h2>
-            <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
-              Direct
-            </p>
+            <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">Direct</p>
           </div>
 
           <div className="contact-fluid">
@@ -279,11 +375,7 @@ function HomePage() {
               <p className="contact-label">Telegram</p>
               <p className="contact-value">{CONTACT_TELEGRAM}</p>
             </a>
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="contact-link"
-              aria-label="Email"
-            >
+            <a href={`mailto:${CONTACT_EMAIL}`} className="contact-link" aria-label="Email">
               <p className="contact-label">Email</p>
               <p className="contact-value">{CONTACT_EMAIL}</p>
             </a>
@@ -306,9 +398,114 @@ function SiteFooter() {
   )
 }
 
+function ProjectShowcaseGallery({
+  projectTitle,
+  images,
+}: {
+  projectTitle: string
+  images: string[]
+}) {
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  const total = images.length
+  const hasMultiple = total > 1
+  const activeImage = images[activeIndex]
+
+  const onPrev = () => {
+    setActiveIndex((current) => (current - 1 + total) % total)
+  }
+
+  const onNext = () => {
+    setActiveIndex((current) => (current + 1) % total)
+  }
+
+  if (total === 0) {
+    return (
+      <section className="border-b border-[var(--line)] py-12">
+        <p className="mb-6 text-xs uppercase tracking-[0.18em] text-[var(--muted)]">Project Gallery</p>
+        <div className="flex h-56 items-center justify-center rounded-3xl border border-dashed border-[var(--line)] bg-white/20 text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
+          Gallery coming soon
+        </div>
+      </section>
+    )
+  }
+
+  return (
+    <section className="border-b border-[var(--line)] py-12">
+      <div className="mb-6 flex items-center justify-between gap-4">
+        <p className="text-xs uppercase tracking-[0.18em] text-[var(--muted)]">Project Gallery</p>
+        <p className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">
+          {activeIndex + 1} / {total}
+        </p>
+      </div>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeImage}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.35, ease: 'easeOut' }}
+          className="project-gallery-stage"
+        >
+          <FluidImage
+            src={activeImage}
+            alt={`${projectTitle} detail ${activeIndex + 1}`}
+            className="aspect-[16/10] md:aspect-[16/9]"
+            imageClassName="h-full w-full object-cover"
+          />
+        </motion.div>
+      </AnimatePresence>
+
+      {hasMultiple ? (
+        <div className="mt-4 flex items-center gap-3">
+          <button
+            type="button"
+            onClick={onPrev}
+            className="project-gallery-nav"
+            aria-label="Previous image"
+          >
+            <ChevronLeft size={16} />
+          </button>
+
+          <div className="no-scrollbar flex flex-1 gap-3 overflow-x-auto px-0.5 py-1">
+            {images.map((image, index) => (
+              <button
+                type="button"
+                key={`${image}-${index}`}
+                onClick={() => setActiveIndex(index)}
+                className={`project-thumb ${index === activeIndex ? 'is-active' : ''}`}
+                aria-label={`Open detail image ${index + 1}`}
+              >
+                <FluidImage
+                  key={image}
+                  src={image}
+                  alt={`${projectTitle} thumbnail ${index + 1}`}
+                  className="h-full w-full"
+                  imageClassName="h-full w-full object-cover"
+                />
+              </button>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={onNext}
+            className="project-gallery-nav"
+            aria-label="Next image"
+          >
+            <ChevronRight size={16} />
+          </button>
+        </div>
+      ) : null}
+    </section>
+  )
+}
+
 function ProjectPage() {
   const { slug } = useParams()
-  const project = slug ? projectsBySlug[slug] : undefined
+  const decodedSlug = useMemo(() => (slug ? decodeURIComponent(slug) : ''), [slug])
+  const project = decodedSlug ? projectsBySlug[decodedSlug] : undefined
 
   if (!project || project.isPlaceholder) {
     return <Navigate to="/" replace />
@@ -323,8 +520,8 @@ function ProjectPage() {
       <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_20%_0%,rgba(188,164,141,.24),transparent_36%),radial-gradient(circle_at_100%_100%,rgba(78,87,75,.12),transparent_42%)]" />
 
       <header className="fixed inset-x-0 top-0 z-40 mx-auto flex h-20 max-w-7xl items-center justify-between px-6 backdrop-blur-md md:px-10">
-        <Link to="/" className="font-serif text-2xl tracking-wide">
-          Katya
+        <Link to="/" className="tracking-wide">
+          <BrandMark />
         </Link>
         <Link
           to="/#gallery"
@@ -351,10 +548,13 @@ function ProjectPage() {
             transition={{ duration: 0.7, ease: 'easeOut' }}
             className="overflow-hidden rounded-3xl md:col-span-7"
           >
-            <img
+            <FluidImage
+              key={project.image}
               src={project.image}
               alt={`${project.title} mural primary image`}
-              className="h-full w-full object-cover"
+              className="aspect-[5/6] md:aspect-auto md:h-full"
+              imageClassName="h-full w-full object-cover"
+              loading="eager"
             />
           </motion.div>
 
@@ -372,24 +572,11 @@ function ProjectPage() {
           </aside>
         </section>
 
-        <section className="border-b border-[var(--line)] py-12">
-          <p className="mb-6 text-xs uppercase tracking-[0.18em] text-[var(--muted)]">Project Gallery</p>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {project.detailImages.map((image, index) => (
-              <div
-                key={image}
-                className="overflow-hidden rounded-2xl border border-[var(--line)] bg-white/35"
-              >
-                <img
-                  src={image}
-                  alt={`${project.title} detail ${index + 1}`}
-                  loading="lazy"
-                  className="h-60 w-full object-cover md:h-72"
-                />
-              </div>
-            ))}
-          </div>
-        </section>
+        <ProjectShowcaseGallery
+          key={project.slug}
+          projectTitle={project.title}
+          images={project.detailImages}
+        />
 
         <section className="py-12">
           <p className="mb-6 text-xs uppercase tracking-[0.18em] text-[var(--muted)]">More Projects</p>
@@ -400,13 +587,13 @@ function ProjectPage() {
                 to={`/projects/${encodeURIComponent(item.slug)}`}
                 className="group overflow-hidden rounded-3xl border border-[var(--line)] bg-white/35"
               >
-                <div className="aspect-[16/10] overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={`${item.title} preview`}
-                    className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
-                  />
-                </div>
+                <FluidImage
+                  key={item.image}
+                  src={item.image}
+                  alt={`${item.title} preview`}
+                  className="aspect-[16/10]"
+                  imageClassName="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+                />
                 <div className="p-5">
                   <h2 className="font-serif text-2xl">{item.title}</h2>
                   <p className="mt-1 text-sm text-[var(--muted)]">{item.place}</p>
