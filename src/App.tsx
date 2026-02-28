@@ -221,23 +221,40 @@ function HomePage() {
                   hoveredProject === item.slug ? 'z-30' : 'z-10'
                 }`}
               >
-                <Link to={`/projects/${item.slug}`} className="group block">
-                  <div className="aspect-[4/5] overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={`${item.title} wall painting`}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
-                    />
-                  </div>
-                  <div className="flex items-center justify-between gap-4 p-5 md:p-6">
-                    <div>
-                      <h3 className="font-serif text-2xl">{item.title}</h3>
-                      <p className="mt-1 text-sm text-[var(--muted)]">{item.place}</p>
+                {item.isPlaceholder ? (
+                  <div className="group block">
+                    <div className="flex aspect-[4/5] items-center justify-center border-b border-dashed border-[var(--line)] bg-[rgba(255,255,255,0.18)]">
+                      <p className="text-xs uppercase tracking-[0.24em] text-[var(--muted)]">
+                        Placeholder
+                      </p>
                     </div>
-                    <p className="text-sm text-[var(--muted)]">{item.year}</p>
+                    <div className="flex items-center justify-between gap-4 p-5 md:p-6">
+                      <div>
+                        <h3 className="font-serif text-2xl">{item.title}</h3>
+                        <p className="mt-1 text-sm text-[var(--muted)]">Coming soon</p>
+                      </div>
+                      <p className="text-sm text-[var(--muted)]">TBD</p>
+                    </div>
                   </div>
-                </Link>
+                ) : (
+                  <Link to={`/projects/${encodeURIComponent(item.slug)}`} className="group block">
+                    <div className="aspect-[4/5] overflow-hidden">
+                      <img
+                        src={item.image}
+                        alt={`${item.title} wall painting`}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                    <div className="flex items-center justify-between gap-4 p-5 md:p-6">
+                      <div>
+                        <h3 className="font-serif text-2xl">{item.title}</h3>
+                        <p className="mt-1 text-sm text-[var(--muted)]">{item.place}</p>
+                      </div>
+                      <p className="text-sm text-[var(--muted)]">{item.year}</p>
+                    </div>
+                  </Link>
+                )}
               </motion.article>
             ))}
           </div>
@@ -293,11 +310,13 @@ function ProjectPage() {
   const { slug } = useParams()
   const project = slug ? projectsBySlug[slug] : undefined
 
-  if (!project) {
+  if (!project || project.isPlaceholder) {
     return <Navigate to="/" replace />
   }
 
-  const relatedProjects = projects.filter((item) => item.slug !== project.slug).slice(0, 2)
+  const relatedProjects = projects
+    .filter((item) => item.slug !== project.slug && !item.isPlaceholder)
+    .slice(0, 2)
 
   return (
     <div className="relative min-h-screen bg-[var(--canvas)] text-[var(--ink)]">
@@ -378,7 +397,7 @@ function ProjectPage() {
             {relatedProjects.map((item) => (
               <Link
                 key={item.slug}
-                to={`/projects/${item.slug}`}
+                to={`/projects/${encodeURIComponent(item.slug)}`}
                 className="group overflow-hidden rounded-3xl border border-[var(--line)] bg-white/35"
               >
                 <div className="aspect-[16/10] overflow-hidden">
