@@ -71,8 +71,10 @@ img {
   gap: 0.8rem;
 }
 
-.site-loader-logo {
-  font-size: clamp(3rem, 6vw, 4.8rem);
+.site-loader-word {
+  font-size: clamp(2.7rem, 5vw, 4.1rem);
+  letter-spacing: 0.02em;
+  color: rgba(31, 28, 24, 0.9);
 }
 
 .site-loader-line {
@@ -81,33 +83,6 @@ img {
   background: linear-gradient(90deg, transparent, rgba(31, 28, 24, 0.42), transparent);
   transform-origin: center;
   animation: loader-sweep 1.15s ease-in-out infinite;
-}
-
-.brand-mark {
-  display: inline-flex;
-  align-items: baseline;
-  font-family: 'Prata', serif;
-  font-size: 2.1rem;
-  letter-spacing: 0.01em;
-  line-height: 0.95;
-  user-select: none;
-}
-
-.brand-k,
-.brand-dot {
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.brand-k {
-  background-image: linear-gradient(135deg, #161410 10%, #8f6f54 53%, #f7f0e6 100%);
-  -webkit-text-stroke: 0.4px rgba(31, 28, 24, 0.22);
-}
-
-.brand-dot {
-  background-image: linear-gradient(180deg, #5f8979 15%, #d0aa85 94%);
-  -webkit-text-stroke: 0.4px rgba(31, 28, 24, 0.22);
 }
 
 .image-shell {
@@ -166,6 +141,31 @@ img {
 .image-shell.is-loaded img {
   opacity: 1;
   transform: scale(1);
+}
+
+.tile-pop {
+  transition:
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.45s ease,
+    border-color 0.32s ease,
+    background-color 0.32s ease;
+}
+
+.tile-pop .image-shell img {
+  transition: opacity 0.55s ease, transform 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tile-pop:hover,
+.tile-pop:focus-within {
+  transform: translateY(-6px);
+  border-color: rgba(31, 28, 24, 0.24);
+  background: rgba(255, 255, 255, 0.48);
+  box-shadow: 0 18px 44px rgba(31, 28, 24, 0.12);
+}
+
+.tile-pop:hover .image-shell.is-loaded img,
+.tile-pop:focus-within .image-shell.is-loaded img {
+  transform: scale(1.045);
 }
 
 .project-gallery-stage {
@@ -299,10 +299,6 @@ img {
     padding: 1rem 1rem;
   }
 
-  .brand-mark {
-    font-size: 1.9rem;
-  }
-
   .project-gallery-stage {
     border-radius: 1.2rem;
   }
@@ -347,6 +343,8 @@ img {
     transform: none;
   }
 
+  .tile-pop:hover,
+  .tile-pop:focus-within,
   .project-thumb.is-active {
     transform: none;
   }
@@ -354,18 +352,6 @@ img {
   .site-loader-line,
   .image-shell::before {
     animation: none !important;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .brand-k {
-    background-image: linear-gradient(130deg, #f7efe4 5%, #c8a581 52%, #2f2b26 100%);
-    -webkit-text-stroke: 0.3px rgba(245, 239, 230, 0.32);
-  }
-
-  .brand-dot {
-    background-image: linear-gradient(180deg, #95b8ab 10%, #f2ceb0 95%);
-    -webkit-text-stroke: 0.3px rgba(245, 239, 230, 0.28);
   }
 }
 

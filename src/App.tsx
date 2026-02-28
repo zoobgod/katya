@@ -39,7 +39,7 @@ function App() {
 
   useEffect(() => {
     const lenis = new Lenis({
-      lerp: 0.08,
+      lerp: 0.11,
       smoothWheel: true,
     })
     lenisRef.current = lenis
@@ -144,19 +144,10 @@ function SiteLoader() {
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className="site-loader-inner"
       >
-        <BrandMark className="site-loader-logo" />
+        <span className="site-loader-word font-serif">Katya</span>
         <div className="site-loader-line" />
       </motion.div>
     </motion.div>
-  )
-}
-
-function BrandMark({ className = '' }: { className?: string }) {
-  return (
-    <span className={`brand-mark ${className}`} aria-label="K dot logo">
-      <span className="brand-k">K</span>
-      <span className="brand-dot">.</span>
-    </span>
   )
 }
 
@@ -229,8 +220,8 @@ function HomePage() {
       />
 
       <header className="fixed inset-x-0 top-0 z-40 mx-auto flex h-20 max-w-7xl items-center justify-between px-6 backdrop-blur-md md:px-10">
-        <a href="#top" onClick={onAnchorClick('top')} className="tracking-wide">
-          <BrandMark />
+        <a href="#top" onClick={onAnchorClick('top')} className="font-serif text-2xl tracking-wide">
+          Katya
         </a>
         <nav className="flex gap-5 text-xs uppercase tracking-[0.24em] text-[var(--muted)] md:text-sm">
           <a href="#about" onClick={onAnchorClick('about')} className="hover:text-[var(--ink)]">
@@ -316,7 +307,7 @@ function HomePage() {
                 onMouseLeave={() => setHoveredProject(null)}
                 onFocusCapture={() => setHoveredProject(item.slug)}
                 onBlurCapture={() => setHoveredProject(null)}
-                className={`relative overflow-hidden rounded-3xl border border-[var(--line)] bg-white/35 ${
+                className={`tile-pop relative overflow-hidden rounded-3xl border border-[var(--line)] bg-white/35 ${
                   hoveredProject === item.slug ? 'z-30' : 'z-10'
                 }`}
               >
@@ -342,7 +333,7 @@ function HomePage() {
                       src={item.image}
                       alt={`${item.title} wall painting`}
                       className="aspect-[4/5]"
-                      imageClassName="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
+                      imageClassName="h-full w-full object-cover"
                     />
                     <div className="flex items-center justify-between gap-4 p-5 md:p-6">
                       <div>
@@ -520,8 +511,8 @@ function ProjectPage() {
       <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_20%_0%,rgba(188,164,141,.24),transparent_36%),radial-gradient(circle_at_100%_100%,rgba(78,87,75,.12),transparent_42%)]" />
 
       <header className="fixed inset-x-0 top-0 z-40 mx-auto flex h-20 max-w-7xl items-center justify-between px-6 backdrop-blur-md md:px-10">
-        <Link to="/" className="tracking-wide">
-          <BrandMark />
+        <Link to="/" className="font-serif text-2xl tracking-wide">
+          Katya
         </Link>
         <Link
           to="/#gallery"
@@ -585,14 +576,14 @@ function ProjectPage() {
               <Link
                 key={item.slug}
                 to={`/projects/${encodeURIComponent(item.slug)}`}
-                className="group overflow-hidden rounded-3xl border border-[var(--line)] bg-white/35"
+                className="tile-pop group overflow-hidden rounded-3xl border border-[var(--line)] bg-white/35"
               >
                 <FluidImage
                   key={item.image}
                   src={item.image}
                   alt={`${item.title} preview`}
                   className="aspect-[16/10]"
-                  imageClassName="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+                  imageClassName="h-full w-full object-cover"
                 />
                 <div className="p-5">
                   <h2 className="font-serif text-2xl">{item.title}</h2>
