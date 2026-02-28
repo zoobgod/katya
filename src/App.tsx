@@ -1,4 +1,11 @@
-import { type MouseEvent, useCallback, useEffect, useState } from 'react'
+import {
+  type MouseEvent,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react'
 import { ArrowLeft, ArrowUpRight } from 'lucide-react'
 import Lenis from 'lenis'
 import { motion } from 'framer-motion'
@@ -18,12 +25,14 @@ const CONTACT_TELEGRAM = '@egellans'
 
 function App() {
   const location = useLocation()
+  const lenisRef = useRef<Lenis | null>(null)
 
   useEffect(() => {
     const lenis = new Lenis({
       lerp: 0.08,
       smoothWheel: true,
     })
+    lenisRef.current = lenis
 
     let frame = 0
     const raf = (time: number) => {
@@ -35,6 +44,7 @@ function App() {
 
     return () => {
       cancelAnimationFrame(frame)
+      lenisRef.current = null
       lenis.destroy()
     }
   }, [])
@@ -47,8 +57,22 @@ function App() {
     }
   }, [])
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'auto' })
+  useLayoutEffect(() => {
+    const resetToTop = () => {
+      lenisRef.current?.scrollTo(0, { immediate: true, force: true })
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+      document.documentElement.scrollTop = 0
+      document.body.scrollTop = 0
+    }
+
+    resetToTop()
+    const rafId = window.requestAnimationFrame(resetToTop)
+    const timeoutId = window.setTimeout(resetToTop, 40)
+
+    return () => {
+      window.cancelAnimationFrame(rafId)
+      window.clearTimeout(timeoutId)
+    }
   }, [location.pathname])
 
   return (
