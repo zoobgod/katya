@@ -6,6 +6,7 @@
   --ink: #1f1c18;
   --muted: #665c53;
   --line: rgba(31, 28, 24, 0.12);
+  --header-height: 5rem;
   font-synthesis: none;
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
@@ -66,8 +67,12 @@ img {
 
 .contact-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(5, 255, 34, 0.26);
+  border-color: rgba(31, 28, 24, 0.26);
   background: rgba(255, 255, 255, 0.62);
+}
+
+.anchor-section {
+  scroll-margin-top: calc(var(--header-height) + 1.5rem);
 }
 
 .contact-label {
