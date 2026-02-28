@@ -19,11 +19,10 @@ export const projects: Project[] = [
     description:
       'A hand-painted botanical composition created for a quiet family apartment. The mural moves from thin line drawing to layered washes so it feels visible in daylight but calm in evening light. Pigments were mixed on-site to match warm plaster and linen textures.',
     image:
-      'https://images.unsplash.com/photo-1624969862293-b749659ccc4b?auto=format&fit=crop&w=1600&q=80',
+      'https://2.downloader.disk.yandex.ru/preview/3b935120c89d6ef77649387d9f4cbcc6e27aa594777c40fdb6d7634f4519e129/inf/8FIcvqMCa4gQPdvL4VAzW9RYdVkwTY16khocO9608tzcC4tGZAPiOKIf49aZlTxOCoHEHURYUnOFTRWTLBPzEQ%3D%3D?uid=228362796&filename=OCEANMAIN.JPG&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=228362796&tknv=v3&size=3360x1876',
     detailImages: [
-      'https://images.unsplash.com/photo-1577083552431-6e5fd75fcddf?auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=1200&q=80&sat=-35',
+      'https://2.downloader.disk.yandex.ru/preview/bfea16bcace61c648d1e445e8425bafefe3396e5055a6b8997b4769d18cedf96/inf/U7BiJpmukXWemgcYSTAzjgcTQ4XGCL-5TejquUWs3xdodoyx1ILCpkD9ugDDiYfSVbkKLbDDP7R-2jNCtA1xPA%3D%3D?uid=228362796&filename=OCEAN3.JPG&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=228362796&tknv=v3&size=3360x1876',
+      'https://4.downloader.disk.yandex.ru/preview/a8b664a2361a5dea7ecddaa35ecffc4033711d83c20d1c079a4ca120370734bb/inf/bsfYWyY02xTzBsuwzc4B81P_NmfN0MA784P9X0kFSCT6dNtDwj_PLCxrOH55DV3QraPyH983DtSnv0-bi2nl6Q%3D%3D?uid=228362796&filename=OCEAN2.JPG&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=228362796&tknv=v3&size=3360x1876',
     ],
   },
   {
