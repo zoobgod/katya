@@ -52,40 +52,50 @@ img {
   max-width: 100%;
 }
 
-.contact-card {
-  display: flex;
-  min-height: 10rem;
-  flex-direction: column;
-  gap: 0.55rem;
-  border-radius: 1.25rem;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.38);
-  padding: 1.4rem;
-  transition: transform 0.25s ease, border-color 0.25s ease,
-    background-color 0.25s ease;
-}
-
-.contact-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(31, 28, 24, 0.26);
-  background: rgba(255, 255, 255, 0.62);
-}
-
 .anchor-section {
   scroll-margin-top: calc(var(--header-height) + 1.5rem);
 }
 
+.contact-fluid {
+  display: grid;
+  gap: 0.9rem;
+  border-radius: 2rem;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.34);
+  padding: 0.7rem;
+  backdrop-filter: blur(6px);
+}
+
+.contact-link {
+  display: flex;
+  min-height: 8.8rem;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 1.45rem;
+  border: 1px solid transparent;
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.18));
+  padding: 1.2rem 1.3rem;
+  transition: transform 0.24s ease, border-color 0.24s ease, background-color 0.24s ease;
+}
+
+.contact-link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(31, 28, 24, 0.18);
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.3));
+}
+
 .contact-label {
-  margin: 0.25rem 0 0;
+  margin: 0;
   font-size: 0.72rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
 .contact-value {
   margin: 0;
-  font-size: 1rem;
+  font-size: clamp(1.05rem, 2vw, 1.5rem);
+  line-height: 1.1;
 }
 
 ::selection {
@@ -107,12 +117,15 @@ img {
     );
   }
 
-  .contact-card {
-    padding: 1.15rem;
+  .contact-fluid {
+    border-radius: 1.45rem;
+    padding: 0.55rem;
   }
 
-  .contact-value {
-    font-size: 0.95rem;
+  .contact-link {
+    min-height: 7.2rem;
+    border-radius: 1.05rem;
+    padding: 1rem 1rem;
   }
 }
 
@@ -123,6 +136,10 @@ img {
       rgba(243, 238, 231, 0.82),
       rgba(243, 238, 231, 0.56)
     );
+  }
+
+  .contact-fluid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -136,7 +153,7 @@ img {
     scroll-behavior: auto !important;
   }
 
-  .contact-card:hover {
+  .contact-link:hover {
     transform: none;
   }
 }

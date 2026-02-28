@@ -1,5 +1,5 @@
 import { type MouseEvent, useCallback, useEffect, useState } from 'react'
-import { ArrowLeft, ArrowUpRight, Instagram, Mail, MapPin, Phone } from 'lucide-react'
+import { ArrowLeft, ArrowUpRight } from 'lucide-react'
 import Lenis from 'lenis'
 import { motion } from 'framer-motion'
 import {
@@ -13,8 +13,12 @@ import {
 import { projects, projectsBySlug } from './data/projects'
 
 const HEADER_OFFSET = 104
+const CONTACT_EMAIL = 'zoobx@vk.com'
+const CONTACT_TELEGRAM = '@egellans'
 
 function App() {
+  const location = useLocation()
+
   useEffect(() => {
     const lenis = new Lenis({
       lerp: 0.08,
@@ -34,6 +38,18 @@ function App() {
       lenis.destroy()
     }
   }, [])
+
+  useEffect(() => {
+    const previousScrollRestoration = window.history.scrollRestoration
+    window.history.scrollRestoration = 'manual'
+    return () => {
+      window.history.scrollRestoration = previousScrollRestoration
+    }
+  }, [])
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' })
+  }, [location.pathname])
 
   return (
     <Routes>
@@ -203,43 +219,49 @@ function HomePage() {
           </div>
         </section>
 
-        <section id="contact" className="anchor-section grid gap-6 py-18 md:grid-cols-3 md:gap-8">
-          <a
-            href="mailto:katya.mural@example.com"
-            className="contact-card"
-            aria-label="Email Katya"
-          >
-            <Mail size={18} />
-            <p className="contact-label">Email</p>
-            <p className="contact-value">katya.mural@example.com</p>
-          </a>
-          <a href="tel:+79991234567" className="contact-card" aria-label="Call Katya">
-            <Phone size={18} />
-            <p className="contact-label">Phone</p>
-            <p className="contact-value">+7 999 123 45 67</p>
-          </a>
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noreferrer"
-            className="contact-card"
-            aria-label="Katya Instagram"
-          >
-            <Instagram size={18} />
-            <p className="contact-label">Instagram</p>
-            <p className="contact-value">@katya.walls</p>
-          </a>
+        <section id="contact" className="anchor-section py-18">
+          <div className="mb-8 flex items-end justify-between gap-4">
+            <h2 className="font-serif text-4xl md:text-5xl">Contact</h2>
+            <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
+              Direct
+            </p>
+          </div>
+
+          <div className="contact-fluid">
+            <a
+              href="https://t.me/egellans"
+              target="_blank"
+              rel="noreferrer"
+              className="contact-link"
+              aria-label="Telegram"
+            >
+              <p className="contact-label">Telegram</p>
+              <p className="contact-value">{CONTACT_TELEGRAM}</p>
+            </a>
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="contact-link"
+              aria-label="Email"
+            >
+              <p className="contact-label">Email</p>
+              <p className="contact-value">{CONTACT_EMAIL}</p>
+            </a>
+          </div>
         </section>
       </main>
 
-      <footer className="mx-auto flex max-w-7xl flex-col gap-2 border-t border-[var(--line)] px-6 py-7 text-sm text-[var(--muted)] md:flex-row md:items-center md:justify-between md:px-10">
-        <p>Katya Painter Portfolio</p>
-        <p className="inline-flex items-center gap-2">
-          <MapPin size={14} />
-          Moscow, available for travel
-        </p>
-      </footer>
+      <SiteFooter />
     </div>
+  )
+}
+
+function SiteFooter() {
+  return (
+    <footer className="mx-auto flex max-w-7xl flex-col gap-1 border-t border-[var(--line)] px-6 py-7 text-sm text-[var(--muted)] md:flex-row md:items-center md:justify-between md:px-10">
+      <p>Ekaterina Shmakova, 2026</p>
+      <p>Available for travel</p>
+      <p>© 2026 All rights reserved.</p>
+    </footer>
   )
 }
 
@@ -298,7 +320,7 @@ function ProjectPage() {
             <p className="font-serif text-3xl leading-tight">{project.summary}</p>
             <p className="text-base leading-relaxed text-[var(--muted)]">{project.description}</p>
             <a
-              href="mailto:katya.mural@example.com"
+              href={`mailto:${CONTACT_EMAIL}`}
               className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[var(--muted)] hover:text-[var(--ink)]"
             >
               Discuss a project
@@ -352,13 +374,7 @@ function ProjectPage() {
         </section>
       </main>
 
-      <footer className="mx-auto flex max-w-7xl flex-col gap-2 border-t border-[var(--line)] px-6 py-7 text-sm text-[var(--muted)] md:flex-row md:items-center md:justify-between md:px-10">
-        <p>Katya Painter Portfolio</p>
-        <p className="inline-flex items-center gap-2">
-          <MapPin size={14} />
-          Moscow, available for travel
-        </p>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }
