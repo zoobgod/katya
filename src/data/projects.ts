@@ -40,7 +40,7 @@ export const projects: Project[] = [
   {
     slug: 'ocean',
     title: { en: 'OCEAN', ru: 'OCEAN' },
-    place: { en: 'Undisclosed', ru: 'Не раскрывается' },
+    place: { en: 'Undisclosed', ru: 'Скрытая локация' },
     year: '2024',
     summary: {
       en: 'A calm ocean-inspired mural built around depth, flow, and soft transitions.',
@@ -101,7 +101,7 @@ export const projects: Project[] = [
   {
     slug: 'flamo',
     title: { en: 'FLAMO', ru: 'FLAMO' },
-    place: { en: 'Undisclosed', ru: 'Не раскрывается' },
+    place: { en: 'Undisclosed', ru: 'Скрытая локация' },
     year: '2024',
     summary: {
       en: 'A mural balancing precise line detail with broad textured brushwork.',
@@ -122,7 +122,7 @@ export const projects: Project[] = [
   {
     slug: 'district',
     title: { en: 'District', ru: 'District' },
-    place: { en: 'Undisclosed', ru: 'Не раскрывается' },
+    place: { en: 'Undisclosed', ru: 'Скрытая локация' },
     year: '2025',
     summary: {
       en: 'Calm illustrative wall painting designed around layered architectural rhythm.',
@@ -145,7 +145,7 @@ export const projects: Project[] = [
   {
     slug: 'DEPO',
     title: { en: 'DEPO', ru: 'DEPO' },
-    place: { en: 'Undisclosed', ru: 'Не раскрывается' },
+    place: { en: 'Undisclosed', ru: 'Скрытая локация' },
     year: '2025',
     summary: {
       en: 'A large-scale mural with strong directional movement and layered urban rhythm.',
@@ -162,7 +162,7 @@ export const projects: Project[] = [
   {
     slug: 'CHICKO',
     title: { en: 'CHICKO', ru: 'CHICKO' },
-    place: { en: 'Undisclosed', ru: 'Не раскрывается' },
+    place: { en: 'Undisclosed', ru: 'Скрытая локация' },
     year: '2025',
     summary: {
       en: 'A playful but minimal mural concept balancing graphic accents with painterly texture.',
@@ -204,7 +204,7 @@ export const projects: Project[] = [
   {
     slug: 'BSHOP',
     title: { en: 'BSHOP', ru: 'BSHOP' },
-    place: { en: 'Undisclosed', ru: 'Не раскрывается' },
+    place: { en: 'Undisclosed', ru: 'Скрытая локация' },
     year: '2025',
     summary: {
       en: 'A clean, modern mural treatment tailored for a boutique retail interior.',

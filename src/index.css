@@ -92,8 +92,46 @@ body {
   font-family: 'Manrope', sans-serif;
 }
 
+.safe-x {
+  padding-left: max(1rem, env(safe-area-inset-left));
+  padding-right: max(1rem, env(safe-area-inset-right));
+}
+
+.safe-bottom {
+  padding-bottom: max(1.2rem, calc(1.2rem + env(safe-area-inset-bottom)));
+}
+
 .font-serif {
   font-family: 'Prata', serif;
+}
+
+.site-brand {
+  font-size: clamp(1.48rem, 5vw, 2rem);
+  line-height: 1;
+}
+
+.site-nav {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  color: var(--muted);
+  font-size: 0.62rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  line-height: 1;
+}
+
+.project-back-link {
+  font-size: 0.62rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  line-height: 1;
+}
+
+.project-card-title {
+  overflow-wrap: anywhere;
 }
 
 a {
@@ -323,6 +361,13 @@ img {
   transform: translateY(-1px);
 }
 
+.footer-item {
+  max-width: 100%;
+  word-break: break-word;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
 .no-scrollbar {
   scrollbar-width: none;
 }
@@ -392,6 +437,10 @@ img {
     background: linear-gradient(to bottom, var(--header-mobile-from), var(--header-mobile-to));
   }
 
+  .site-footer {
+    padding-top: 1.2rem;
+  }
+
   .contact-fluid {
     border-radius: 1.45rem;
     padding: 0.55rem;
@@ -424,6 +473,11 @@ img {
     font-size: 0.58rem;
     letter-spacing: 0.1em;
   }
+
+  .safe-x {
+    padding-left: max(0.9rem, env(safe-area-inset-left));
+    padding-right: max(0.9rem, env(safe-area-inset-right));
+  }
 }
 
 @media (min-width: 641px) {
@@ -433,6 +487,71 @@ img {
 
   .contact-fluid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .safe-x {
+    padding-left: max(1.5rem, env(safe-area-inset-left));
+    padding-right: max(1.5rem, env(safe-area-inset-right));
+  }
+
+  .site-nav {
+    gap: 0.75rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .project-back-link {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+}
+
+@media (min-width: 768px) {
+  .safe-x {
+    padding-left: max(2.5rem, env(safe-area-inset-left));
+    padding-right: max(2.5rem, env(safe-area-inset-right));
+  }
+
+  .site-nav {
+    gap: 1.25rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.24em;
+  }
+
+  .project-back-link {
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-brand {
+    font-size: 1.36rem;
+  }
+
+  .site-nav {
+    gap: 0.45rem;
+    font-size: 0.56rem;
+    letter-spacing: 0.01em;
+  }
+
+  .project-back-link {
+    font-size: 0.56rem;
+    letter-spacing: 0.01em;
+  }
+
+  .lang-switch {
+    padding: 0.13rem;
+  }
+
+  .lang-btn {
+    min-width: 1.74rem;
+    height: 1.2rem;
+    padding: 0 0.34rem;
+    font-size: 0.52rem;
+    letter-spacing: 0.08em;
   }
 }
 

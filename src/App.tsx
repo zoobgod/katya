@@ -58,6 +58,7 @@ const ui = {
     footerCopyright: '© 2026 All rights reserved.',
     projectLabel: 'Project',
     backToGallery: 'Back to gallery',
+    backToGalleryShort: 'Back',
     shortDescription: 'Short Description',
     discussProject: 'Discuss a project',
     projectGallery: 'Project Gallery',
@@ -103,6 +104,7 @@ const ui = {
     footerCopyright: '© 2026 Все права защищены.',
     projectLabel: 'Проект',
     backToGallery: 'Назад к галерее',
+    backToGalleryShort: 'Назад',
     shortDescription: 'Кратко',
     discussProject: 'Обсудить проект',
     projectGallery: 'Галерея проекта',
@@ -449,13 +451,13 @@ function HomePage({
         }`}
       />
 
-      <header className="fixed inset-x-0 top-0 z-40 mx-auto flex h-20 max-w-7xl items-center justify-between px-6 backdrop-blur-md md:px-10">
-        <a href="#top" onClick={onAnchorClick('top')} className="font-serif text-2xl tracking-wide">
+      <header className="safe-x fixed inset-x-0 top-0 z-40 mx-auto flex h-20 max-w-7xl items-center justify-between backdrop-blur-md">
+        <a href="#top" onClick={onAnchorClick('top')} className="site-brand font-serif tracking-wide">
           Katya
         </a>
 
-        <div className="flex items-center gap-3 md:gap-4">
-          <nav className="flex gap-5 text-xs uppercase tracking-[0.24em] text-[var(--muted)] md:text-sm">
+        <div className="flex min-w-0 items-center gap-2 md:gap-4">
+          <nav className="site-nav">
             <a href="#about" onClick={onAnchorClick('about')} className="hover:text-[var(--ink)]">
               {t.navAbout}
             </a>
@@ -471,7 +473,7 @@ function HomePage({
         </div>
       </header>
 
-      <main id="top" className="mx-auto max-w-7xl px-6 pb-12 pt-28 md:px-10">
+      <main id="top" className="safe-x mx-auto max-w-7xl pb-12 pt-28">
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -541,12 +543,14 @@ function HomePage({
                     <div className="placeholder-surface flex aspect-[4/5] items-center justify-center border-b border-dashed border-[var(--line)]">
                       <p className="text-xs uppercase tracking-[0.24em] text-[var(--muted)]">{t.placeholder}</p>
                     </div>
-                    <div className="flex items-center justify-between gap-4 p-5 md:p-6">
-                      <div>
-                        <h3 className="font-serif text-2xl">{item.title[lang]}</h3>
+                    <div className="flex items-start justify-between gap-4 p-5 md:items-center md:p-6">
+                      <div className="min-w-0">
+                        <h3 className="project-card-title font-serif text-[1.35rem] leading-tight md:text-2xl">
+                          {item.title[lang]}
+                        </h3>
                         <p className="mt-1 text-sm text-[var(--muted)]">{t.comingSoon}</p>
                       </div>
-                      <p className="text-sm text-[var(--muted)]">{t.tbd}</p>
+                      <p className="shrink-0 pt-0.5 text-right text-sm text-[var(--muted)] md:pt-0">{t.tbd}</p>
                     </div>
                   </div>
                 ) : (
@@ -558,12 +562,14 @@ function HomePage({
                       className="aspect-[4/5]"
                       imageClassName="h-full w-full object-cover"
                     />
-                    <div className="flex items-center justify-between gap-4 p-5 md:p-6">
-                      <div>
-                        <h3 className="font-serif text-2xl">{item.title[lang]}</h3>
+                    <div className="flex items-start justify-between gap-4 p-5 md:items-center md:p-6">
+                      <div className="min-w-0">
+                        <h3 className="project-card-title font-serif text-[1.35rem] leading-tight md:text-2xl">
+                          {item.title[lang]}
+                        </h3>
                         <p className="mt-1 text-sm text-[var(--muted)]">{item.place[lang]}</p>
                       </div>
-                      <p className="text-sm text-[var(--muted)]">{item.year}</p>
+                      <p className="shrink-0 pt-0.5 text-right text-sm text-[var(--muted)] md:pt-0">{item.year}</p>
                     </div>
                   </Link>
                 )}
@@ -607,10 +613,10 @@ function SiteFooter({ lang }: { lang: Lang }) {
   const t = ui[lang]
 
   return (
-    <footer className="mx-auto flex max-w-7xl flex-col gap-1 border-t border-[var(--line)] px-6 py-7 text-sm text-[var(--muted)] md:flex-row md:items-center md:justify-between md:px-10">
-      <p>{t.footerName}</p>
-      <p>{t.footerTravel}</p>
-      <p>{t.footerCopyright}</p>
+    <footer className="site-footer safe-x safe-bottom mx-auto flex max-w-7xl flex-col gap-2 border-t border-[var(--line)] py-7 text-[0.78rem] leading-relaxed text-[var(--muted)] sm:text-sm md:flex-row md:items-center md:justify-between md:gap-0">
+      <p className="footer-item">{t.footerName}</p>
+      <p className="footer-item">{t.footerTravel}</p>
+      <p className="footer-item">{t.footerCopyright}</p>
     </footer>
   )
 }
@@ -747,28 +753,31 @@ function ProjectPage({
     <div className="relative min-h-screen bg-[var(--canvas)] text-[var(--ink)]">
       <div className="site-backdrop pointer-events-none fixed inset-0 -z-10" />
 
-      <header className="fixed inset-x-0 top-0 z-40 mx-auto flex h-20 max-w-7xl items-center justify-between px-6 backdrop-blur-md md:px-10">
-        <Link to="/" className="font-serif text-2xl tracking-wide">
+      <header className="safe-x fixed inset-x-0 top-0 z-40 mx-auto flex h-20 max-w-7xl items-center justify-between backdrop-blur-md">
+        <Link to="/" className="site-brand font-serif tracking-wide">
           Katya
         </Link>
 
-        <div className="flex items-center gap-3 md:gap-4">
+        <div className="flex min-w-0 items-center gap-2 md:gap-4">
           <Link
             to="/#gallery"
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[var(--muted)] hover:text-[var(--ink)]"
+            className="project-back-link inline-flex shrink-0 items-center gap-1 text-[var(--muted)] hover:text-[var(--ink)]"
           >
             <ArrowLeft size={16} />
-            {t.backToGallery}
+            <span className="hidden sm:inline">{t.backToGallery}</span>
+            <span className="sm:hidden">{t.backToGalleryShort}</span>
           </Link>
 
           <LanguageSwitch lang={lang} setLang={setLang} hidden={hideLangSwitch} />
         </div>
       </header>
 
-      <main className="mx-auto max-w-7xl px-6 pb-12 pt-28 md:px-10">
+      <main className="safe-x mx-auto max-w-7xl pb-12 pt-28">
         <section className="border-b border-[var(--line)] pb-12">
           <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[var(--muted)]">{t.projectLabel}</p>
-          <h1 className="font-serif text-5xl leading-[0.95] md:text-7xl">{project.title[lang]}</h1>
+          <h1 className="font-serif text-4xl leading-[0.95] break-words sm:text-5xl md:text-7xl">
+            {project.title[lang]}
+          </h1>
           <p className="mt-4 text-sm uppercase tracking-[0.16em] text-[var(--muted)]">
             {project.place[lang]} / {project.year}
           </p>
@@ -793,7 +802,7 @@ function ProjectPage({
 
           <aside className="space-y-6 md:col-span-5 md:pt-6">
             <p className="text-xs uppercase tracking-[0.18em] text-[var(--muted)]">{t.shortDescription}</p>
-            <p className="font-serif text-3xl leading-tight">{project.summary[lang]}</p>
+            <p className="font-serif text-2xl leading-tight sm:text-3xl">{project.summary[lang]}</p>
             <p className="text-base leading-relaxed text-[var(--muted)]">{project.description[lang]}</p>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
@@ -829,7 +838,9 @@ function ProjectPage({
                   imageClassName="h-full w-full object-cover"
                 />
                 <div className="p-5">
-                  <h2 className="font-serif text-2xl">{item.title[lang]}</h2>
+                  <h2 className="project-card-title font-serif text-[1.35rem] leading-tight md:text-2xl">
+                    {item.title[lang]}
+                  </h2>
                   <p className="mt-1 text-sm text-[var(--muted)]">{item.place[lang]}</p>
                 </div>
               </Link>
