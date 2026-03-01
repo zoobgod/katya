@@ -211,10 +211,10 @@ function HomePage() {
 
   return (
     <div className="relative min-h-screen bg-[var(--canvas)] text-[var(--ink)]">
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_20%_0%,rgba(188,164,141,.24),transparent_36%),radial-gradient(circle_at_100%_100%,rgba(78,87,75,.12),transparent_42%)]" />
+      <div className="site-backdrop pointer-events-none fixed inset-0 -z-10" />
       <div
         aria-hidden
-        className={`pointer-events-none fixed inset-0 z-20 bg-black/14 transition-opacity duration-300 ${
+        className={`hover-dim pointer-events-none fixed inset-0 z-20 transition-opacity duration-300 ${
           hoveredProject ? 'opacity-100' : 'opacity-0'
         }`}
       />
@@ -307,13 +307,13 @@ function HomePage() {
                 onMouseLeave={() => setHoveredProject(null)}
                 onFocusCapture={() => setHoveredProject(item.slug)}
                 onBlurCapture={() => setHoveredProject(null)}
-                className={`tile-pop relative overflow-hidden rounded-3xl border border-[var(--line)] bg-white/35 ${
+                className={`tile-pop surface-card relative overflow-hidden rounded-3xl border border-[var(--line)] ${
                   hoveredProject === item.slug ? 'z-30' : 'z-10'
                 }`}
               >
                 {item.isPlaceholder ? (
                   <div className="group block">
-                    <div className="flex aspect-[4/5] items-center justify-center border-b border-dashed border-[var(--line)] bg-[rgba(255,255,255,0.18)]">
+                    <div className="placeholder-surface flex aspect-[4/5] items-center justify-center border-b border-dashed border-[var(--line)]">
                       <p className="text-xs uppercase tracking-[0.24em] text-[var(--muted)]">
                         Placeholder
                       </p>
@@ -414,7 +414,7 @@ function ProjectShowcaseGallery({
     return (
       <section className="border-b border-[var(--line)] py-12">
         <p className="mb-6 text-xs uppercase tracking-[0.18em] text-[var(--muted)]">Project Gallery</p>
-        <div className="flex h-56 items-center justify-center rounded-3xl border border-dashed border-[var(--line)] bg-white/20 text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
+        <div className="empty-gallery-surface flex h-56 items-center justify-center rounded-3xl border border-dashed border-[var(--line)] text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
           Gallery coming soon
         </div>
       </section>
@@ -508,7 +508,7 @@ function ProjectPage() {
 
   return (
     <div className="relative min-h-screen bg-[var(--canvas)] text-[var(--ink)]">
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_20%_0%,rgba(188,164,141,.24),transparent_36%),radial-gradient(circle_at_100%_100%,rgba(78,87,75,.12),transparent_42%)]" />
+      <div className="site-backdrop pointer-events-none fixed inset-0 -z-10" />
 
       <header className="fixed inset-x-0 top-0 z-40 mx-auto flex h-20 max-w-7xl items-center justify-between px-6 backdrop-blur-md md:px-10">
         <Link to="/" className="font-serif text-2xl tracking-wide">
@@ -576,7 +576,7 @@ function ProjectPage() {
               <Link
                 key={item.slug}
                 to={`/projects/${encodeURIComponent(item.slug)}`}
-                className="tile-pop group overflow-hidden rounded-3xl border border-[var(--line)] bg-white/35"
+                className="tile-pop surface-card group overflow-hidden rounded-3xl border border-[var(--line)]"
               >
                 <FluidImage
                   key={item.image}
