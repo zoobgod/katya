@@ -231,7 +231,7 @@ function HomePage() {
             Gallery
           </a>
           <a href="#contact" onClick={onAnchorClick('contact')} className="hover:text-[var(--ink)]">
-            Contact
+            Contact me
           </a>
         </nav>
       </header>
@@ -351,7 +351,7 @@ function HomePage() {
 
         <section id="contact" className="anchor-section py-18">
           <div className="mb-8 flex items-end justify-between gap-4">
-            <h2 className="font-serif text-4xl md:text-5xl">Contact</h2>
+            <h2 className="font-serif text-4xl md:text-5xl">Contact me</h2>
             <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">Direct</p>
           </div>
 

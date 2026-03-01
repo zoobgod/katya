@@ -111,46 +111,65 @@ export const projects: Project[] = [
   {
     slug: 'DEPO',
     title: 'DEPO',
-    place: 'TBD',
-    year: 'TBD',
-    summary: 'Coming soon.',
-    description: '',
-    image: '',
-    detailImages: [],
-    isPlaceholder: true,
+    place: 'Undisclosed',
+    year: '2025',
+    summary: 'A large-scale mural with strong directional movement and layered urban rhythm.',
+    description:
+      'DEPO is a site-specific wall painting built around bold flow lines, soft tonal transitions, and textured brush passages. The composition was designed to read clearly from distance while keeping handcrafted detail up close. Layering and matte finishing were used to preserve depth without visual heaviness.',
+    image: 'https://www.dropbox.com/scl/fi/wyyxoq54dufawuz9r4fvr/DEPOMAIN.JPG?rlkey=wid9qf6diddkj3czmktcvsl8h&st=yp6tfn7s&raw=1',
+    detailImages: [
+
+
+    ],
   },
   {
     slug: 'CHICKO',
     title: 'CHICKO',
-    place: 'TBD',
-    year: 'TBD',
-    summary: 'Coming soon.',
-    description: '',
-    image: '',
-    detailImages: [],
-    isPlaceholder: true,
+    place: 'Undisclosed',
+    year: '2025',
+    summary: 'A playful but minimal mural concept balancing graphic accents with painterly texture.',
+    description:
+      'CHICKO combines crisp compositional structure with expressive hand-painted marks to create a light, contemporary atmosphere. The palette was kept controlled so the wall supports the space without overwhelming it. Repeated forms and soft transitions create rhythm across the full surface.',
+    image: 'https://www.dropbox.com/scl/fi/uvhihrt0gmpp7n4ib5x7z/CHICKOMAIN.JPG?rlkey=rdrqv0zgaxpmdjkx39xfp961s&st=qfg33ksl&raw=1',
+    detailImages: [
+      'https://www.dropbox.com/scl/fi/q1hu22on5obu6liykutdl/CHICKO4.jpg?rlkey=536bcs7mm4lc3dczinj95biyw&st=y033tbi5&raw=1',
+      'https://www.dropbox.com/scl/fi/l6wd4uoderhs4towqg92z/CHICKO3.jpg?rlkey=gmtmrq8myr5l9x0ytaxoejlce&st=lszv3les&raw=1',
+      'https://www.dropbox.com/scl/fi/wi15jazhp7jibsmi62ujr/CHICKO2.jpg?rlkey=8au3s558klvp4gcmvdhtn1a9r&st=ky1sa11q&raw=1',
+      
+    ],
   },
   {
     slug: 'Central Market',
     title: 'Central Market',
-    place: 'TBD',
-    year: 'TBD',
-    summary: 'Coming soon.',
-    description: '',
-    image: '',
-    detailImages: [],
-    isPlaceholder: true,
+    place: 'Central Market',
+    year: '2025',
+    summary: 'A market-scale wall painting designed to feel warm, open, and continuously flowing.',
+    description:
+      'Central Market was developed for a busy public-facing environment where visual clarity matters at every distance. The painting uses broad tonal zones, layered detailing, and balanced contrast to guide the eye naturally through the space. Durable materials and matte protection were selected for long-term stability.',
+    image: 'https://www.dropbox.com/scl/fi/gipwsnovl191kr7f5vo1g/CENTRALMAIN.jpg?rlkey=i3hklfml9geh4rqlwq3vyblsw&st=mscslunc&raw=1',
+    detailImages: [
+      'https://www.dropbox.com/scl/fi/fmqzk67eqqvow49h5bg1f/CENTRAL4.JPG?rlkey=e0nytppt4mgr7kg3ur8fugp94&st=vt560xdz&raw=1',
+      'https://www.dropbox.com/scl/fi/vyyh0jxtpikdidt53tusv/CENTRAL3.JPG?rlkey=k8tkwewltag3dmcz2udvmxroz&st=q8cxme5r&raw=1',
+      'https://www.dropbox.com/scl/fi/c2md2flb0pl6i9ekpblmi/CENTRAL2.JPG?rlkey=7ewva7jvaj3pzn4chw907hep1&st=vsxws38g&raw=1',
+
+
+    ],
   },
   {
     slug: 'BSHOP',
     title: 'BSHOP',
-    place: 'TBD',
-    year: 'TBD',
-    summary: 'Coming soon.',
-    description: '',
-    image: '',
-    detailImages: [],
-    isPlaceholder: true,
+    place: 'Undisclosed',
+    year: '2025',
+    summary: 'A clean, modern mural treatment tailored for a boutique retail interior.',
+    description:
+      'BSHOP focuses on minimalist visual impact with refined line work, soft layering, and controlled contrast. The artwork was planned to complement product presentation while still carrying a clear artistic identity. Subtle texture transitions keep the wall dynamic without distracting from the space function.',
+    image: 'https://www.dropbox.com/scl/fi/zijaua2hsmktd7mah8fe3/BSHOPMAIN.jpg?rlkey=z6pav3xtu0tdik5i5v5l4hh0k&st=z8g86zb2&raw=1',
+    detailImages: [
+      'https://www.dropbox.com/scl/fi/ca4ntqhehfg9olvyytm1a/BSHOP3.jpg?rlkey=rj4pvxrwoy1avoen1tmimk9dw&st=3kwqkeph&raw=1',
+      'https://www.dropbox.com/scl/fi/a99q4k3jjc9jy6gsl5qnw/BSHOP2.jpg?rlkey=wzodmf4abbiogty454gxqzy8o&st=60lybmki&raw=1',
+
+
+    ],
   },
 ]
 
