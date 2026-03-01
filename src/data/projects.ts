@@ -30,7 +30,7 @@ export const projects: Project[] = [
       ru: 'Проект 88 — современная работа на стыке пластичной абстракции и графичной иллюстрации. Мягкие бирюзовые и мятные оттенки создают почти сновидческую основу, а контрастные линии и геометрические акценты задают ритм и движение. Упрощенный персонаж удерживает композицию и добавляет ей сюжетный центр.',
     },
     image:
-      'https://uc8b02027c1ed4ae4b4b0336caa3.dl.dropboxusercontent.com/cd/0/inline/C7w7JtsFx_ikeq_ZGMqB7UPNlSIeF50uY92Fyw3Em8bVIqUvFK5VY3jFd-aApXtmIq7hIxonZJQuxqzIu8Vy-fvhu4IdgL1aFVkTv-FGrjAyRd4fCgeIXY-ln3IU2KtRg_VbjK5mA_TJUC5YWu-wu7xh/file#',
+    'https://www.dropbox.com/scl/fi/6uhujaa85q91yg6kn4tuz/88MAINMAIN.JPG?rlkey=yxta460yr88qhuddi6cecsfsw&st=pcfzvvwu&raw=1',
     detailImages: [
       'https://www.dropbox.com/scl/fi/6uhujaa85q91yg6kn4tuz/88MAINMAIN.JPG?rlkey=yxta460yr88qhuddi6cecsfsw&st=e98ka2dk&raw=1',
       'https://www.dropbox.com/scl/fi/4evuxho2bwiooxae7bdun/882.JPG?rlkey=2ex5i748sueqb1n6pqm7n000j&st=odrrvglv&raw=1',
