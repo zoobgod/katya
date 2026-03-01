@@ -149,6 +149,42 @@ img {
   animation: loader-sweep 1.15s ease-in-out infinite;
 }
 
+.lang-switch-shell {
+  transform-origin: top right;
+}
+
+.lang-switch {
+  display: inline-flex;
+  gap: 0.15rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.17rem;
+  background: var(--panel-soft);
+}
+
+.lang-btn {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  border-radius: 999px;
+  min-width: 2.15rem;
+  height: 1.5rem;
+  padding: 0 0.45rem;
+  font-size: 0.63rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.lang-btn:hover {
+  color: var(--ink);
+}
+
+.lang-btn.is-active {
+  background: var(--ink);
+  color: var(--canvas);
+}
+
 .image-shell {
   position: relative;
   overflow: hidden;
@@ -380,6 +416,13 @@ img {
   .project-gallery-nav {
     width: 2rem;
     height: 2rem;
+  }
+
+  .lang-btn {
+    min-width: 1.9rem;
+    height: 1.34rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
   }
 }
 

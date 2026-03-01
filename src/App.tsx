@@ -23,6 +23,103 @@ import { projects, projectsBySlug } from './data/projects'
 const HEADER_OFFSET = 104
 const CONTACT_EMAIL = 'zoobx@vk.com'
 const CONTACT_TELEGRAM = '@egellans'
+const LANG_STORAGE_KEY = 'katya-lang'
+
+const ui = {
+  en: {
+    metaTitle: 'Katya | Painter & Wallpainter',
+    metaDescription:
+      'Portfolio website for Katya, a painter and wallpainter creating hand-painted murals and interiors.',
+    loaderWord: 'Katya',
+    navAbout: 'About',
+    navGallery: 'Gallery',
+    navContact: 'Contact me',
+    heroRole: 'Painter / Wallpainter',
+    heroDescription:
+      'Hand-painted walls, murals, and textured surfaces for homes, studios, and intimate public spaces.',
+    heroCta: 'View selected works',
+    heroNote: 'Soft palettes, botanical forms, and layered brushwork built for calm interiors.',
+    aboutTitle: 'About',
+    aboutTextOne:
+      'Katya creates site-specific painting for walls and architectural surfaces. Every piece is made by hand, with no digital prints and no repetition.',
+    aboutTextTwo:
+      'Her practice combines mural painting, faux plaster textures, and fine line ornament inspired by plants, stone, and faded European interiors.',
+    galleryTitle: 'Gallery',
+    selectedProjects: 'Selected Projects',
+    placeholder: 'Placeholder',
+    comingSoon: 'Coming soon',
+    tbd: 'TBD',
+    contactTitle: 'Contact me',
+    contactKicker: 'Direct',
+    labelTelegram: 'Telegram',
+    labelEmail: 'Email',
+    footerName: 'Ekaterina Shmakova, 2026',
+    footerTravel: 'Available for travel',
+    footerCopyright: '© 2026 All rights reserved.',
+    projectLabel: 'Project',
+    backToGallery: 'Back to gallery',
+    shortDescription: 'Short Description',
+    discussProject: 'Discuss a project',
+    projectGallery: 'Project Gallery',
+    galleryComingSoon: 'Gallery coming soon',
+    moreProjects: 'More Projects',
+    previousImage: 'Previous image',
+    nextImage: 'Next image',
+    openDetailImage: 'Open detail image',
+    altWallPainting: 'wall painting',
+    altProjectPreview: 'project preview',
+    altDetail: 'detail',
+    languageLabel: 'Language',
+  },
+  ru: {
+    metaTitle: 'Катя | Художница и роспись стен',
+    metaDescription:
+      'Портфолио Кати — художницы по росписи стен, создающей ручные росписи и авторские интерьерные поверхности.',
+    loaderWord: 'Katya',
+    navAbout: 'Обо мне',
+    navGallery: 'Галерея',
+    navContact: 'Связаться',
+    heroRole: 'Художница / Роспись стен',
+    heroDescription:
+      'Ручная роспись стен, муралы и фактурные поверхности для домов, студий и камерных общественных пространств.',
+    heroCta: 'Смотреть работы',
+    heroNote: 'Мягкие палитры, ботанические формы и многослойная кистевая работа для спокойных интерьеров.',
+    aboutTitle: 'Обо мне',
+    aboutTextOne:
+      'Катя создает росписи под конкретное пространство — для стен и архитектурных поверхностей. Каждая работа выполняется вручную, без цифровой печати и повторов.',
+    aboutTextTwo:
+      'В практике сочетаются муральная живопись, имитация штукатурных фактур и тонкая линейная орнаментика, вдохновленная природой, камнем и выцветшими европейскими интерьерами.',
+    galleryTitle: 'Галерея',
+    selectedProjects: 'Избранные проекты',
+    placeholder: 'Плейсхолдер',
+    comingSoon: 'Скоро',
+    tbd: 'Скоро',
+    contactTitle: 'Связаться',
+    contactKicker: 'Напрямую',
+    labelTelegram: 'Телеграм',
+    labelEmail: 'Почта',
+    footerName: 'Екатерина Шмакова, 2026',
+    footerTravel: 'Доступна для выезда',
+    footerCopyright: '© 2026 Все права защищены.',
+    projectLabel: 'Проект',
+    backToGallery: 'Назад к галерее',
+    shortDescription: 'Кратко',
+    discussProject: 'Обсудить проект',
+    projectGallery: 'Галерея проекта',
+    galleryComingSoon: 'Галерея скоро появится',
+    moreProjects: 'Другие проекты',
+    previousImage: 'Предыдущее изображение',
+    nextImage: 'Следующее изображение',
+    openDetailImage: 'Открыть изображение',
+    altWallPainting: 'роспись стены',
+    altProjectPreview: 'превью проекта',
+    altDetail: 'деталь',
+    languageLabel: 'Язык',
+  },
+} as const
+
+type Lang = keyof typeof ui
+type Dictionary = (typeof ui)[Lang]
 
 type FluidImageProps = {
   src: string
@@ -32,10 +129,39 @@ type FluidImageProps = {
   loading?: 'lazy' | 'eager'
 }
 
+function readInitialLang(): Lang {
+  if (typeof window === 'undefined') {
+    return 'en'
+  }
+
+  const savedLang = window.localStorage.getItem(LANG_STORAGE_KEY)
+  if (savedLang === 'en' || savedLang === 'ru') {
+    return savedLang
+  }
+
+  return window.navigator.language.toLowerCase().startsWith('ru') ? 'ru' : 'en'
+}
+
 function App() {
   const location = useLocation()
   const lenisRef = useRef<Lenis | null>(null)
   const [showLoader, setShowLoader] = useState(true)
+  const [lang, setLang] = useState<Lang>(readInitialLang)
+  const [hideLangSwitch, setHideLangSwitch] = useState(false)
+  const lastScrollYRef = useRef(0)
+
+  const t = ui[lang]
+
+  useEffect(() => {
+    window.localStorage.setItem(LANG_STORAGE_KEY, lang)
+    document.documentElement.lang = lang
+    document.title = t.metaTitle
+
+    const descriptionTag = document.querySelector('meta[name="description"]')
+    if (descriptionTag) {
+      descriptionTag.setAttribute('content', t.metaDescription)
+    }
+  }, [lang, t.metaDescription, t.metaTitle])
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -99,12 +225,46 @@ function App() {
     }
   }, [])
 
+  useEffect(() => {
+    let ticking = false
+
+    const onScroll = () => {
+      if (ticking) {
+        return
+      }
+
+      ticking = true
+      window.requestAnimationFrame(() => {
+        const y = Math.max(window.scrollY, document.documentElement.scrollTop)
+        const delta = y - lastScrollYRef.current
+
+        if (y < 40) {
+          setHideLangSwitch(false)
+        } else if (delta > 6) {
+          setHideLangSwitch(true)
+        } else if (delta < -6) {
+          setHideLangSwitch(false)
+        }
+
+        lastScrollYRef.current = y
+        ticking = false
+      })
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+    }
+  }, [])
+
   useLayoutEffect(() => {
     const resetToTop = () => {
       lenisRef.current?.scrollTo(0, { immediate: true, force: true })
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
       document.documentElement.scrollTop = 0
       document.body.scrollTop = 0
+      setHideLangSwitch(false)
+      lastScrollYRef.current = 0
     }
 
     resetToTop()
@@ -119,17 +279,38 @@ function App() {
 
   return (
     <>
-      <AnimatePresence>{showLoader ? <SiteLoader key="site-loader" /> : null}</AnimatePresence>
+      <AnimatePresence>
+        {showLoader ? <SiteLoader key="site-loader" title={t.loaderWord} /> : null}
+      </AnimatePresence>
+
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/projects/:slug" element={<ProjectPage />} />
+        <Route
+          path="/"
+          element={
+            <HomePage
+              lang={lang}
+              setLang={setLang}
+              hideLangSwitch={hideLangSwitch}
+            />
+          }
+        />
+        <Route
+          path="/projects/:slug"
+          element={
+            <ProjectPage
+              lang={lang}
+              setLang={setLang}
+              hideLangSwitch={hideLangSwitch}
+            />
+          }
+        />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </>
   )
 }
 
-function SiteLoader() {
+function SiteLoader({ title }: { title: string }) {
   return (
     <motion.div
       initial={{ opacity: 1 }}
@@ -144,9 +325,49 @@ function SiteLoader() {
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className="site-loader-inner"
       >
-        <span className="site-loader-word font-serif">Katya</span>
+        <span className="site-loader-word font-serif">{title}</span>
         <div className="site-loader-line" />
       </motion.div>
+    </motion.div>
+  )
+}
+
+function LanguageSwitch({
+  lang,
+  setLang,
+  hidden,
+}: {
+  lang: Lang
+  setLang: (nextLang: Lang) => void
+  hidden: boolean
+}) {
+  const t = ui[lang]
+
+  return (
+    <motion.div
+      className="lang-switch-shell"
+      animate={hidden ? { opacity: 0, y: -8, scale: 0.96 } : { opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+      style={{ pointerEvents: hidden ? 'none' : 'auto' }}
+    >
+      <div className="lang-switch" role="group" aria-label={t.languageLabel}>
+        <button
+          type="button"
+          onClick={() => setLang('en')}
+          className={`lang-btn ${lang === 'en' ? 'is-active' : ''}`}
+          aria-label="English"
+        >
+          EN
+        </button>
+        <button
+          type="button"
+          onClick={() => setLang('ru')}
+          className={`lang-btn ${lang === 'ru' ? 'is-active' : ''}`}
+          aria-label="Русский"
+        >
+          RU
+        </button>
+      </div>
     </motion.div>
   )
 }
@@ -174,9 +395,18 @@ function FluidImage({
   )
 }
 
-function HomePage() {
+function HomePage({
+  lang,
+  setLang,
+  hideLangSwitch,
+}: {
+  lang: Lang
+  setLang: (nextLang: Lang) => void
+  hideLangSwitch: boolean
+}) {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null)
   const location = useLocation()
+  const t = ui[lang]
 
   const scrollToSectionById = useCallback((id: string, smooth: boolean) => {
     const section = document.getElementById(id)
@@ -223,17 +453,22 @@ function HomePage() {
         <a href="#top" onClick={onAnchorClick('top')} className="font-serif text-2xl tracking-wide">
           Katya
         </a>
-        <nav className="flex gap-5 text-xs uppercase tracking-[0.24em] text-[var(--muted)] md:text-sm">
-          <a href="#about" onClick={onAnchorClick('about')} className="hover:text-[var(--ink)]">
-            About
-          </a>
-          <a href="#gallery" onClick={onAnchorClick('gallery')} className="hover:text-[var(--ink)]">
-            Gallery
-          </a>
-          <a href="#contact" onClick={onAnchorClick('contact')} className="hover:text-[var(--ink)]">
-            Contact me
-          </a>
-        </nav>
+
+        <div className="flex items-center gap-3 md:gap-4">
+          <nav className="flex gap-5 text-xs uppercase tracking-[0.24em] text-[var(--muted)] md:text-sm">
+            <a href="#about" onClick={onAnchorClick('about')} className="hover:text-[var(--ink)]">
+              {t.navAbout}
+            </a>
+            <a href="#gallery" onClick={onAnchorClick('gallery')} className="hover:text-[var(--ink)]">
+              {t.navGallery}
+            </a>
+            <a href="#contact" onClick={onAnchorClick('contact')} className="hover:text-[var(--ink)]">
+              {t.navContact}
+            </a>
+          </nav>
+
+          <LanguageSwitch lang={lang} setLang={setLang} hidden={hideLangSwitch} />
+        </div>
       </header>
 
       <main id="top" className="mx-auto max-w-7xl px-6 pb-12 pt-28 md:px-10">
@@ -245,12 +480,11 @@ function HomePage() {
         >
           <div className="md:col-span-8">
             <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[var(--muted)]">
-              Painter / Wallpainter
+              {t.heroRole}
             </p>
             <h1 className="font-serif text-6xl leading-[0.95] md:text-8xl lg:text-9xl">Katya</h1>
             <p className="mt-6 max-w-lg text-base leading-relaxed text-[var(--muted)] md:text-lg">
-              Hand-painted walls, murals, and textured surfaces for homes, studios, and intimate
-              public spaces.
+              {t.heroDescription}
             </p>
           </div>
           <div className="mt-10 space-y-5 md:col-span-4 md:mt-0 md:justify-self-end">
@@ -259,15 +493,13 @@ function HomePage() {
               onClick={onAnchorClick('gallery')}
               className="group inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[var(--muted)] transition hover:text-[var(--ink)]"
             >
-              View selected works
+              {t.heroCta}
               <ArrowUpRight
                 size={16}
                 className="transition group-hover:translate-x-1 group-hover:-translate-y-1"
               />
             </a>
-            <p className="max-w-xs text-sm leading-relaxed text-[var(--muted)]">
-              Soft palettes, botanical forms, and layered brushwork built for calm interiors.
-            </p>
+            <p className="max-w-xs text-sm leading-relaxed text-[var(--muted)]">{t.heroNote}</p>
           </div>
         </motion.section>
 
@@ -275,26 +507,19 @@ function HomePage() {
           id="about"
           className="anchor-section grid gap-8 border-b border-[var(--line)] py-18 md:grid-cols-12 md:gap-12"
         >
-          <h2 className="font-serif text-4xl md:col-span-4 md:text-5xl">About</h2>
+          <h2 className="font-serif text-4xl md:col-span-4 md:text-5xl">{t.aboutTitle}</h2>
           <div className="space-y-6 md:col-span-8">
-            <p className="max-w-2xl text-lg leading-relaxed">
-              Katya creates site-specific painting for walls and architectural surfaces. Every
-              piece is made by hand, with no digital prints and no repetition.
-            </p>
-            <p className="max-w-2xl text-base leading-relaxed text-[var(--muted)]">
-              Her practice combines mural painting, faux plaster textures, and fine line ornament
-              inspired by plants, stone, and faded European interiors.
-            </p>
+            <p className="max-w-2xl text-lg leading-relaxed">{t.aboutTextOne}</p>
+            <p className="max-w-2xl text-base leading-relaxed text-[var(--muted)]">{t.aboutTextTwo}</p>
           </div>
         </section>
 
         <section id="gallery" className="anchor-section border-b border-[var(--line)] py-18">
           <div className="mb-10 flex items-end justify-between gap-4">
-            <h2 className="font-serif text-4xl md:text-5xl">Gallery</h2>
-            <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
-              Selected Projects
-            </p>
+            <h2 className="font-serif text-4xl md:text-5xl">{t.galleryTitle}</h2>
+            <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">{t.selectedProjects}</p>
           </div>
+
           <div className="grid gap-6 md:grid-cols-2">
             {projects.map((item, index) => (
               <motion.article
@@ -314,16 +539,14 @@ function HomePage() {
                 {item.isPlaceholder ? (
                   <div className="group block">
                     <div className="placeholder-surface flex aspect-[4/5] items-center justify-center border-b border-dashed border-[var(--line)]">
-                      <p className="text-xs uppercase tracking-[0.24em] text-[var(--muted)]">
-                        Placeholder
-                      </p>
+                      <p className="text-xs uppercase tracking-[0.24em] text-[var(--muted)]">{t.placeholder}</p>
                     </div>
                     <div className="flex items-center justify-between gap-4 p-5 md:p-6">
                       <div>
-                        <h3 className="font-serif text-2xl">{item.title}</h3>
-                        <p className="mt-1 text-sm text-[var(--muted)]">Coming soon</p>
+                        <h3 className="font-serif text-2xl">{item.title[lang]}</h3>
+                        <p className="mt-1 text-sm text-[var(--muted)]">{t.comingSoon}</p>
                       </div>
-                      <p className="text-sm text-[var(--muted)]">TBD</p>
+                      <p className="text-sm text-[var(--muted)]">{t.tbd}</p>
                     </div>
                   </div>
                 ) : (
@@ -331,14 +554,14 @@ function HomePage() {
                     <FluidImage
                       key={item.image}
                       src={item.image}
-                      alt={`${item.title} wall painting`}
+                      alt={`${item.title[lang]} ${t.altWallPainting}`}
                       className="aspect-[4/5]"
                       imageClassName="h-full w-full object-cover"
                     />
                     <div className="flex items-center justify-between gap-4 p-5 md:p-6">
                       <div>
-                        <h3 className="font-serif text-2xl">{item.title}</h3>
-                        <p className="mt-1 text-sm text-[var(--muted)]">{item.place}</p>
+                        <h3 className="font-serif text-2xl">{item.title[lang]}</h3>
+                        <p className="mt-1 text-sm text-[var(--muted)]">{item.place[lang]}</p>
                       </div>
                       <p className="text-sm text-[var(--muted)]">{item.year}</p>
                     </div>
@@ -351,8 +574,8 @@ function HomePage() {
 
         <section id="contact" className="anchor-section py-18">
           <div className="mb-8 flex items-end justify-between gap-4">
-            <h2 className="font-serif text-4xl md:text-5xl">Contact me</h2>
-            <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">Direct</p>
+            <h2 className="font-serif text-4xl md:text-5xl">{t.navContact}</h2>
+            <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">{t.contactKicker}</p>
           </div>
 
           <div className="contact-fluid">
@@ -361,30 +584,33 @@ function HomePage() {
               target="_blank"
               rel="noreferrer"
               className="contact-link"
-              aria-label="Telegram"
+              aria-label={t.labelTelegram}
             >
-              <p className="contact-label">Telegram</p>
+              <p className="contact-label">{t.labelTelegram}</p>
               <p className="contact-value">{CONTACT_TELEGRAM}</p>
             </a>
-            <a href={`mailto:${CONTACT_EMAIL}`} className="contact-link" aria-label="Email">
-              <p className="contact-label">Email</p>
+
+            <a href={`mailto:${CONTACT_EMAIL}`} className="contact-link" aria-label={t.labelEmail}>
+              <p className="contact-label">{t.labelEmail}</p>
               <p className="contact-value">{CONTACT_EMAIL}</p>
             </a>
           </div>
         </section>
       </main>
 
-      <SiteFooter />
+      <SiteFooter lang={lang} />
     </div>
   )
 }
 
-function SiteFooter() {
+function SiteFooter({ lang }: { lang: Lang }) {
+  const t = ui[lang]
+
   return (
     <footer className="mx-auto flex max-w-7xl flex-col gap-1 border-t border-[var(--line)] px-6 py-7 text-sm text-[var(--muted)] md:flex-row md:items-center md:justify-between md:px-10">
-      <p>Ekaterina Shmakova, 2026</p>
-      <p>Available for travel</p>
-      <p>© 2026 All rights reserved.</p>
+      <p>{t.footerName}</p>
+      <p>{t.footerTravel}</p>
+      <p>{t.footerCopyright}</p>
     </footer>
   )
 }
@@ -392,9 +618,11 @@ function SiteFooter() {
 function ProjectShowcaseGallery({
   projectTitle,
   images,
+  t,
 }: {
   projectTitle: string
   images: string[]
+  t: Dictionary
 }) {
   const [activeIndex, setActiveIndex] = useState(0)
 
@@ -413,9 +641,9 @@ function ProjectShowcaseGallery({
   if (total === 0) {
     return (
       <section className="border-b border-[var(--line)] py-12">
-        <p className="mb-6 text-xs uppercase tracking-[0.18em] text-[var(--muted)]">Project Gallery</p>
+        <p className="mb-6 text-xs uppercase tracking-[0.18em] text-[var(--muted)]">{t.projectGallery}</p>
         <div className="empty-gallery-surface flex h-56 items-center justify-center rounded-3xl border border-dashed border-[var(--line)] text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
-          Gallery coming soon
+          {t.galleryComingSoon}
         </div>
       </section>
     )
@@ -424,7 +652,7 @@ function ProjectShowcaseGallery({
   return (
     <section className="border-b border-[var(--line)] py-12">
       <div className="mb-6 flex items-center justify-between gap-4">
-        <p className="text-xs uppercase tracking-[0.18em] text-[var(--muted)]">Project Gallery</p>
+        <p className="text-xs uppercase tracking-[0.18em] text-[var(--muted)]">{t.projectGallery}</p>
         <p className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">
           {activeIndex + 1} / {total}
         </p>
@@ -441,7 +669,7 @@ function ProjectShowcaseGallery({
         >
           <FluidImage
             src={activeImage}
-            alt={`${projectTitle} detail ${activeIndex + 1}`}
+            alt={`${projectTitle} ${t.altDetail} ${activeIndex + 1}`}
             className="aspect-[16/10] md:aspect-[16/9]"
             imageClassName="h-full w-full object-cover"
           />
@@ -454,7 +682,7 @@ function ProjectShowcaseGallery({
             type="button"
             onClick={onPrev}
             className="project-gallery-nav"
-            aria-label="Previous image"
+            aria-label={t.previousImage}
           >
             <ChevronLeft size={16} />
           </button>
@@ -466,12 +694,12 @@ function ProjectShowcaseGallery({
                 key={`${image}-${index}`}
                 onClick={() => setActiveIndex(index)}
                 className={`project-thumb ${index === activeIndex ? 'is-active' : ''}`}
-                aria-label={`Open detail image ${index + 1}`}
+                aria-label={`${t.openDetailImage} ${index + 1}`}
               >
                 <FluidImage
                   key={image}
                   src={image}
-                  alt={`${projectTitle} thumbnail ${index + 1}`}
+                  alt={`${projectTitle} ${t.altDetail} ${index + 1}`}
                   className="h-full w-full"
                   imageClassName="h-full w-full object-cover"
                 />
@@ -483,7 +711,7 @@ function ProjectShowcaseGallery({
             type="button"
             onClick={onNext}
             className="project-gallery-nav"
-            aria-label="Next image"
+            aria-label={t.nextImage}
           >
             <ChevronRight size={16} />
           </button>
@@ -493,10 +721,19 @@ function ProjectShowcaseGallery({
   )
 }
 
-function ProjectPage() {
+function ProjectPage({
+  lang,
+  setLang,
+  hideLangSwitch,
+}: {
+  lang: Lang
+  setLang: (nextLang: Lang) => void
+  hideLangSwitch: boolean
+}) {
   const { slug } = useParams()
   const decodedSlug = useMemo(() => (slug ? decodeURIComponent(slug) : ''), [slug])
   const project = decodedSlug ? projectsBySlug[decodedSlug] : undefined
+  const t = ui[lang]
 
   if (!project || project.isPlaceholder) {
     return <Navigate to="/" replace />
@@ -514,21 +751,26 @@ function ProjectPage() {
         <Link to="/" className="font-serif text-2xl tracking-wide">
           Katya
         </Link>
-        <Link
-          to="/#gallery"
-          className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[var(--muted)] hover:text-[var(--ink)]"
-        >
-          <ArrowLeft size={16} />
-          Back to gallery
-        </Link>
+
+        <div className="flex items-center gap-3 md:gap-4">
+          <Link
+            to="/#gallery"
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[var(--muted)] hover:text-[var(--ink)]"
+          >
+            <ArrowLeft size={16} />
+            {t.backToGallery}
+          </Link>
+
+          <LanguageSwitch lang={lang} setLang={setLang} hidden={hideLangSwitch} />
+        </div>
       </header>
 
       <main className="mx-auto max-w-7xl px-6 pb-12 pt-28 md:px-10">
         <section className="border-b border-[var(--line)] pb-12">
-          <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[var(--muted)]">Project</p>
-          <h1 className="font-serif text-5xl leading-[0.95] md:text-7xl">{project.title}</h1>
+          <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[var(--muted)]">{t.projectLabel}</p>
+          <h1 className="font-serif text-5xl leading-[0.95] md:text-7xl">{project.title[lang]}</h1>
           <p className="mt-4 text-sm uppercase tracking-[0.16em] text-[var(--muted)]">
-            {project.place} / {project.year}
+            {project.place[lang]} / {project.year}
           </p>
         </section>
 
@@ -542,7 +784,7 @@ function ProjectPage() {
             <FluidImage
               key={project.image}
               src={project.image}
-              alt={`${project.title} mural primary image`}
+              alt={`${project.title[lang]} ${t.altWallPainting}`}
               className="aspect-[5/6] md:aspect-auto md:h-full"
               imageClassName="h-full w-full object-cover"
               loading="eager"
@@ -550,14 +792,14 @@ function ProjectPage() {
           </motion.div>
 
           <aside className="space-y-6 md:col-span-5 md:pt-6">
-            <p className="text-xs uppercase tracking-[0.18em] text-[var(--muted)]">Short Description</p>
-            <p className="font-serif text-3xl leading-tight">{project.summary}</p>
-            <p className="text-base leading-relaxed text-[var(--muted)]">{project.description}</p>
+            <p className="text-xs uppercase tracking-[0.18em] text-[var(--muted)]">{t.shortDescription}</p>
+            <p className="font-serif text-3xl leading-tight">{project.summary[lang]}</p>
+            <p className="text-base leading-relaxed text-[var(--muted)]">{project.description[lang]}</p>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
               className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[var(--muted)] hover:text-[var(--ink)]"
             >
-              Discuss a project
+              {t.discussProject}
               <ArrowUpRight size={16} />
             </a>
           </aside>
@@ -565,12 +807,13 @@ function ProjectPage() {
 
         <ProjectShowcaseGallery
           key={project.slug}
-          projectTitle={project.title}
+          projectTitle={project.title[lang]}
           images={project.detailImages}
+          t={t}
         />
 
         <section className="py-12">
-          <p className="mb-6 text-xs uppercase tracking-[0.18em] text-[var(--muted)]">More Projects</p>
+          <p className="mb-6 text-xs uppercase tracking-[0.18em] text-[var(--muted)]">{t.moreProjects}</p>
           <div className="grid gap-6 md:grid-cols-2">
             {relatedProjects.map((item) => (
               <Link
@@ -581,13 +824,13 @@ function ProjectPage() {
                 <FluidImage
                   key={item.image}
                   src={item.image}
-                  alt={`${item.title} preview`}
+                  alt={`${item.title[lang]} ${t.altProjectPreview}`}
                   className="aspect-[16/10]"
                   imageClassName="h-full w-full object-cover"
                 />
                 <div className="p-5">
-                  <h2 className="font-serif text-2xl">{item.title}</h2>
-                  <p className="mt-1 text-sm text-[var(--muted)]">{item.place}</p>
+                  <h2 className="font-serif text-2xl">{item.title[lang]}</h2>
+                  <p className="mt-1 text-sm text-[var(--muted)]">{item.place[lang]}</p>
                 </div>
               </Link>
             ))}
@@ -595,7 +838,7 @@ function ProjectPage() {
         </section>
       </main>
 
-      <SiteFooter />
+      <SiteFooter lang={lang} />
     </div>
   )
 }

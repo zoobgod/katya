@@ -1,10 +1,15 @@
+export type LocalizedText = {
+  en: string
+  ru: string
+}
+
 export type Project = {
   slug: string
-  title: string
-  place: string
+  title: LocalizedText
+  place: LocalizedText
   year: string
-  summary: string
-  description: string
+  summary: LocalizedText
+  description: LocalizedText
   image: string
   detailImages: string[]
   isPlaceholder?: boolean
@@ -13,13 +18,17 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: 'project-88',
-    title: 'Project 88',
-    place: 'Moscow',
+    title: { en: 'Project 88', ru: 'Проект 88' },
+    place: { en: 'Moscow', ru: 'Москва' },
     year: '2025',
-    summary:
-      'Vibrant abstract composition blending pastel pinks, teals, and layered organic forms with a stylized figure.',
-    description:
-      'Project 88 is a contemporary mixed-style painting that combines fluid abstraction with graphic illustration. Soft turquoise and mint tones build a dreamlike base, while bold pathways and geometric accents add rhythm and movement. A simplified character anchors the composition and gives the work a narrative center.',
+    summary: {
+      en: 'Vibrant abstract composition blending pastel pinks, teals, and layered organic forms with a stylized figure.',
+      ru: 'Яркая абстрактная композиция, где пастельные розовые и бирюзовые тона соединяются со слоистыми органическими формами и стилизованной фигурой.',
+    },
+    description: {
+      en: 'Project 88 is a contemporary mixed-style painting that combines fluid abstraction with graphic illustration. Soft turquoise and mint tones build a dreamlike base, while bold pathways and geometric accents add rhythm and movement. A simplified character anchors the composition and gives the work a narrative center.',
+      ru: 'Проект 88 — современная работа на стыке пластичной абстракции и графичной иллюстрации. Мягкие бирюзовые и мятные оттенки создают почти сновидческую основу, а контрастные линии и геометрические акценты задают ритм и движение. Упрощенный персонаж удерживает композицию и добавляет ей сюжетный центр.',
+    },
     image:
       'https://uc8b02027c1ed4ae4b4b0336caa3.dl.dropboxusercontent.com/cd/0/inline/C7w7JtsFx_ikeq_ZGMqB7UPNlSIeF50uY92Fyw3Em8bVIqUvFK5VY3jFd-aApXtmIq7hIxonZJQuxqzIu8Vy-fvhu4IdgL1aFVkTv-FGrjAyRd4fCgeIXY-ln3IU2KtRg_VbjK5mA_TJUC5YWu-wu7xh/file#',
     detailImages: [
@@ -30,12 +39,17 @@ export const projects: Project[] = [
   },
   {
     slug: 'ocean',
-    title: 'OCEAN',
-    place: 'Undisclosed',
+    title: { en: 'OCEAN', ru: 'OCEAN' },
+    place: { en: 'Undisclosed', ru: 'Не раскрывается' },
     year: '2024',
-    summary: 'A calm ocean-inspired mural built around depth, flow, and soft transitions.',
-    description:
-      'OCEAN explores wave-like movement through layered blue-green tones and visible hand-painted texture. The composition stays open and breathable, so the wall feels expansive without becoming visually heavy. Matte finishes keep reflections low and preserve the softness of the palette.',
+    summary: {
+      en: 'A calm ocean-inspired mural built around depth, flow, and soft transitions.',
+      ru: 'Спокойная роспись, вдохновленная океаном, с акцентом на глубину, плавность и мягкие переходы.',
+    },
+    description: {
+      en: 'OCEAN explores wave-like movement through layered blue-green tones and visible hand-painted texture. The composition stays open and breathable, so the wall feels expansive without becoming visually heavy. Matte finishes keep reflections low and preserve the softness of the palette.',
+      ru: 'OCEAN исследует волнообразное движение через многослойные сине-зеленые тона и видимую ручную фактуру. Композиция остается воздушной, поэтому стена ощущается просторной и не перегружает интерьер. Матовые покрытия приглушают блики и сохраняют мягкость палитры.',
+    },
     image:
       'https://www.dropbox.com/scl/fi/b9bkwhua14y6vuv18yck2/OCEANMAIN.JPG?rlkey=9jmhonczkwocbgwe9l90ij9ua&st=ncw94ln1&raw=1',
     detailImages: [
@@ -45,12 +59,17 @@ export const projects: Project[] = [
   },
   {
     slug: 'persia',
-    title: 'PERSIA',
-    place: 'Undisclosed',
+    title: { en: 'PERSIA', ru: 'PERSIA' },
+    place: { en: 'Undisclosed', ru: 'Не раскрывается' },
     year: '2025',
-    summary: 'Persia-inspired wall composition with layered ornament and flowing structure.',
-    description:
-      'PERSIA blends decorative rhythm with abstract depth, drawing on ornamental movement rather than literal motifs. The wall shifts from structured line passages to soft color fields, creating detail up close and calm from distance. The final finish keeps tones muted and tactile.',
+    summary: {
+      en: 'Persia-inspired wall composition with layered ornament and flowing structure.',
+      ru: 'Роспись, вдохновленная персидскими мотивами, с многослойным орнаментом и текучей структурой.',
+    },
+    description: {
+      en: 'PERSIA blends decorative rhythm with abstract depth, drawing on ornamental movement rather than literal motifs. The wall shifts from structured line passages to soft color fields, creating detail up close and calm from distance. The final finish keeps tones muted and tactile.',
+      ru: 'PERSIA сочетает декоративный ритм и абстрактную глубину, опираясь на пластичность орнамента, а не на буквальные символы. Роспись переходит от четких линейных фрагментов к мягким цветовым полям: вблизи много деталей, издалека — спокойный общий силуэт. Финальная отделка сохраняет тактильность и приглушенность тонов.',
+    },
     image:
       'https://www.dropbox.com/scl/fi/shy5tnflppbysvngu53k1/PERSIAMAIN.JPG?rlkey=9hp25fxx7eot0q8b3ldgvkwg7&st=93nec1oj&raw=1',
     detailImages: [
@@ -60,12 +79,17 @@ export const projects: Project[] = [
   },
   {
     slug: 'kitaeast',
-    title: 'KITAEAST',
-    place: 'KITAEAST',
+    title: { en: 'KITAEAST', ru: 'KITAEAST' },
+    place: { en: 'KITAEAST', ru: 'KITAEAST' },
     year: '2023',
-    summary: 'China-inspired wall painting developed for a restaurant interior.',
-    description:
-      'KITAEAST was produced as a site-specific restaurant mural with a strong directional flow and warm tonal transitions. The composition supports the dining space without competing with lighting and service movement. The project was executed in stages outside opening hours to avoid disruption.',
+    summary: {
+      en: 'China-inspired wall painting developed for a restaurant interior.',
+      ru: 'Роспись в китайской эстетике, разработанная специально для интерьера ресторана.',
+    },
+    description: {
+      en: 'KITAEAST was produced as a site-specific restaurant mural with a strong directional flow and warm tonal transitions. The composition supports the dining space without competing with lighting and service movement. The project was executed in stages outside opening hours to avoid disruption.',
+      ru: 'KITAEAST — это роспись, созданная под конкретный ресторанный интерьер, с выраженным направлением композиции и теплыми тональными переходами. Работа поддерживает атмосферу зала и не конфликтует с освещением и динамикой обслуживания. Проект выполнялся поэтапно вне часов работы, чтобы не мешать процессам заведения.',
+    },
     image:
       'https://www.dropbox.com/scl/fi/iilm991wm5v8xxsgmjau3/KITAEASTMAIN.jpg?rlkey=rrllf8dq4viwbppbgxzd3ska4&st=b6myh2qo&raw=1',
     detailImages: [
@@ -76,12 +100,17 @@ export const projects: Project[] = [
   },
   {
     slug: 'flamo',
-    title: 'FLAMO',
-    place: 'Undisclosed',
+    title: { en: 'FLAMO', ru: 'FLAMO' },
+    place: { en: 'Undisclosed', ru: 'Не раскрывается' },
     year: '2024',
-    summary: 'A mural balancing precise line detail with broad textured brushwork.',
-    description:
-      'FLAMO is built around contrast: controlled ornamental strokes against loose painterly fields. The structure allows the wall to read as one gesture while still revealing details in close view. Color choices were kept restrained to preserve atmosphere and material texture.',
+    summary: {
+      en: 'A mural balancing precise line detail with broad textured brushwork.',
+      ru: 'Роспись, где точная линейная графика сочетается с широкими фактурными мазками.',
+    },
+    description: {
+      en: 'FLAMO is built around contrast: controlled ornamental strokes against loose painterly fields. The structure allows the wall to read as one gesture while still revealing details in close view. Color choices were kept restrained to preserve atmosphere and material texture.',
+      ru: 'FLAMO построен на контрасте: контролируемые орнаментальные линии против свободных живописных масс. Такая структура позволяет воспринимать стену как единый жест, но при этом открывает множество деталей вблизи. Палитра намеренно сдержанная, чтобы сохранить атмосферу и материальность фактуры.',
+    },
     image:
       'https://www.dropbox.com/scl/fi/698tg20c7w11pmw4iyk4g/FLAMOMAIN.jpg?rlkey=vei5u2jp7kngg1x07ggz5a31h&st=l0fqopmn&raw=1',
     detailImages: [
@@ -92,12 +121,17 @@ export const projects: Project[] = [
   },
   {
     slug: 'district',
-    title: 'District',
-    place: 'Undisclosed',
+    title: { en: 'District', ru: 'District' },
+    place: { en: 'Undisclosed', ru: 'Не раскрывается' },
     year: '2025',
-    summary: 'Calm illustrative wall painting designed around layered architectural rhythm.',
-    description:
-      'District uses soft transitions and controlled geometry to create a structured but quiet visual field. The painting is intentionally balanced, so it supports the room across daytime and evening light conditions. Durable matte coatings were selected for long-term color stability.',
+    summary: {
+      en: 'Calm illustrative wall painting designed around layered architectural rhythm.',
+      ru: 'Спокойная роспись с иллюстративным характером и многослойным архитектурным ритмом.',
+    },
+    description: {
+      en: 'District uses soft transitions and controlled geometry to create a structured but quiet visual field. The painting is intentionally balanced, so it supports the room across daytime and evening light conditions. Durable matte coatings were selected for long-term color stability.',
+      ru: 'District использует мягкие переходы и контролируемую геометрию, чтобы создать структурное, но тихое визуальное поле. Композиция специально выверена так, чтобы работать и при дневном, и при вечернем свете. Для долговечности и стабильности цвета выбраны износостойкие матовые покрытия.',
+    },
     image:
       'https://www.dropbox.com/scl/fi/mmhelz9l3topjgdm2lirc/DISMAIN.JPG?rlkey=zyw7glntreogzndh4r9orpzcm&st=fba970aj&raw=1',
     detailImages: [
@@ -110,65 +144,81 @@ export const projects: Project[] = [
   },
   {
     slug: 'DEPO',
-    title: 'DEPO',
-    place: 'Undisclosed',
+    title: { en: 'DEPO', ru: 'DEPO' },
+    place: { en: 'Undisclosed', ru: 'Не раскрывается' },
     year: '2025',
-    summary: 'A large-scale mural with strong directional movement and layered urban rhythm.',
-    description:
-      'DEPO is a site-specific wall painting built around bold flow lines, soft tonal transitions, and textured brush passages. The composition was designed to read clearly from distance while keeping handcrafted detail up close. Layering and matte finishing were used to preserve depth without visual heaviness.',
-    image: 'https://www.dropbox.com/scl/fi/wyyxoq54dufawuz9r4fvr/DEPOMAIN.JPG?rlkey=wid9qf6diddkj3czmktcvsl8h&st=yp6tfn7s&raw=1',
-    detailImages: [
-
-
-    ],
+    summary: {
+      en: 'A large-scale mural with strong directional movement and layered urban rhythm.',
+      ru: 'Крупноформатная роспись с сильным направленным движением и многослойным городским ритмом.',
+    },
+    description: {
+      en: 'DEPO is a site-specific wall painting built around bold flow lines, soft tonal transitions, and textured brush passages. The composition was designed to read clearly from distance while keeping handcrafted detail up close. Layering and matte finishing were used to preserve depth without visual heaviness.',
+      ru: 'DEPO — роспись, созданная под конкретное пространство, на основе выразительных линий, мягких тональных переходов и фактурной кистевой работы. Композиция читается цельно с расстояния, но сохраняет ручные детали вблизи. Многослойность и матовая отделка помогают удержать глубину без визуальной тяжести.',
+    },
+    image:
+      'https://www.dropbox.com/scl/fi/wyyxoq54dufawuz9r4fvr/DEPOMAIN.JPG?rlkey=wid9qf6diddkj3czmktcvsl8h&st=yp6tfn7s&raw=1',
+    detailImages: [],
   },
   {
     slug: 'CHICKO',
-    title: 'CHICKO',
-    place: 'Undisclosed',
+    title: { en: 'CHICKO', ru: 'CHICKO' },
+    place: { en: 'Undisclosed', ru: 'Не раскрывается' },
     year: '2025',
-    summary: 'A playful but minimal mural concept balancing graphic accents with painterly texture.',
-    description:
-      'CHICKO combines crisp compositional structure with expressive hand-painted marks to create a light, contemporary atmosphere. The palette was kept controlled so the wall supports the space without overwhelming it. Repeated forms and soft transitions create rhythm across the full surface.',
-    image: 'https://www.dropbox.com/scl/fi/uvhihrt0gmpp7n4ib5x7z/CHICKOMAIN.JPG?rlkey=rdrqv0zgaxpmdjkx39xfp961s&st=qfg33ksl&raw=1',
+    summary: {
+      en: 'A playful but minimal mural concept balancing graphic accents with painterly texture.',
+      ru: 'Игровая, но минималистичная роспись, где графичные акценты сбалансированы живописной фактурой.',
+    },
+    description: {
+      en: 'CHICKO combines crisp compositional structure with expressive hand-painted marks to create a light, contemporary atmosphere. The palette was kept controlled so the wall supports the space without overwhelming it. Repeated forms and soft transitions create rhythm across the full surface.',
+      ru: 'CHICKO объединяет четкую композиционную структуру и выразительные ручные мазки, формируя легкую современную атмосферу. Палитра намеренно сдержанная, чтобы работа поддерживала пространство и не перегружала его. Повторяющиеся формы и мягкие переходы создают ритм по всей поверхности стены.',
+    },
+    image:
+      'https://www.dropbox.com/scl/fi/uvhihrt0gmpp7n4ib5x7z/CHICKOMAIN.JPG?rlkey=rdrqv0zgaxpmdjkx39xfp961s&st=qfg33ksl&raw=1',
     detailImages: [
       'https://www.dropbox.com/scl/fi/q1hu22on5obu6liykutdl/CHICKO4.jpg?rlkey=536bcs7mm4lc3dczinj95biyw&st=y033tbi5&raw=1',
       'https://www.dropbox.com/scl/fi/l6wd4uoderhs4towqg92z/CHICKO3.jpg?rlkey=gmtmrq8myr5l9x0ytaxoejlce&st=lszv3les&raw=1',
       'https://www.dropbox.com/scl/fi/wi15jazhp7jibsmi62ujr/CHICKO2.jpg?rlkey=8au3s558klvp4gcmvdhtn1a9r&st=ky1sa11q&raw=1',
-      
     ],
   },
   {
     slug: 'Central Market',
-    title: 'Central Market',
-    place: 'Central Market',
+    title: { en: 'Central Market', ru: 'Центральный рынок' },
+    place: { en: 'Central Market', ru: 'Центральный рынок' },
     year: '2025',
-    summary: 'A market-scale wall painting designed to feel warm, open, and continuously flowing.',
-    description:
-      'Central Market was developed for a busy public-facing environment where visual clarity matters at every distance. The painting uses broad tonal zones, layered detailing, and balanced contrast to guide the eye naturally through the space. Durable materials and matte protection were selected for long-term stability.',
-    image: 'https://www.dropbox.com/scl/fi/gipwsnovl191kr7f5vo1g/CENTRALMAIN.jpg?rlkey=i3hklfml9geh4rqlwq3vyblsw&st=mscslunc&raw=1',
+    summary: {
+      en: 'A market-scale wall painting designed to feel warm, open, and continuously flowing.',
+      ru: 'Масштабная роспись для пространства рынка, построенная на ощущении тепла, открытости и непрерывного движения.',
+    },
+    description: {
+      en: 'Central Market was developed for a busy public-facing environment where visual clarity matters at every distance. The painting uses broad tonal zones, layered detailing, and balanced contrast to guide the eye naturally through the space. Durable materials and matte protection were selected for long-term stability.',
+      ru: 'Проект Central Market создавался для активного общественного пространства, где важна визуальная ясность на любой дистанции. В работе используются широкие тональные зоны, многослойная детализация и выверенный контраст, чтобы взгляд естественно двигался по интерьеру. Для долговечности выбраны стойкие материалы и матовая защита.',
+    },
+    image:
+      'https://www.dropbox.com/scl/fi/gipwsnovl191kr7f5vo1g/CENTRALMAIN.jpg?rlkey=i3hklfml9geh4rqlwq3vyblsw&st=mscslunc&raw=1',
     detailImages: [
       'https://www.dropbox.com/scl/fi/fmqzk67eqqvow49h5bg1f/CENTRAL4.JPG?rlkey=e0nytppt4mgr7kg3ur8fugp94&st=vt560xdz&raw=1',
       'https://www.dropbox.com/scl/fi/vyyh0jxtpikdidt53tusv/CENTRAL3.JPG?rlkey=k8tkwewltag3dmcz2udvmxroz&st=q8cxme5r&raw=1',
       'https://www.dropbox.com/scl/fi/c2md2flb0pl6i9ekpblmi/CENTRAL2.JPG?rlkey=7ewva7jvaj3pzn4chw907hep1&st=vsxws38g&raw=1',
-
-
     ],
   },
   {
     slug: 'BSHOP',
-    title: 'BSHOP',
-    place: 'Undisclosed',
+    title: { en: 'BSHOP', ru: 'BSHOP' },
+    place: { en: 'Undisclosed', ru: 'Не раскрывается' },
     year: '2025',
-    summary: 'A clean, modern mural treatment tailored for a boutique retail interior.',
-    description:
-      'BSHOP focuses on minimalist visual impact with refined line work, soft layering, and controlled contrast. The artwork was planned to complement product presentation while still carrying a clear artistic identity. Subtle texture transitions keep the wall dynamic without distracting from the space function.',
-    image: 'https://www.dropbox.com/scl/fi/zijaua2hsmktd7mah8fe3/BSHOPMAIN.jpg?rlkey=z6pav3xtu0tdik5i5v5l4hh0k&st=z8g86zb2&raw=1',
+    summary: {
+      en: 'A clean, modern mural treatment tailored for a boutique retail interior.',
+      ru: 'Чистая современная роспись, адаптированная под интерьер бутикового ритейла.',
+    },
+    description: {
+      en: 'BSHOP focuses on minimalist visual impact with refined line work, soft layering, and controlled contrast. The artwork was planned to complement product presentation while still carrying a clear artistic identity. Subtle texture transitions keep the wall dynamic without distracting from the space function.',
+      ru: 'BSHOP делает ставку на минималистичное визуальное воздействие: точная линейная работа, мягкая многослойность и контролируемый контраст. Роспись спроектирована так, чтобы поддерживать презентацию товара и одновременно сохранять собственный художественный характер. Нюансные фактурные переходы добавляют динамику и не отвлекают от функции пространства.',
+    },
+    image:
+      'https://www.dropbox.com/scl/fi/zijaua2hsmktd7mah8fe3/BSHOPMAIN.jpg?rlkey=z6pav3xtu0tdik5i5v5l4hh0k&st=z8g86zb2&raw=1',
     detailImages: [
       'https://www.dropbox.com/scl/fi/ca4ntqhehfg9olvyytm1a/BSHOP3.jpg?rlkey=rj4pvxrwoy1avoen1tmimk9dw&st=3kwqkeph&raw=1',
       'https://www.dropbox.com/scl/fi/a99q4k3jjc9jy6gsl5qnw/BSHOP2.jpg?rlkey=wzodmf4abbiogty454gxqzy8o&st=60lybmki&raw=1',
-
-
     ],
   },
 ]
