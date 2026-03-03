@@ -600,7 +600,38 @@ function InStockPage({
   lang: Lang
   setLang: (nextLang: Lang) => void
 }) {
+  const location = useLocation()
   const t = ui[lang]
+
+  const scrollToSectionById = useCallback((id: string, smooth: boolean) => {
+    const section = document.getElementById(id)
+    if (!section) {
+      return
+    }
+
+    const nextTop = section.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET
+    window.scrollTo({ top: nextTop, behavior: smooth ? 'smooth' : 'auto' })
+  }, [])
+
+  useEffect(() => {
+    if (!location.hash) {
+      return
+    }
+
+    const sectionId = location.hash.slice(1)
+    const timeout = window.setTimeout(() => {
+      scrollToSectionById(sectionId, false)
+    }, 0)
+
+    return () => window.clearTimeout(timeout)
+  }, [location.hash, scrollToSectionById])
+
+  const onAnchorClick =
+    (sectionId: string) => (event: MouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault()
+      scrollToSectionById(sectionId, true)
+      window.history.replaceState(null, '', `/in-stock#${sectionId}`)
+    }
 
   return (
     <div className="relative min-h-screen bg-[var(--canvas)] text-[var(--ink)]">
@@ -622,9 +653,9 @@ function InStockPage({
             <Link to="/in-stock" className="text-[var(--ink)]">
               {t.navInStock}
             </Link>
-            <Link to="/#contact" className="hover:text-[var(--ink)]">
+            <a href="#contact" onClick={onAnchorClick('contact')} className="hover:text-[var(--ink)]">
               {t.navContact}
-            </Link>
+            </a>
           </nav>
 
           <LanguageSwitch lang={lang} setLang={setLang} />
@@ -667,9 +698,14 @@ function InStockPage({
                       <p className="text-sm text-[var(--muted)]">{item.medium[lang]}</p>
                       <div className="stock-meta-row text-sm text-[var(--muted)]">
                         <p>{item.size}</p>
-                        <p className="stock-price-corner">
+                        <a
+                          href="#contact"
+                          onClick={onAnchorClick('contact')}
+                          className="stock-price-corner"
+                          aria-label={`${t.priceLabel}: ${item.price[lang]} / ${t.navContact}`}
+                        >
                           {t.priceLabel}: {item.price[lang]}
-                        </p>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -694,15 +730,45 @@ function InStockPage({
                       <p className="text-sm text-[var(--muted)]">{item.medium[lang]}</p>
                       <div className="stock-meta-row text-sm text-[var(--muted)]">
                         <p>{item.size}</p>
-                        <p className="stock-price-corner">
+                        <a
+                          href="#contact"
+                          onClick={onAnchorClick('contact')}
+                          className="stock-price-corner"
+                          aria-label={`${t.priceLabel}: ${item.price[lang]} / ${t.navContact}`}
+                        >
                           {t.priceLabel}: {item.price[lang]}
-                        </p>
+                        </a>
                       </div>
                     </div>
                   </div>
                 )}
               </motion.article>
             ))}
+          </div>
+        </section>
+
+        <section id="contact" className="anchor-section border-t border-[var(--line)] py-18">
+          <div className="mb-8 flex items-end justify-between gap-4">
+            <h2 className="font-serif text-4xl md:text-5xl">{t.navContact}</h2>
+            <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">{t.contactKicker}</p>
+          </div>
+
+          <div className="contact-fluid">
+            <a
+              href="https://t.me/egellans"
+              target="_blank"
+              rel="noreferrer"
+              className="contact-link"
+              aria-label={t.labelTelegram}
+            >
+              <p className="contact-label">{t.labelTelegram}</p>
+              <p className="contact-value">{CONTACT_TELEGRAM}</p>
+            </a>
+
+            <a href={`mailto:${CONTACT_EMAIL}`} className="contact-link" aria-label={t.labelEmail}>
+              <p className="contact-label">{t.labelEmail}</p>
+              <p className="contact-value">{CONTACT_EMAIL}</p>
+            </a>
           </div>
         </section>
       </main>
