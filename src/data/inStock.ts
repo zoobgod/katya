@@ -284,4 +284,20 @@ export const inStockItems: InStockItem[] = [
     year: '2026',
     price: { en: '55 000 ₽', ru: '55 000 ₽' },
   },
+  {
+    slug: 'hlebsavod-solnechno',
+    title: { en: 'HLEBSAVOD. SOLNECHNO.', ru: 'HLEBSAVOD. SOLNECHNO.' },
+    medium: { en: 'Oil on canvas', ru: 'Масло на холсте' },
+    size: '60 × 60 cm',
+    year: '2026',
+    price: { en: '65 000 ₽', ru: '65 000 ₽' },
+  },
+  {
+    slug: 'po-nocham-vdvoem',
+    title: { en: 'Po nocham vdvoem', ru: 'Po nocham vdvoem' },
+    medium: { en: 'Acrylic on canvas (stretched)', ru: 'Акрил на холсте (на подрамнике)' },
+    size: '40 × 40 cm',
+    year: '2023',
+    price: { en: '—', ru: '—' },
+  },
 ]

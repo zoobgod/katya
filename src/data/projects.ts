@@ -38,27 +38,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: 'zen',
-    title: { en: 'ZEN', ru: 'ZEN' },
-    place: { en: 'Undisclosed', ru: 'Скрытая локация' },
-    year: '2024',
-    summary: {
-      en: 'A calm ocean-inspired mural built around depth, flow, and soft transitions.',
-      ru: 'Спокойная роспись, вдохновленная океаном, с акцентом на глубину, плавность и мягкие переходы.',
-    },
-    description: {
-      en: 'ZEN explores wave-like movement through layered blue-green tones and visible hand-painted texture. The composition stays open and breathable, so the wall feels expansive without becoming visually heavy. Matte finishes keep reflections low and preserve the softness of the palette.',
-      ru: 'ZEN исследует волнообразное движение через многослойные сине-зеленые тона и видимую ручную фактуру. Композиция остается воздушной, поэтому стена ощущается просторной и не перегружает интерьер. Матовые покрытия приглушают блики и сохраняют мягкость палитры.',
-    },
-    image: 
-      'https://www.dropbox.com/scl/fi/2t220iguieagmzx17lwjx/ZENMAIN.JPG?rlkey=5o97ztef2s7l8xm89qn9kqsc4&st=xc5ach3p&raw=1',
-    detailImages: [
-      'https://www.dropbox.com/scl/fi/2y7lnwi3a42q3z8it4age/ZEN2.JPG?rlkey=rsrq1snzvbfpb05fq7g975as8&st=bmky2w5f&raw=1',
-      'https://www.dropbox.com/scl/fi/fndn7sgxfedqd3qx0zelp/ZEN3.JPG?rlkey=2r30vjeyb6d0gvhziznk8fgjb&st=t3sejs0t&raw=1',
-      'https://www.dropbox.com/scl/fi/95gmwp5980tessqda5815/ZEN4.JPG?rlkey=nbrnxca6g76qx4itwxozr8w3g&st=kwnrq9gc&raw=1',
-    ],
-  },
-  {
     slug: 'persia',
     title: { en: 'PERSIA', ru: 'PERSIA' },
     place: { en: 'Undisclosed', ru: 'Не раскрывается' },
@@ -118,6 +97,27 @@ export const projects: Project[] = [
       'https://www.dropbox.com/scl/fi/uhwjx7eyih7jthqyx77o7/FLAMO4.jpg?rlkey=b2dd7jupj9zs98hym1e0ds2dl&st=p7brmsdb&raw=1',
       'https://www.dropbox.com/scl/fi/xjnzbktg2dvkmjd5y4etv/FLAMO3.jpg?rlkey=mmbc6yemdwacb7882eitk2hmv&st=6fnbthoo&raw=1',
       'https://www.dropbox.com/scl/fi/nuoomjqqv71ob1aekoq9d/FLAMO2.jpg?rlkey=iy5j9cnburzl730u4ml5ktl18&st=6phqqw3n&raw=1',
+    ],
+  },
+  {
+    slug: 'zen',
+    title: { en: 'ZEN', ru: 'ZEN' },
+    place: { en: 'Undisclosed', ru: 'Скрытая локация' },
+    year: '2024',
+    summary: {
+      en: 'A calm ocean-inspired mural built around depth, flow, and soft transitions.',
+      ru: 'Спокойная роспись, вдохновленная океаном, с акцентом на глубину, плавность и мягкие переходы.',
+    },
+    description: {
+      en: 'ZEN explores wave-like movement through layered blue-green tones and visible hand-painted texture. The composition stays open and breathable, so the wall feels expansive without becoming visually heavy. Matte finishes keep reflections low and preserve the softness of the palette.',
+      ru: 'ZEN исследует волнообразное движение через многослойные сине-зеленые тона и видимую ручную фактуру. Композиция остается воздушной, поэтому стена ощущается просторной и не перегружает интерьер. Матовые покрытия приглушают блики и сохраняют мягкость палитры.',
+    },
+    image:
+      'https://www.dropbox.com/scl/fi/2t220iguieagmzx17lwjx/ZENMAIN.JPG?rlkey=5o97ztef2s7l8xm89qn9kqsc4&st=xc5ach3p&raw=1',
+    detailImages: [
+      'https://www.dropbox.com/scl/fi/2y7lnwi3a42q3z8it4age/ZEN2.JPG?rlkey=rsrq1snzvbfpb05fq7g975as8&st=bmky2w5f&raw=1',
+      'https://www.dropbox.com/scl/fi/fndn7sgxfedqd3qx0zelp/ZEN3.JPG?rlkey=2r30vjeyb6d0gvhziznk8fgjb&st=t3sejs0t&raw=1',
+      'https://www.dropbox.com/scl/fi/95gmwp5980tessqda5815/ZEN4.JPG?rlkey=nbrnxca6g76qx4itwxozr8w3g&st=kwnrq9gc&raw=1',
     ],
   },
   {
