@@ -19,6 +19,7 @@ export const inStockItems: InStockItem[] = [
     size: '35 x 45 cm',
     year: '2026',
     price: { en: '65 000 rub', ru: '65 000 руб' },
+    image: 'https://www.dropbox.com/scl/fi/emhkw5f844a3zvgtueqwq/Kata_noi.jpg?rlkey=456mtpbwaechqwl8prsx5eqit&st=18eexku4&raw=1',
   },
   {
     slug: 'avacados-dream',
@@ -27,6 +28,7 @@ export const inStockItems: InStockItem[] = [
     size: '40 x 50 cm',
     year: '2026',
     price: { en: '75 000 rub', ru: '75 000 руб' },
+    image: 'https://www.dropbox.com/scl/fi/o8ww9tkbv2ud7l62svafw/Avocado-s-dream.JPG?rlkey=nmqqiqkm0hewlygrbxnsay8ak&st=64zojz79&raw=1',
   },
   {
     slug: 'on-the-way',
@@ -35,6 +37,7 @@ export const inStockItems: InStockItem[] = [
     size: '50 x 100 cm',
     year: '2026',
     price: { en: '112 000 rub', ru: '112 000 руб' },
+    image: 'https://www.dropbox.com/scl/fi/ih5ng3lyvuoc81ogf1ebo/On_the_way.jpg?rlkey=hgfsqmez93aj55kl2s6h1yxcg&st=asxwddhv&raw=1',
   },
   {
     slug: 'i-thought-a-lot-and-wondered',
@@ -43,6 +46,7 @@ export const inStockItems: InStockItem[] = [
     size: '30 x 30 cm',
     year: '2026',
     price: { en: '55 000 rub', ru: '55 000 руб' },
+    image: '',
   },
   {
     slug: 'opora',
@@ -51,6 +55,7 @@ export const inStockItems: InStockItem[] = [
     size: '80 x 100 cm',
     year: '2026',
     price: { en: '125 000 rub', ru: '125 000 руб' },
+    image: '',
   },
   {
     slug: 'different',
@@ -59,6 +64,7 @@ export const inStockItems: InStockItem[] = [
     size: '50 x 70 cm',
     year: '2026',
     price: { en: '75 000 rub', ru: '75 000 руб' },
+    image: 'https://www.dropbox.com/scl/fi/0cankwjgm1czrowtsw2v9/DIFFERENT.jpg?rlkey=xxiqr11x9u4ctqzqgjazn6x9n&st=3j35jmrv&raw=1',
   },
   {
     slug: 'late-l',
@@ -67,6 +73,7 @@ export const inStockItems: InStockItem[] = [
     size: '100 x 120 cm',
     year: '2026',
     price: { en: 'Inquire about the price', ru: 'Цена по запросу' },
+    image: 'https://www.dropbox.com/scl/fi/hrg8zin1671yigkhs7ggr/Late_L.jpg?rlkey=rrsgakjqdvhmqo0lr7ghwr7cz&st=ozmzuhyq&raw=1',
   },
   {
     slug: 'water-has-a-soul-too',
@@ -75,6 +82,7 @@ export const inStockItems: InStockItem[] = [
     size: '50 x 100 cm',
     year: '2026',
     price: { en: '112 000 rub', ru: '112 000 руб' },
+    image: 'https://www.dropbox.com/scl/fi/1nl0m6m7428gdro7q1sib/Water_gas_a_soul_too.jpg?rlkey=sh6qdaxo3vdy4l86p0ic8z7gp&st=orpnl2xl&raw=1',
   },
   {
     slug: 'spring',
@@ -83,6 +91,7 @@ export const inStockItems: InStockItem[] = [
     size: '110 x 120 cm',
     year: '2026',
     price: { en: '260 000 rub', ru: '260 000 руб' },
+    image: 'https://www.dropbox.com/scl/fi/u5ir66eil4ofm9ayovnsf/Spring.JPG?rlkey=nqmjzdkp2ep5wigdy3731vsi3&st=fe0g0o5p&raw=1',
   },
   {
     slug: 'spirits-of-the-jungle',
@@ -91,6 +100,7 @@ export const inStockItems: InStockItem[] = [
     size: '100 x 120',
     year: '2026',
     price: { en: 'Inquire about the price', ru: 'Цена по запросу' },
+    image: 'https://www.dropbox.com/scl/fi/n02nm8aavvynrdor02rkn/Spirits-of-the-jungle.JPG?rlkey=a9l6lyl9b1kwbh71f66o2xl86&st=ueqjajv9&raw=1',
   },
   {
     slug: 'shepherd',
@@ -99,6 +109,7 @@ export const inStockItems: InStockItem[] = [
     size: '60 x 60 cm',
     year: '2026',
     price: { en: 'Inquire about the price', ru: 'Цена по запросу' },
+    image: 'https://www.dropbox.com/scl/fi/mtfv7sn9zp40j01qc7wjr/Shepherd.jpg?rlkey=gpo9xv6nn2nmu1iu5p4inry2n&st=eh8cn0x1&raw=1',
   },
   {
     slug: 'v-polumrake',
@@ -107,6 +118,7 @@ export const inStockItems: InStockItem[] = [
     size: '70 x 90 cm',
     year: '2026',
     price: { en: 'Inquire about the price', ru: 'Цена по запросу' },
+    image: 'https://www.dropbox.com/scl/fi/i48p3idhv72kzb2s22l2b/V-polumrake.JPG?rlkey=6v4nds5w5thx31oogm5auupts&st=dq7lpkf2&raw=1',
   },
   {
     slug: 'more',
@@ -115,6 +127,7 @@ export const inStockItems: InStockItem[] = [
     size: '60 x 60 cm',
     year: '2026',
     price: { en: 'Inquire about the price', ru: 'Цена по запросу' },
+    image: 'https://www.dropbox.com/scl/fi/llj61bxjoybkqzwiasbxo/More.jpg?rlkey=kivcy7p57hpg10jf6u1v8vv5p&st=3cqsprns&raw=1',
   },
   {
     slug: 'expectation',
@@ -123,6 +136,7 @@ export const inStockItems: InStockItem[] = [
     size: '70 x 100 cm',
     year: '2026',
     price: { en: '125 000 rub', ru: '125 000 руб' },
+    image: 'https://www.dropbox.com/scl/fi/bfwby16gfna7dqh6mzajn/EXPECTATION.JPG?rlkey=34mvw29qsebn5md3gbfsyndq3&st=a75kjw2f&raw=1',
   },
   {
     slug: 'vacation',
@@ -131,6 +145,7 @@ export const inStockItems: InStockItem[] = [
     size: '60 x 90 cm',
     year: '2026',
     price: { en: 'Inquire about the price', ru: 'Цена по запросу' },
+    image: 'https://www.dropbox.com/scl/fi/2qkggb77icpdg1fh6xxw2/VACATION.jpg?rlkey=2o0nwunj5wpc038meispfz6id&st=hgavumvn&raw=1',
   },
   {
     slug: 'birds',
@@ -139,6 +154,7 @@ export const inStockItems: InStockItem[] = [
     size: '50 x 100 cm',
     year: '2026',
     price: { en: '95 000 rub', ru: '95 000 руб' },
+    image: 'https://www.dropbox.com/scl/fi/ssd2gk1haw086niastilc/Birds.jpg?rlkey=li3mmlgr9neq05yi426r8q6qr&st=3mbiuyp3&raw=1',
   },
   {
     slug: 'the-harbinger-of-love',
@@ -147,6 +163,7 @@ export const inStockItems: InStockItem[] = [
     size: '60 x 100 cm',
     year: '2026',
     price: { en: '170 000 rub', ru: '170 000 руб' },
+    image: '',
   },
   {
     slug: 'shadows',
@@ -155,6 +172,7 @@ export const inStockItems: InStockItem[] = [
     size: '50 x 50 cm',
     year: '2026',
     price: { en: '85 000 ₽', ru: '85 000 ₽' },
+    image: 'https://www.dropbox.com/scl/fi/b5m5nrnkctlsfvm63kzrb/Shadows.JPG?rlkey=6ogjpbeh4443avp2ah3aqi2rq&st=c6y4n8c7&raw=1',
   },
   {
     slug: 'potoki',
@@ -163,6 +181,7 @@ export const inStockItems: InStockItem[] = [
     size: '30 x 30 cm',
     year: '2026',
     price: { en: '55 000 ₽', ru: '55 000 ₽' },
+    image: '',
   },
   {
     slug: 'putanno',
@@ -171,6 +190,7 @@ export const inStockItems: InStockItem[] = [
     size: '30 x 30 cm',
     year: '2026',
     price: { en: '65 000 ₽', ru: '65 000 ₽' },
+    image: 'https://www.dropbox.com/scl/fi/uln7ae9ekihmx7wd8lkc7/Putanno_.jpg?rlkey=hp9u0kp2m9srao7q5kxdw49rp&st=i0zgx0wm&raw=1',
   },
   {
     slug: 'view-of-the-nakkerd-phuket',
@@ -179,6 +199,7 @@ export const inStockItems: InStockItem[] = [
     size: '30 x 40 cm',
     year: '2026',
     price: { en: '55 000 ₽', ru: '55 000 ₽' },
+    image: 'https://www.dropbox.com/scl/fi/ha4wacf69kjskvayz10nc/View_of_the_nakkerd_.jpg?rlkey=wuawl7fg40n2ohg82ttmon076&st=tds4qr8p&raw=1',
   },
   {
     slug: 'vechereet',
@@ -187,6 +208,7 @@ export const inStockItems: InStockItem[] = [
     size: '35 x 30 cm',
     year: '2026',
     price: { en: '65 000 ₽', ru: '65 000 ₽' },
+    image: 'https://www.dropbox.com/scl/fi/gsi2d0d03nczrwm8unqfa/Vechereet.JPG?rlkey=6cp4v282mqnnina7fgunia9zy&st=jm572wii&raw=1',
   },
   {
     slug: 'po-tu-storonu',
@@ -195,6 +217,7 @@ export const inStockItems: InStockItem[] = [
     size: '40 x 40 cm',
     year: '2026',
     price: { en: '65 000 ₽', ru: '65 000 ₽' },
+    image: 'https://www.dropbox.com/scl/fi/75fzhi820azeqosho05ps/PO-TU-STORONU.JPG?rlkey=igd58s3fng43io4sp2swn0u5g&st=ex9984ah&raw=1',
   },
   {
     slug: 'holod',
@@ -203,6 +226,7 @@ export const inStockItems: InStockItem[] = [
     size: '60 x 45 cm',
     year: '2026',
     price: { en: '110 000 ₽', ru: '110 000 ₽' },
+    image: 'https://www.dropbox.com/scl/fi/58qj1t1w02r72ijieqtco/Holod.JPG?rlkey=0mojjvxwx1ygnq3lwoq9ouk4y&st=w7ds33pu&raw=1',
   },
   {
     slug: 'changes',
@@ -211,6 +235,7 @@ export const inStockItems: InStockItem[] = [
     size: '60 x 90 cm',
     year: '2026',
     price: { en: '135 000 ₽', ru: '135 000 ₽' },
+    image: 'https://www.dropbox.com/scl/fi/mod7x9sgz3fn6j3gexbvr/Changes.JPG?rlkey=rqub1sai3syiempf6cvbw17pu&st=q61tzmgj&raw=1',
   },
   {
     slug: 'heart',
@@ -219,6 +244,7 @@ export const inStockItems: InStockItem[] = [
     size: '60 x 70 cm',
     year: '2026',
     price: { en: '112 000 ₽', ru: '112 000 ₽' },
+    image: 'https://www.dropbox.com/scl/fi/o00pl1vraki4tgbbdyxug/Heart.JPG?rlkey=rcgo5p0kdmdf7addpt2bygznb&st=7fkegdhg&raw=1',
   },
   {
     slug: 'wondrous-meetings',
@@ -227,6 +253,7 @@ export const inStockItems: InStockItem[] = [
     size: '50 x 70 cm',
     year: '2026',
     price: { en: '120 000 ₽', ru: '120 000 ₽' },
+    image: 'https://www.dropbox.com/scl/fi/y1ywr6jy3c40e4f7tfujg/Wondrous-meetings.JPG?rlkey=br4mxzsltvv3d46x7y872ybjm&st=8n8ilx0r&raw=1',
   },
   {
     slug: 'ketzalkoatl',
@@ -235,6 +262,7 @@ export const inStockItems: InStockItem[] = [
     size: '50 x 100 cm',
     year: '2026',
     price: { en: '112 000 ₽', ru: '112 000 ₽' },
+    image: '',
   },
   {
     slug: 'litsa-tryoh',
@@ -243,6 +271,7 @@ export const inStockItems: InStockItem[] = [
     size: '50 x 100 cm',
     year: '2026',
     price: { en: '112 000 ₽', ru: '112 000 ₽' },
+    image: '',
   },
   {
     slug: 'a-walk',
@@ -251,6 +280,7 @@ export const inStockItems: InStockItem[] = [
     size: '120 x 90 cm',
     year: '2026',
     price: { en: '220 000 ₽', ru: '220 000 ₽' },
+    image: '',
   },
   {
     slug: 'rebirth',
@@ -259,6 +289,7 @@ export const inStockItems: InStockItem[] = [
     size: '100 x 120 cm',
     year: '2026',
     price: { en: '260 000 ₽', ru: '260 000 ₽' },
+    image: 'https://www.dropbox.com/scl/fi/jb8h8aadnt5wd5uzjz1m4/Rebirth.jpg?rlkey=l1y6ve92xxdfomg91l5k119vf&st=gsppcq7t&raw=1',
   },
   {
     slug: 'summer-together',
@@ -267,6 +298,7 @@ export const inStockItems: InStockItem[] = [
     size: '70 x 90 cm',
     year: '2026',
     price: { en: '110 000 ₽', ru: '110 000 ₽' },
+    image: 'https://www.dropbox.com/scl/fi/7ylq7zrhjxdjdnm0aqo3n/Summer-together.JPG?rlkey=g6thdlg4wi9zzh8l4q8edcamo&st=pbski6e4&raw=1',
   },
   {
     slug: 'a-man-with-a-bird',
@@ -275,6 +307,7 @@ export const inStockItems: InStockItem[] = [
     size: '30 x 35 cm',
     year: '2026',
     price: { en: '35 000 ₽', ru: '35 000 ₽' },
+    image: '',
   },
   {
     slug: 'duhovnost',
@@ -283,6 +316,7 @@ export const inStockItems: InStockItem[] = [
     size: '30 x 40 cm',
     year: '2026',
     price: { en: '55 000 ₽', ru: '55 000 ₽' },
+    image: '',
   },
   {
     slug: 'hlebsavod-solnechno',
@@ -291,6 +325,7 @@ export const inStockItems: InStockItem[] = [
     size: '60 × 60 cm',
     year: '2026',
     price: { en: '65 000 ₽', ru: '65 000 ₽' },
+    image: 'https://www.dropbox.com/scl/fi/ye9gxp5okiyucad7x0wxj/Hlebzavod.jpg?rlkey=flf3gntaq0toqbv6i0j6gmg5t&st=ua2pckps&raw=1',
   },
   {
     slug: 'po-nocham-vdvoem',
@@ -299,5 +334,6 @@ export const inStockItems: InStockItem[] = [
     size: '40 × 40 cm',
     year: '2023',
     price: { en: '—', ru: '—' },
+    image: 'https://www.dropbox.com/scl/fi/j0f196aj7bo8eshnnnsrv/Po-nocham-vdvoem.JPG?rlkey=twrrk3g0q1kf2xvgy4hkzst1a&st=3iekna2i&raw=1',
   },
 ]
