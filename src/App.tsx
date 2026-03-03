@@ -32,16 +32,16 @@ const ui = {
     metaDescription:
       'Portfolio website for Katya Shmakova, a painter and wallpainter creating hand-painted murals and interiors.',
     loaderWord: 'Katya',
-    navAbout: 'About author',
+    navAbout: 'About artist',
     navGallery: 'Gallery',
     navInStock: 'In stock',
     navContact: 'Contact me',
-    heroRole: 'Painter / Wallpainter',
+    heroRole: 'Painter / Muralist',
     heroDescription:
       'Hand-painted walls, murals, and textured surfaces for homes, studios, and intimate public spaces.',
     heroCta: 'View selected works',
     heroNote: 'Soft palettes, botanical forms, and layered brushwork built for calm interiors.',
-    aboutTitle: 'About author',
+    aboutTitle: 'About artist',
     aboutTextOne:
       'Katya creates site-specific painting for walls and architectural surfaces. Every piece is made by hand, with no digital prints and no repetition.',
     aboutTextTwo:
@@ -83,16 +83,16 @@ const ui = {
     metaDescription:
       'Портфолио Кати Шмаковой — художницы по росписи стен, создающей ручные росписи и авторские интерьерные поверхности.',
     loaderWord: 'Katya',
-    navAbout: 'Об авторе',
+    navAbout: 'О художнице',
     navGallery: 'Галерея',
     navInStock: 'В наличии',
     navContact: 'Связаться',
-    heroRole: 'Художница / Роспись стен',
+    heroRole: 'Художница / Муралистка',
     heroDescription:
       'Ручная роспись стен, муралы и фактурные поверхности для домов, студий и камерных общественных пространств.',
     heroCta: 'Смотреть работы',
     heroNote: 'Мягкие палитры, ботанические формы и многослойная кистевая работа для спокойных интерьеров.',
-    aboutTitle: 'Об авторе',
+    aboutTitle: 'О художнице',
     aboutTextOne:
       'Катя создает росписи под конкретное пространство — для стен и архитектурных поверхностей. Каждая работа выполняется вручную, без цифровой печати и повторов.',
     aboutTextTwo:
@@ -431,7 +431,7 @@ function HomePage({
 
       <header className="safe-x fixed inset-x-0 top-0 z-40 mx-auto flex h-20 max-w-7xl items-center justify-between backdrop-blur-md">
         <a href="#top" onClick={onAnchorClick('top')} className="site-brand font-serif tracking-wide">
-          Katya
+          Katya Shmakova
         </a>
 
         <div className="flex min-w-0 items-center gap-2 md:gap-4">
@@ -645,7 +645,7 @@ function InStockPage({
 
       <header className="safe-x fixed inset-x-0 top-0 z-40 mx-auto flex h-20 max-w-7xl items-center justify-between backdrop-blur-md">
         <Link to="/" className="site-brand font-serif tracking-wide">
-          Katya
+          Katya Shmakova
         </Link>
 
         <div className="flex min-w-0 items-center gap-2 md:gap-4">
@@ -928,7 +928,7 @@ function ProjectPage({
 
       <header className="safe-x fixed inset-x-0 top-0 z-40 mx-auto flex h-20 max-w-7xl items-center justify-between backdrop-blur-md">
         <Link to="/" className="site-brand font-serif tracking-wide">
-          Katya
+          Katya Shmakova
         </Link>
 
         <div className="flex min-w-0 items-center gap-2 md:gap-4">
