@@ -241,12 +241,12 @@ export const projects: Project[] = [
     place: { en: 'Undisclosed', ru: 'Скрытая локация' },
     year: '2026',
     summary: {
-      en: 'A soft figurative wall composition balancing angelic forms with organic fruit motifs.',
-      ru: 'Мягкая фигуративная роспись, где ангельские формы сочетаются с органичными яблочными мотивами.',
+      en: 'A panoramic staircase mural with a guardian angel, river landscape, and apple garden in warm dawn light.',
+      ru: 'Панорамная роспись для лестничного пространства: ангел-хранитель, речной пейзаж и яблоневый сад в теплом свете рассвета.',
     },
     description: {
-      en: 'ANGEL&APPLES explores a calm symbolic dialogue between figure and nature, using layered brushwork and muted tonal transitions. The composition keeps a light visual rhythm and leaves enough breathing space for the interior.',
-      ru: 'ANGEL&APPLES исследует спокойный символический диалог между фигурой и природой через многослойную кистевую работу и приглушенные тональные переходы. Композиция сохраняет легкий визуальный ритм и оставляет интерьеру достаточно воздуха.',
+      en: 'ANGEL&APPLES wraps the staircase with a continuous landscape: tall trees, water reflections, orchard branches, and a distant house. A large winged figure becomes the focal point and anchors the story, while soft atmospheric gradients keep the wall airy. Warm gold tones are balanced with cooler blue-greens so the mural stays luminous by day and calm in evening light.',
+      ru: 'ANGEL&APPLES разворачивается вдоль лестницы как единый пейзаж: высокие деревья, отражения воды, ветви сада и дом в глубине. Крупная фигура ангела становится главной точкой композиции и удерживает сюжет, а мягкие воздушные переходы сохраняют легкость стены. Теплые золотистые оттенки уравновешены холодными сине-зелеными тонами, поэтому роспись выглядит светлой днем и спокойной вечером.',
     },
     image: 'https://www.dropbox.com/scl/fi/a3w637cbwxvtxnq6n5p2u/MAIN.jpg?rlkey=lb5ug44whi8nld9fhjpd5zcbx&st=8jq5wvfx&raw=1',
     detailImages: [
@@ -269,12 +269,12 @@ export const projects: Project[] = [
     place: { en: 'Undisclosed', ru: 'Скрытая локация' },
     year: '2026',
     summary: {
-      en: 'A nature-inspired mural where delicate animal silhouettes meet flowing ornamental structure.',
-      ru: 'Роспись, вдохновленная природой, где тонкие силуэты животных сочетаются с текучей орнаментальной структурой.',
+      en: 'A multi-scene mural combining a portrait with an ermine, red-crowned cranes, and minimalist landscape graphics.',
+      ru: 'Многочастная роспись, где объединены портрет с горностаем, красноголовые журавли и минималистичная графика пейзажа.',
     },
     description: {
-      en: 'ERMINE&STORKS combines restrained line work with painterly texture to build a quiet narrative across the wall. Contrasts stay gentle, so the scene feels present but never visually heavy.',
-      ru: 'ERMINE&STORKS объединяет сдержанную линейную графику и живописную фактуру, формируя тихий сюжет по всей поверхности стены. Контрасты остаются мягкими, поэтому сцена ощущается выразительной, но не перегруженной.',
+      en: 'ERMINE&STORKS is built as a sequence across the architecture: a large portrait with an ermine on the stair wall, a dynamic crane composition, and monochrome bamboo-landscape accents with red marks. Realistic modeling is paired with graphic brush language so each fragment reads independently but remains part of one visual story. Deep background tones and controlled highlights keep the result dramatic, clean, and contemporary.',
+      ru: 'ERMINE&STORKS построен как последовательность сцен в архитектуре: крупный портрет с горностаем на лестничной стене, динамичная композиция с журавлями и монохромные бамбуково-пейзажные акценты с красными метками. Реалистичная моделировка сочетается с графичной кистью, поэтому каждый фрагмент читается отдельно, но остается частью единого сюжета. Глубокие фоновые тона и сдержанные световые акценты дают выразительный, чистый и современный результат.',
     },
     image: 'https://www.dropbox.com/scl/fi/1vgt61czboi56slp6x8kv/_MAIN.jpg?rlkey=167mivrfdisrxuvs1wb1fchy8&st=qu9mqk2x&raw=1',
     detailImages: [
