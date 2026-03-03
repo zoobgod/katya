@@ -55,6 +55,9 @@ export const projects: Project[] = [
     detailImages: [
       'https://www.dropbox.com/scl/fi/97ocsigfw015um6yimrop/PERSIANA2.JPG?rlkey=3s2i67weaztf6cwwqfvdtxcx8&st=wmqdojvz&raw=1',
       'https://www.dropbox.com/scl/fi/6dclh2u80bzv265rhh070/PERSIANA3.JPG?rlkey=2kkj4kxa3o9zs7dopw322w3j4&st=pa567852&raw=1',
+      'https://www.dropbox.com/scl/fi/bu63vm1urls3gev616k61/Persiana-3.JPG?rlkey=5bkbudhpbhiwqioubdpo1fgag&st=s3yllz9g&raw=1',
+      'https://www.dropbox.com/scl/fi/54ct0wl8c67f6wp1luv1d/Persiana-1.JPG?rlkey=yj872d510857rgci9r6cgswf9&st=8vo2puyr&raw=1',
+      'https://www.dropbox.com/scl/fi/ujsig4ckvj9wqziruxobq/Persiana-2.JPG?rlkey=wtea3d9dp0megeu4pk069f41h&st=lmjhk5fe&raw=1',
     ],
   },
   {
@@ -141,6 +144,15 @@ export const projects: Project[] = [
       'https://www.dropbox.com/scl/fi/1v51x1fo08octfp0a175e/DIS4.JPG?rlkey=piyiomesl7zkkbsh3zhg61r8l&st=wxw1jq1l&raw=1',
       'https://www.dropbox.com/scl/fi/hta2tv81dqxg4nu8ki07h/DIS3.JPG?rlkey=uie8jw6yz69fisvpphk6mls7n&st=w5f26v8z&raw=1',
       'https://www.dropbox.com/scl/fi/kfiwgni0h1nwvmplgi1nx/DIS2.JPG?rlkey=qisvflzln4gb71fzrb9ti8j5f&st=5acoux0g&raw=1',
+      'https://www.dropbox.com/scl/fi/wp11kahxzx1ean0gslh44/District-1.1.JPG?rlkey=5lqvd397pt0tmeq3jysk58ni7&st=tuzz3l3e&raw=1',
+      'https://www.dropbox.com/scl/fi/3gybyw0ntwm2p3kx8zbf4/District-1.5.JPG?rlkey=l2qjyk73ir8w4tgz9e97hs0gf&st=vanxgysz&raw=1',
+      'https://www.dropbox.com/scl/fi/8iph1c53mkuwcj6xhsrgc/District-1.2.JPG?rlkey=lvvca6a6dehdqiabbbz5sfib6&st=ua5y23se&raw=1',
+      'https://www.dropbox.com/scl/fi/6np43oeuvv596s12hvi1v/District-1.3.JPG?rlkey=1uswz0w3ytyd5mmjdiwt7iumq&st=2iomx1mw&raw=1',
+      'https://www.dropbox.com/scl/fi/7paxcccyxc9r58y5s0ucd/District-1.4.JPG?rlkey=3n5pzh8vl75blkaiwl6dyfiog&st=t3878y1q&raw=1',
+      'https://www.dropbox.com/scl/fi/cxmr2al6lz99p1as876i7/District-3.1.JPG?rlkey=x6mitr96351fx98h4rdy7lyjw&st=8v0qap6d&raw=1',
+      'https://www.dropbox.com/scl/fi/8ttyd8xassg2zz32kkaqj/District-1.6.JPG?rlkey=o2lzd64a4dn4s4mjj65g76ek2&st=37uoav34&raw=1',
+      'https://www.dropbox.com/scl/fi/pvnnf8f6wyk2mmzy2dlmw/District-1.7.JPG?rlkey=310bu8n0zzd9p1nzqn0ztgdq3&st=hlbvp8x0&raw=1',
+
     ],
   },
   {
@@ -200,6 +212,7 @@ export const projects: Project[] = [
       'https://www.dropbox.com/scl/fi/fmqzk67eqqvow49h5bg1f/CENTRAL4.JPG?rlkey=e0nytppt4mgr7kg3ur8fugp94&st=vt560xdz&raw=1',
       'https://www.dropbox.com/scl/fi/vyyh0jxtpikdidt53tusv/CENTRAL3.JPG?rlkey=k8tkwewltag3dmcz2udvmxroz&st=q8cxme5r&raw=1',
       'https://www.dropbox.com/scl/fi/c2md2flb0pl6i9ekpblmi/CENTRAL2.JPG?rlkey=7ewva7jvaj3pzn4chw907hep1&st=vsxws38g&raw=1',
+      'https://www.dropbox.com/scl/fi/re4vs26l6y5jm5q6l2uxl/2_2022.jpg?rlkey=rrnytpbdy23atot4j7g1o431b&st=68t2ivge&raw=1',
     ],
   },
   {
@@ -235,8 +248,20 @@ export const projects: Project[] = [
       en: 'ANGEL&APPLES explores a calm symbolic dialogue between figure and nature, using layered brushwork and muted tonal transitions. The composition keeps a light visual rhythm and leaves enough breathing space for the interior.',
       ru: 'ANGEL&APPLES исследует спокойный символический диалог между фигурой и природой через многослойную кистевую работу и приглушенные тональные переходы. Композиция сохраняет легкий визуальный ритм и оставляет интерьеру достаточно воздуха.',
     },
-    image: '',
-    detailImages: [],
+    image: 'https://www.dropbox.com/scl/fi/a3w637cbwxvtxnq6n5p2u/MAIN.jpg?rlkey=lb5ug44whi8nld9fhjpd5zcbx&st=8jq5wvfx&raw=1',
+    detailImages: [
+      'https://www.dropbox.com/scl/fi/b2bnzni3wlqzjoj9fynnc/_1.jpg?rlkey=3c57dr874f6sbg1g6i8gkoyit&st=skmbk1pd&raw=1',
+      'https://www.dropbox.com/scl/fi/tt5s0nbbt3pp9q1hsvjud/_10.jpg?rlkey=wqbm5kcj5l87siqengrsh8tue&st=j14zdj5w&raw=1',
+      'https://www.dropbox.com/scl/fi/5fycvv6qaa7qixbhpjscf/_11.jpg?rlkey=82gvredbxghornmdcae2rqsnk&st=szqjytxy&raw=1',
+      'https://www.dropbox.com/scl/fi/gx5udv84u4k36ppgcmtlf/_14.jpg?rlkey=802h31n0t9qz0b2mqtiu9cyoq&st=ahnqtk4z&raw=1',
+      'https://www.dropbox.com/scl/fi/cn6apflfcgog25dmkvut6/_12.jpg?rlkey=mv3fu6lx68n8v00ggp1p8q2p4&st=iuqjw0pl&raw=1',
+      'https://www.dropbox.com/scl/fi/cd8e0ywgv7gvri8rmimd6/_9.jpg?rlkey=0zj3vzry1u0gbkkfe9sta93v4&st=td5cs0kx&raw=1',
+      'https://www.dropbox.com/scl/fi/ctkxfifqs0oyl87fsmdyr/_8.jpg?rlkey=m5ide8t1h6pqextkc96c003z6&st=17ms9xov&raw=1',
+      'https://www.dropbox.com/scl/fi/mrvdlc8xjwpbuo9i9jhla/_2.jpg?rlkey=7ea4pnb26ch87wgywpt8wlps7&st=gterdx59&raw=1',
+      'https://www.dropbox.com/scl/fi/m88srrzx2oldjrzpdypb5/_3.jpg?rlkey=6c1d7qivehitq5alupvuq9rpt&st=553imw3y&raw=1',
+      'https://www.dropbox.com/scl/fi/o66q11fji3ylddyug7qgm/_6.jpg?rlkey=fmq6sx96l36akdf225ok9ciwf&st=n3j5l5r0&raw=1',
+      'https://www.dropbox.com/scl/fi/mxoultyank8e3gkd5uyvf/_5.jpg?rlkey=abg9craq4j52u3qrmo9br3ttw&st=ah8yeaaf&raw=1',
+    ],
   },
   {
     slug: 'ermine-storks',
@@ -251,8 +276,13 @@ export const projects: Project[] = [
       en: 'ERMINE&STORKS combines restrained line work with painterly texture to build a quiet narrative across the wall. Contrasts stay gentle, so the scene feels present but never visually heavy.',
       ru: 'ERMINE&STORKS объединяет сдержанную линейную графику и живописную фактуру, формируя тихий сюжет по всей поверхности стены. Контрасты остаются мягкими, поэтому сцена ощущается выразительной, но не перегруженной.',
     },
-    image: '',
-    detailImages: [],
+    image: 'https://www.dropbox.com/scl/fi/1vgt61czboi56slp6x8kv/_MAIN.jpg?rlkey=167mivrfdisrxuvs1wb1fchy8&st=qu9mqk2x&raw=1',
+    detailImages: [
+      'https://www.dropbox.com/scl/fi/2gidshqtdyx7yf2wvez98/_8.jpg?rlkey=qh0g7zjyzavul1dvnx19ihixj&st=1rb3850c&raw=1',
+      'https://www.dropbox.com/scl/fi/xov9pk37tuwco41wm874d/2.JPG?rlkey=92xu0ffwmg8to43v1unjl7ny2&st=9rlatulh&raw=1',
+      'https://www.dropbox.com/scl/fi/o2i2iou6arh3fuxtqz7gi/6.JPG?rlkey=1bzijx0utewuhapqnon1ssgtr&st=ydumleld&raw=1',
+      'https://www.dropbox.com/scl/fi/a8ni7jvyn3516zei7m7pp/5.JPG?rlkey=ccc3tv40iom0ucbizolsv7ynr&st=4imz3xng&raw=1',
+    ],
   },
 ]
 
