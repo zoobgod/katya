@@ -18,6 +18,7 @@ import {
   useLocation,
   useParams,
 } from 'react-router-dom'
+import { inStockItems } from './data/inStock'
 import { projects, projectsBySlug } from './data/projects'
 
 const HEADER_OFFSET = 104
@@ -27,19 +28,20 @@ const LANG_STORAGE_KEY = 'katya-lang'
 
 const ui = {
   en: {
-    metaTitle: 'Katya | Painter & Wallpainter',
+    metaTitle: 'Katya Shmakova | Painter & Wallpainter',
     metaDescription:
-      'Portfolio website for Katya, a painter and wallpainter creating hand-painted murals and interiors.',
+      'Portfolio website for Katya Shmakova, a painter and wallpainter creating hand-painted murals and interiors.',
     loaderWord: 'Katya',
-    navAbout: 'About',
+    navAbout: 'About author',
     navGallery: 'Gallery',
+    navInStock: 'In stock',
     navContact: 'Contact me',
     heroRole: 'Painter / Wallpainter',
     heroDescription:
       'Hand-painted walls, murals, and textured surfaces for homes, studios, and intimate public spaces.',
     heroCta: 'View selected works',
     heroNote: 'Soft palettes, botanical forms, and layered brushwork built for calm interiors.',
-    aboutTitle: 'About',
+    aboutTitle: 'About author',
     aboutTextOne:
       'Katya creates site-specific painting for walls and architectural surfaces. Every piece is made by hand, with no digital prints and no repetition.',
     aboutTextTwo:
@@ -59,7 +61,12 @@ const ui = {
     projectLabel: 'Project',
     backToGallery: 'Back to gallery',
     backToGalleryShort: 'Back',
-    shortDescription: 'Short Description',
+    shortDescription: 'Description',
+    inStockTitle: 'In stock',
+    inStockKicker: 'Available for purchase',
+    inStockIntro:
+      'A curated set of available paintings and studies. New works are added here as soon as they are ready.',
+    availableNow: 'Available now',
     discussProject: 'Discuss a project',
     projectGallery: 'Project Gallery',
     galleryComingSoon: 'Gallery coming soon',
@@ -73,19 +80,20 @@ const ui = {
     languageLabel: 'Language',
   },
   ru: {
-    metaTitle: 'Катя | Художница и роспись стен',
+    metaTitle: 'Катя Шмакова | Художница и роспись стен',
     metaDescription:
-      'Портфолио Кати — художницы по росписи стен, создающей ручные росписи и авторские интерьерные поверхности.',
+      'Портфолио Кати Шмаковой — художницы по росписи стен, создающей ручные росписи и авторские интерьерные поверхности.',
     loaderWord: 'Katya',
-    navAbout: 'Обо мне',
+    navAbout: 'Об авторе',
     navGallery: 'Галерея',
+    navInStock: 'В наличии',
     navContact: 'Связаться',
     heroRole: 'Художница / Роспись стен',
     heroDescription:
       'Ручная роспись стен, муралы и фактурные поверхности для домов, студий и камерных общественных пространств.',
     heroCta: 'Смотреть работы',
     heroNote: 'Мягкие палитры, ботанические формы и многослойная кистевая работа для спокойных интерьеров.',
-    aboutTitle: 'Обо мне',
+    aboutTitle: 'Об авторе',
     aboutTextOne:
       'Катя создает росписи под конкретное пространство — для стен и архитектурных поверхностей. Каждая работа выполняется вручную, без цифровой печати и повторов.',
     aboutTextTwo:
@@ -105,7 +113,12 @@ const ui = {
     projectLabel: 'Проект',
     backToGallery: 'Назад к галерее',
     backToGalleryShort: 'Назад',
-    shortDescription: 'Кратко',
+    shortDescription: 'Описание',
+    inStockTitle: 'В наличии',
+    inStockKicker: 'Доступно к покупке',
+    inStockIntro:
+      'Подборка работ, которые сейчас доступны для приобретения. Новые произведения добавляются по мере готовности.',
+    availableNow: 'Доступно',
     discussProject: 'Обсудить проект',
     projectGallery: 'Галерея проекта',
     galleryComingSoon: 'Галерея скоро появится',
@@ -306,6 +319,16 @@ function App() {
             />
           }
         />
+        <Route
+          path="/in-stock"
+          element={
+            <InStockPage
+              lang={lang}
+              setLang={setLang}
+              hideLangSwitch={hideLangSwitch}
+            />
+          }
+        />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </>
@@ -397,6 +420,22 @@ function FluidImage({
   )
 }
 
+function HeroSketch() {
+  return (
+    <div className="hero-sketch-shell" aria-hidden>
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcSet="/assets/hand-drawn-white.png" />
+        <img
+          src="/assets/hand-drawn-black.png"
+          alt=""
+          className="hero-sketch-image"
+          loading="lazy"
+        />
+      </picture>
+    </div>
+  )
+}
+
 function HomePage({
   lang,
   setLang,
@@ -464,6 +503,9 @@ function HomePage({
             <a href="#gallery" onClick={onAnchorClick('gallery')} className="hover:text-[var(--ink)]">
               {t.navGallery}
             </a>
+            <Link to="/in-stock" className="hover:text-[var(--ink)]">
+              {t.navInStock}
+            </Link>
             <a href="#contact" onClick={onAnchorClick('contact')} className="hover:text-[var(--ink)]">
               {t.navContact}
             </a>
@@ -474,6 +516,8 @@ function HomePage({
       </header>
 
       <main id="top" className="safe-x mx-auto max-w-7xl pb-12 pt-28">
+        <HeroSketch />
+
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -484,7 +528,10 @@ function HomePage({
             <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[var(--muted)]">
               {t.heroRole}
             </p>
-            <h1 className="font-serif text-6xl leading-[0.95] md:text-8xl lg:text-9xl">Katya</h1>
+            <h1 className="font-serif text-6xl leading-[0.95] md:text-8xl lg:text-9xl">
+              <span className="block">Katya</span>
+              <span className="block">Shmakova</span>
+            </h1>
             <p className="mt-6 max-w-lg text-base leading-relaxed text-[var(--muted)] md:text-lg">
               {t.heroDescription}
             </p>
@@ -600,6 +647,121 @@ function HomePage({
               <p className="contact-label">{t.labelEmail}</p>
               <p className="contact-value">{CONTACT_EMAIL}</p>
             </a>
+          </div>
+        </section>
+      </main>
+
+      <SiteFooter lang={lang} />
+    </div>
+  )
+}
+
+function InStockPage({
+  lang,
+  setLang,
+  hideLangSwitch,
+}: {
+  lang: Lang
+  setLang: (nextLang: Lang) => void
+  hideLangSwitch: boolean
+}) {
+  const t = ui[lang]
+
+  return (
+    <div className="relative min-h-screen bg-[var(--canvas)] text-[var(--ink)]">
+      <div className="site-backdrop pointer-events-none fixed inset-0 -z-10" />
+
+      <header className="safe-x fixed inset-x-0 top-0 z-40 mx-auto flex h-20 max-w-7xl items-center justify-between backdrop-blur-md">
+        <Link to="/" className="site-brand font-serif tracking-wide">
+          Katya
+        </Link>
+
+        <div className="flex min-w-0 items-center gap-2 md:gap-4">
+          <nav className="site-nav">
+            <Link to="/#gallery" className="hover:text-[var(--ink)]">
+              {t.navGallery}
+            </Link>
+            <Link to="/in-stock" className="text-[var(--ink)]">
+              {t.navInStock}
+            </Link>
+            <Link to="/#contact" className="hover:text-[var(--ink)]">
+              {t.navContact}
+            </Link>
+          </nav>
+
+          <LanguageSwitch lang={lang} setLang={setLang} hidden={hideLangSwitch} />
+        </div>
+      </header>
+
+      <main className="safe-x mx-auto max-w-7xl pb-12 pt-28">
+        <section className="border-b border-[var(--line)] pb-12">
+          <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[var(--muted)]">{t.inStockKicker}</p>
+          <h1 className="font-serif text-4xl leading-[0.95] sm:text-5xl md:text-7xl">{t.inStockTitle}</h1>
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--muted)] md:text-lg">
+            {t.inStockIntro}
+          </p>
+        </section>
+
+        <section className="py-12">
+          <div className="grid gap-6 md:grid-cols-2">
+            {inStockItems.map((item, index) => (
+              <motion.article
+                key={item.slug}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-10% 0px' }}
+                transition={{ duration: 0.55, delay: index * 0.05 }}
+                className="tile-pop surface-card overflow-hidden rounded-3xl border border-[var(--line)]"
+              >
+                {item.isPlaceholder || !item.image ? (
+                  <div className="group block">
+                    <div className="placeholder-surface flex aspect-[4/5] items-center justify-center border-b border-dashed border-[var(--line)]">
+                      <p className="text-xs uppercase tracking-[0.24em] text-[var(--muted)]">{t.placeholder}</p>
+                    </div>
+                    <div className="space-y-3 p-5 md:p-6">
+                      <div className="flex items-start justify-between gap-4">
+                        <h3 className="project-card-title font-serif text-[1.35rem] leading-tight md:text-2xl">
+                          {item.title[lang]}
+                        </h3>
+                        <p className="shrink-0 pt-0.5 text-right text-sm text-[var(--muted)] md:pt-0">
+                          {item.year}
+                        </p>
+                      </div>
+                      <p className="text-sm text-[var(--muted)]">{item.medium[lang]}</p>
+                      <div className="stock-meta-row text-sm text-[var(--muted)]">
+                        <p>{item.size}</p>
+                        <p>{t.comingSoon}</p>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="group block">
+                    <FluidImage
+                      key={item.image}
+                      src={item.image}
+                      alt={`${item.title[lang]} ${t.altProjectPreview}`}
+                      className="aspect-[4/5]"
+                      imageClassName="h-full w-full object-cover"
+                    />
+                    <div className="space-y-3 p-5 md:p-6">
+                      <div className="flex items-start justify-between gap-4">
+                        <h3 className="project-card-title font-serif text-[1.35rem] leading-tight md:text-2xl">
+                          {item.title[lang]}
+                        </h3>
+                        <p className="shrink-0 pt-0.5 text-right text-sm text-[var(--muted)] md:pt-0">
+                          {item.year}
+                        </p>
+                      </div>
+                      <p className="text-sm text-[var(--muted)]">{item.medium[lang]}</p>
+                      <div className="stock-meta-row text-sm text-[var(--muted)]">
+                        <p>{item.size}</p>
+                        <p>{t.availableNow}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </motion.article>
+            ))}
           </div>
         </section>
       </main>
@@ -766,6 +928,12 @@ function ProjectPage({
             <ArrowLeft size={16} />
             <span className="hidden sm:inline">{t.backToGallery}</span>
             <span className="sm:hidden">{t.backToGalleryShort}</span>
+          </Link>
+          <Link
+            to="/in-stock"
+            className="project-back-link inline-flex shrink-0 items-center text-[var(--muted)] hover:text-[var(--ink)]"
+          >
+            {t.navInStock}
           </Link>
 
           <LanguageSwitch lang={lang} setLang={setLang} hidden={hideLangSwitch} />
