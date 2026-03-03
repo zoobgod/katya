@@ -430,11 +430,11 @@ function HomePage({
       />
 
       <header className="safe-x fixed inset-x-0 top-0 z-40 mx-auto flex h-20 max-w-7xl items-center justify-between backdrop-blur-md">
-        <a href="#top" onClick={onAnchorClick('top')} className="site-brand font-serif tracking-wide">
-          Katya Shmakova
+        <a href="#top" onClick={onAnchorClick('top')} className="site-brand shrink-0 font-serif tracking-wide">
+          Katya
         </a>
 
-        <div className="flex min-w-0 items-center gap-2 md:gap-4">
+        <div className="flex min-w-0 flex-1 items-center justify-end gap-2 md:gap-4">
           <nav className="site-nav">
             <a href="#about" onClick={onAnchorClick('about')} className="hover:text-[var(--ink)]">
               {t.navAbout}
@@ -644,11 +644,11 @@ function InStockPage({
       <div className="site-backdrop pointer-events-none fixed inset-0 -z-10" />
 
       <header className="safe-x fixed inset-x-0 top-0 z-40 mx-auto flex h-20 max-w-7xl items-center justify-between backdrop-blur-md">
-        <Link to="/" className="site-brand font-serif tracking-wide">
-          Katya Shmakova
+        <Link to="/" className="site-brand shrink-0 font-serif tracking-wide">
+          Katya
         </Link>
 
-        <div className="flex min-w-0 items-center gap-2 md:gap-4">
+        <div className="flex min-w-0 flex-1 items-center justify-end gap-2 md:gap-4">
           <nav className="site-nav">
             <Link to="/#about" className="hover:text-[var(--ink)]">
               {t.navAbout}
@@ -927,11 +927,11 @@ function ProjectPage({
       <div className="site-backdrop pointer-events-none fixed inset-0 -z-10" />
 
       <header className="safe-x fixed inset-x-0 top-0 z-40 mx-auto flex h-20 max-w-7xl items-center justify-between backdrop-blur-md">
-        <Link to="/" className="site-brand font-serif tracking-wide">
-          Katya Shmakova
+        <Link to="/" className="site-brand shrink-0 font-serif tracking-wide">
+          Katya
         </Link>
 
-        <div className="flex min-w-0 items-center gap-2 md:gap-4">
+        <div className="flex min-w-0 flex-1 items-center justify-end gap-2 md:gap-4">
           <Link
             to="/#gallery"
             className="project-back-link inline-flex shrink-0 items-center gap-1 text-[var(--muted)] hover:text-[var(--ink)]"
