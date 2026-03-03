@@ -63,9 +63,7 @@ const ui = {
     backToGalleryShort: 'Back',
     shortDescription: 'Description',
     inStockTitle: 'In stock',
-    inStockKicker: 'Available for purchase',
-    inStockIntro:
-      'A curated set of available paintings and studies. New works are added here as soon as they are ready.',
+    inStockIntro: 'A curated set of available paintings and studies.',
     availableNow: 'Available now',
     discussProject: 'Discuss a project',
     projectGallery: 'Project Gallery',
@@ -115,9 +113,7 @@ const ui = {
     backToGalleryShort: 'Назад',
     shortDescription: 'Описание',
     inStockTitle: 'В наличии',
-    inStockKicker: 'Доступно к покупке',
-    inStockIntro:
-      'Подборка работ, которые сейчас доступны для приобретения. Новые произведения добавляются по мере готовности.',
+    inStockIntro: 'Подборка работ, которые доступны на данный момент.',
     availableNow: 'Доступно',
     discussProject: 'Обсудить проект',
     projectGallery: 'Галерея проекта',
@@ -162,8 +158,6 @@ function App() {
   const lenisRef = useRef<Lenis | null>(null)
   const [showLoader, setShowLoader] = useState(true)
   const [lang, setLang] = useState<Lang>(readInitialLang)
-  const [hideLangSwitch, setHideLangSwitch] = useState(false)
-  const lastScrollYRef = useRef(0)
 
   const t = ui[lang]
 
@@ -240,46 +234,12 @@ function App() {
     }
   }, [])
 
-  useEffect(() => {
-    let ticking = false
-
-    const onScroll = () => {
-      if (ticking) {
-        return
-      }
-
-      ticking = true
-      window.requestAnimationFrame(() => {
-        const y = Math.max(window.scrollY, document.documentElement.scrollTop)
-        const delta = y - lastScrollYRef.current
-
-        if (y < 40) {
-          setHideLangSwitch(false)
-        } else if (delta > 6) {
-          setHideLangSwitch(true)
-        } else if (delta < -6) {
-          setHideLangSwitch(false)
-        }
-
-        lastScrollYRef.current = y
-        ticking = false
-      })
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-    }
-  }, [])
-
   useLayoutEffect(() => {
     const resetToTop = () => {
       lenisRef.current?.scrollTo(0, { immediate: true, force: true })
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
       document.documentElement.scrollTop = 0
       document.body.scrollTop = 0
-      setHideLangSwitch(false)
-      lastScrollYRef.current = 0
     }
 
     resetToTop()
@@ -305,7 +265,6 @@ function App() {
             <HomePage
               lang={lang}
               setLang={setLang}
-              hideLangSwitch={hideLangSwitch}
             />
           }
         />
@@ -315,7 +274,6 @@ function App() {
             <ProjectPage
               lang={lang}
               setLang={setLang}
-              hideLangSwitch={hideLangSwitch}
             />
           }
         />
@@ -325,7 +283,6 @@ function App() {
             <InStockPage
               lang={lang}
               setLang={setLang}
-              hideLangSwitch={hideLangSwitch}
             />
           }
         />
@@ -360,20 +317,18 @@ function SiteLoader({ title }: { title: string }) {
 function LanguageSwitch({
   lang,
   setLang,
-  hidden,
 }: {
   lang: Lang
   setLang: (nextLang: Lang) => void
-  hidden: boolean
 }) {
   const t = ui[lang]
 
   return (
     <motion.div
       className="lang-switch-shell"
-      animate={hidden ? { opacity: 0, y: -8, scale: 0.96 } : { opacity: 1, y: 0, scale: 1 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-      style={{ pointerEvents: hidden ? 'none' : 'auto' }}
+      style={{ pointerEvents: 'auto' }}
     >
       <div className="lang-switch" role="group" aria-label={t.languageLabel}>
         <button
@@ -420,30 +375,12 @@ function FluidImage({
   )
 }
 
-function HeroSketch() {
-  return (
-    <div className="hero-sketch-shell" aria-hidden>
-      <picture>
-        <source media="(prefers-color-scheme: dark)" srcSet="/assets/hand-drawn-white.png" />
-        <img
-          src="/assets/hand-drawn-black.png"
-          alt=""
-          className="hero-sketch-image"
-          loading="lazy"
-        />
-      </picture>
-    </div>
-  )
-}
-
 function HomePage({
   lang,
   setLang,
-  hideLangSwitch,
 }: {
   lang: Lang
   setLang: (nextLang: Lang) => void
-  hideLangSwitch: boolean
 }) {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null)
   const location = useLocation()
@@ -511,13 +448,11 @@ function HomePage({
             </a>
           </nav>
 
-          <LanguageSwitch lang={lang} setLang={setLang} hidden={hideLangSwitch} />
+          <LanguageSwitch lang={lang} setLang={setLang} />
         </div>
       </header>
 
       <main id="top" className="safe-x mx-auto max-w-7xl pb-12 pt-28">
-        <HeroSketch />
-
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -659,11 +594,9 @@ function HomePage({
 function InStockPage({
   lang,
   setLang,
-  hideLangSwitch,
 }: {
   lang: Lang
   setLang: (nextLang: Lang) => void
-  hideLangSwitch: boolean
 }) {
   const t = ui[lang]
 
@@ -689,13 +622,12 @@ function InStockPage({
             </Link>
           </nav>
 
-          <LanguageSwitch lang={lang} setLang={setLang} hidden={hideLangSwitch} />
+          <LanguageSwitch lang={lang} setLang={setLang} />
         </div>
       </header>
 
       <main className="safe-x mx-auto max-w-7xl pb-12 pt-28">
         <section className="border-b border-[var(--line)] pb-12">
-          <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[var(--muted)]">{t.inStockKicker}</p>
           <h1 className="font-serif text-4xl leading-[0.95] sm:text-5xl md:text-7xl">{t.inStockTitle}</h1>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--muted)] md:text-lg">
             {t.inStockIntro}
@@ -892,11 +824,9 @@ function ProjectShowcaseGallery({
 function ProjectPage({
   lang,
   setLang,
-  hideLangSwitch,
 }: {
   lang: Lang
   setLang: (nextLang: Lang) => void
-  hideLangSwitch: boolean
 }) {
   const { slug } = useParams()
   const decodedSlug = useMemo(() => (slug ? decodeURIComponent(slug) : ''), [slug])
@@ -936,7 +866,7 @@ function ProjectPage({
             {t.navInStock}
           </Link>
 
-          <LanguageSwitch lang={lang} setLang={setLang} hidden={hideLangSwitch} />
+          <LanguageSwitch lang={lang} setLang={setLang} />
         </div>
       </header>
 
