@@ -107,7 +107,7 @@ const ui = {
     labelTelegram: 'Телеграм',
     labelEmail: 'Почта',
     footerName: 'Екатерина Шмакова, 2026',
-    footerTravel: 'Доступна для выезда',
+    footerTravel: 'Готова к поездкам',
     footerCopyright: '© 2026 Все права защищены.',
     projectLabel: 'Проект',
     backToGallery: 'Назад к галерее',
@@ -613,6 +613,9 @@ function InStockPage({
 
         <div className="flex min-w-0 items-center gap-2 md:gap-4">
           <nav className="site-nav">
+            <Link to="/#about" className="hover:text-[var(--ink)]">
+              {t.navAbout}
+            </Link>
             <Link to="/#gallery" className="hover:text-[var(--ink)]">
               {t.navGallery}
             </Link>
@@ -657,17 +660,16 @@ function InStockPage({
                         <h3 className="project-card-title font-serif text-[1.35rem] leading-tight md:text-2xl">
                           {item.title[lang]}
                         </h3>
-                        <div className="shrink-0 text-right">
-                          <p className="pt-0.5 text-sm text-[var(--muted)] md:pt-0">{item.year}</p>
-                          <p className="stock-price-tag">
-                            {t.priceLabel}: {item.price[lang]}
-                          </p>
-                        </div>
+                        <p className="shrink-0 pt-0.5 text-right text-sm text-[var(--muted)] md:pt-0">
+                          {item.year}
+                        </p>
                       </div>
                       <p className="text-sm text-[var(--muted)]">{item.medium[lang]}</p>
                       <div className="stock-meta-row text-sm text-[var(--muted)]">
                         <p>{item.size}</p>
-                        <p>{t.comingSoon}</p>
+                        <p className="stock-price-corner">
+                          {t.priceLabel}: {item.price[lang]}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -685,17 +687,16 @@ function InStockPage({
                         <h3 className="project-card-title font-serif text-[1.35rem] leading-tight md:text-2xl">
                           {item.title[lang]}
                         </h3>
-                        <div className="shrink-0 text-right">
-                          <p className="pt-0.5 text-sm text-[var(--muted)] md:pt-0">{item.year}</p>
-                          <p className="stock-price-tag">
-                            {t.priceLabel}: {item.price[lang]}
-                          </p>
-                        </div>
+                        <p className="shrink-0 pt-0.5 text-right text-sm text-[var(--muted)] md:pt-0">
+                          {item.year}
+                        </p>
                       </div>
                       <p className="text-sm text-[var(--muted)]">{item.medium[lang]}</p>
                       <div className="stock-meta-row text-sm text-[var(--muted)]">
                         <p>{item.size}</p>
-                        <p>{t.availableNow}</p>
+                        <p className="stock-price-corner">
+                          {t.priceLabel}: {item.price[lang]}
+                        </p>
                       </div>
                     </div>
                   </div>
