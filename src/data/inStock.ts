@@ -6,6 +6,7 @@ export type InStockItem = {
   medium: LocalizedText
   size: string
   year: string
+  price: LocalizedText
   image?: string
   isPlaceholder?: boolean
 }
@@ -17,6 +18,7 @@ export const inStockItems: InStockItem[] = [
     medium: { en: 'Acrylic on canvas', ru: 'Акрил, холст' },
     size: '80 x 100 cm',
     year: '2026',
+    price: { en: '120 000 ₽', ru: '120 000 ₽' },
     isPlaceholder: true,
   },
   {
@@ -25,6 +27,7 @@ export const inStockItems: InStockItem[] = [
     medium: { en: 'Acrylic on canvas', ru: 'Акрил, холст' },
     size: '70 x 90 cm',
     year: '2026',
+    price: { en: '98 000 ₽', ru: '98 000 ₽' },
     isPlaceholder: true,
   },
   {
@@ -33,6 +36,7 @@ export const inStockItems: InStockItem[] = [
     medium: { en: 'Mixed media on board', ru: 'Смешанная техника, панель' },
     size: '60 x 80 cm',
     year: '2026',
+    price: { en: '86 000 ₽', ru: '86 000 ₽' },
     isPlaceholder: true,
   },
   {
@@ -41,6 +45,7 @@ export const inStockItems: InStockItem[] = [
     medium: { en: 'Acrylic on canvas', ru: 'Акрил, холст' },
     size: '90 x 120 cm',
     year: '2026',
+    price: { en: '145 000 ₽', ru: '145 000 ₽' },
     isPlaceholder: true,
   },
   {
@@ -49,6 +54,7 @@ export const inStockItems: InStockItem[] = [
     medium: { en: 'Mixed media on canvas', ru: 'Смешанная техника, холст' },
     size: '65 x 85 cm',
     year: '2026',
+    price: { en: '92 000 ₽', ru: '92 000 ₽' },
     isPlaceholder: true,
   },
   {
@@ -57,6 +63,7 @@ export const inStockItems: InStockItem[] = [
     medium: { en: 'Acrylic on canvas', ru: 'Акрил, холст' },
     size: '100 x 140 cm',
     year: '2026',
+    price: { en: '168 000 ₽', ru: '168 000 ₽' },
     isPlaceholder: true,
   },
 ]

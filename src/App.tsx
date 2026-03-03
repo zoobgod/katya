@@ -65,6 +65,7 @@ const ui = {
     inStockTitle: 'In stock',
     inStockIntro: 'A curated set of available paintings and studies.',
     availableNow: 'Available now',
+    priceLabel: 'Price',
     discussProject: 'Discuss a project',
     projectGallery: 'Project Gallery',
     galleryComingSoon: 'Gallery coming soon',
@@ -115,6 +116,7 @@ const ui = {
     inStockTitle: 'В наличии',
     inStockIntro: 'Подборка работ, которые доступны на данный момент.',
     availableNow: 'Доступно',
+    priceLabel: 'Цена',
     discussProject: 'Обсудить проект',
     projectGallery: 'Галерея проекта',
     galleryComingSoon: 'Галерея скоро появится',
@@ -459,15 +461,15 @@ function HomePage({
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="grid min-h-[calc(100vh-8rem)] items-end border-b border-[var(--line)] pb-18 md:grid-cols-12"
         >
-          <div className="md:col-span-8">
-            <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[var(--muted)]">
+          <div className="hero-main md:col-span-8">
+            <p className="hero-role text-xs uppercase tracking-[0.22em] text-[var(--muted)]">
               {t.heroRole}
             </p>
-            <h1 className="font-serif text-6xl leading-[0.95] md:text-8xl lg:text-9xl">
+            <h1 className="hero-title font-serif text-6xl md:text-8xl lg:text-9xl">
               <span className="block">Katya</span>
               <span className="block">Shmakova</span>
             </h1>
-            <p className="mt-6 max-w-lg text-base leading-relaxed text-[var(--muted)] md:text-lg">
+            <p className="hero-description max-w-lg text-base leading-relaxed text-[var(--muted)] md:text-lg">
               {t.heroDescription}
             </p>
           </div>
@@ -655,9 +657,12 @@ function InStockPage({
                         <h3 className="project-card-title font-serif text-[1.35rem] leading-tight md:text-2xl">
                           {item.title[lang]}
                         </h3>
-                        <p className="shrink-0 pt-0.5 text-right text-sm text-[var(--muted)] md:pt-0">
-                          {item.year}
-                        </p>
+                        <div className="shrink-0 text-right">
+                          <p className="pt-0.5 text-sm text-[var(--muted)] md:pt-0">{item.year}</p>
+                          <p className="stock-price-tag">
+                            {t.priceLabel}: {item.price[lang]}
+                          </p>
+                        </div>
                       </div>
                       <p className="text-sm text-[var(--muted)]">{item.medium[lang]}</p>
                       <div className="stock-meta-row text-sm text-[var(--muted)]">
@@ -680,9 +685,12 @@ function InStockPage({
                         <h3 className="project-card-title font-serif text-[1.35rem] leading-tight md:text-2xl">
                           {item.title[lang]}
                         </h3>
-                        <p className="shrink-0 pt-0.5 text-right text-sm text-[var(--muted)] md:pt-0">
-                          {item.year}
-                        </p>
+                        <div className="shrink-0 text-right">
+                          <p className="pt-0.5 text-sm text-[var(--muted)] md:pt-0">{item.year}</p>
+                          <p className="stock-price-tag">
+                            {t.priceLabel}: {item.price[lang]}
+                          </p>
+                        </div>
                       </div>
                       <p className="text-sm text-[var(--muted)]">{item.medium[lang]}</p>
                       <div className="stock-meta-row text-sm text-[var(--muted)]">

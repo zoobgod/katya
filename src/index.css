@@ -134,6 +134,26 @@ body {
   overflow-wrap: anywhere;
 }
 
+.hero-main {
+  padding-top: 0.35rem;
+}
+
+.hero-role {
+  margin-bottom: clamp(0.95rem, 2.8vw, 1.7rem);
+}
+
+.hero-title {
+  line-height: 0.93;
+}
+
+.hero-title span + span {
+  margin-top: 0.18em;
+}
+
+.hero-description {
+  margin-top: clamp(1rem, 2.2vw, 1.65rem);
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -383,6 +403,18 @@ img {
   gap: 1rem;
 }
 
+.stock-price-tag {
+  margin: 0.28rem 0 0;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.18rem 0.52rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--panel-soft);
+}
+
 .anchor-section {
   scroll-margin-top: calc(var(--header-height) + 1.5rem);
 }
@@ -534,6 +566,22 @@ img {
 }
 
 @media (max-width: 420px) {
+  .hero-main {
+    padding-top: 0.15rem;
+  }
+
+  .hero-role {
+    margin-bottom: 1.1rem;
+  }
+
+  .hero-title span + span {
+    margin-top: 0.14em;
+  }
+
+  .hero-description {
+    margin-top: 1rem;
+  }
+
   .stock-meta-row {
     flex-direction: column;
     align-items: flex-start;
