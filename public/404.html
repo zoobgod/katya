@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Redirecting…</title>
+    <script>
+      ;(() => {
+        const REDIRECT_PATH_KEY = 'katya-spa-redirect-path'
+        const nextPath = `${window.location.pathname}${window.location.search}${window.location.hash}`
+        try {
+          window.sessionStorage.setItem(REDIRECT_PATH_KEY, nextPath)
+        } catch {
+          // Ignore storage errors and still redirect to app root.
+        }
+        window.location.replace('/')
+      })()
+    </script>
+  </head>
+  <body></body>
+</html>

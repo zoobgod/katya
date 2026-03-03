@@ -222,6 +222,38 @@ export const projects: Project[] = [
       'https://www.dropbox.com/scl/fi/a99q4k3jjc9jy6gsl5qnw/BSHOP2.jpg?rlkey=wzodmf4abbiogty454gxqzy8o&st=60lybmki&raw=1',
     ],
   },
+  {
+    slug: 'angel-apples',
+    title: { en: 'ANGEL&APPLES', ru: 'ANGEL&APPLES' },
+    place: { en: 'Undisclosed', ru: 'Скрытая локация' },
+    year: '2026',
+    summary: {
+      en: 'A soft figurative wall composition balancing angelic forms with organic fruit motifs.',
+      ru: 'Мягкая фигуративная роспись, где ангельские формы сочетаются с органичными яблочными мотивами.',
+    },
+    description: {
+      en: 'ANGEL&APPLES explores a calm symbolic dialogue between figure and nature, using layered brushwork and muted tonal transitions. The composition keeps a light visual rhythm and leaves enough breathing space for the interior.',
+      ru: 'ANGEL&APPLES исследует спокойный символический диалог между фигурой и природой через многослойную кистевую работу и приглушенные тональные переходы. Композиция сохраняет легкий визуальный ритм и оставляет интерьеру достаточно воздуха.',
+    },
+    image: '',
+    detailImages: [],
+  },
+  {
+    slug: 'ermine-storks',
+    title: { en: 'ERMINE&STORKS', ru: 'ERMINE&STORKS' },
+    place: { en: 'Undisclosed', ru: 'Скрытая локация' },
+    year: '2026',
+    summary: {
+      en: 'A nature-inspired mural where delicate animal silhouettes meet flowing ornamental structure.',
+      ru: 'Роспись, вдохновленная природой, где тонкие силуэты животных сочетаются с текучей орнаментальной структурой.',
+    },
+    description: {
+      en: 'ERMINE&STORKS combines restrained line work with painterly texture to build a quiet narrative across the wall. Contrasts stay gentle, so the scene feels present but never visually heavy.',
+      ru: 'ERMINE&STORKS объединяет сдержанную линейную графику и живописную фактуру, формируя тихий сюжет по всей поверхности стены. Контрасты остаются мягкими, поэтому сцена ощущается выразительной, но не перегруженной.',
+    },
+    image: '',
+    detailImages: [],
+  },
 ]
 
 export const projectsBySlug = Object.fromEntries(
