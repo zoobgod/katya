@@ -403,14 +403,15 @@ img {
   gap: 1rem;
 }
 
-.stock-price-tag {
-  margin: 0.28rem 0 0;
+.stock-price-corner {
+  margin: 0;
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 0.18rem 0.52rem;
   font-size: 0.65rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  white-space: nowrap;
   color: var(--muted);
   background: var(--panel-soft);
 }
