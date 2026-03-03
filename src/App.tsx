@@ -539,13 +539,19 @@ function HomePage({
                   </div>
                 ) : (
                   <Link to={`/projects/${encodeURIComponent(item.slug)}`} className="group block">
-                    <FluidImage
-                      key={item.image}
-                      src={item.image}
-                      alt={`${item.title[lang]} ${t.altWallPainting}`}
-                      className="aspect-[4/5]"
-                      imageClassName="h-full w-full object-cover"
-                    />
+                    {item.image ? (
+                      <FluidImage
+                        key={item.image}
+                        src={item.image}
+                        alt={`${item.title[lang]} ${t.altWallPainting}`}
+                        className="aspect-[4/5]"
+                        imageClassName="h-full w-full object-cover"
+                      />
+                    ) : (
+                      <div className="placeholder-surface flex aspect-[4/5] items-center justify-center border-b border-dashed border-[var(--line)]">
+                        <p className="text-xs uppercase tracking-[0.24em] text-[var(--muted)]">{t.galleryComingSoon}</p>
+                      </div>
+                    )}
                     <div className="flex items-start justify-between gap-4 p-5 md:items-center md:p-6">
                       <div className="min-w-0">
                         <h3 className="project-card-title font-serif text-[1.35rem] leading-tight md:text-2xl">
@@ -678,7 +684,7 @@ function InStockPage({
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-10% 0px' }}
-                transition={{ duration: 0.55, delay: index * 0.05 }}
+                transition={{ duration: 0.36, delay: index * 0.03 }}
                 className="tile-pop surface-card overflow-hidden rounded-3xl border border-[var(--line)]"
               >
                 {item.isPlaceholder || !item.image ? (
@@ -963,14 +969,20 @@ function ProjectPage({
             transition={{ duration: 0.7, ease: 'easeOut' }}
             className="overflow-hidden rounded-3xl md:col-span-7"
           >
-            <FluidImage
-              key={project.image}
-              src={project.image}
-              alt={`${project.title[lang]} ${t.altWallPainting}`}
-              className="aspect-[5/6] md:aspect-auto md:h-full"
-              imageClassName="h-full w-full object-cover"
-              loading="eager"
-            />
+            {project.image ? (
+              <FluidImage
+                key={project.image}
+                src={project.image}
+                alt={`${project.title[lang]} ${t.altWallPainting}`}
+                className="aspect-[5/6] md:aspect-auto md:h-full"
+                imageClassName="h-full w-full object-cover"
+                loading="eager"
+              />
+            ) : (
+              <div className="empty-gallery-surface flex aspect-[5/6] items-center justify-center border border-dashed border-[var(--line)] text-xs uppercase tracking-[0.2em] text-[var(--muted)] md:aspect-auto md:h-full">
+                {t.galleryComingSoon}
+              </div>
+            )}
           </motion.div>
 
           <aside className="space-y-6 md:col-span-5 md:pt-6">
@@ -1003,13 +1015,19 @@ function ProjectPage({
                 to={`/projects/${encodeURIComponent(item.slug)}`}
                 className="tile-pop surface-card group overflow-hidden rounded-3xl border border-[var(--line)]"
               >
-                <FluidImage
-                  key={item.image}
-                  src={item.image}
-                  alt={`${item.title[lang]} ${t.altProjectPreview}`}
-                  className="aspect-[16/10]"
-                  imageClassName="h-full w-full object-cover"
-                />
+                {item.image ? (
+                  <FluidImage
+                    key={item.image}
+                    src={item.image}
+                    alt={`${item.title[lang]} ${t.altProjectPreview}`}
+                    className="aspect-[16/10]"
+                    imageClassName="h-full w-full object-cover"
+                  />
+                ) : (
+                  <div className="placeholder-surface flex aspect-[16/10] items-center justify-center border-b border-dashed border-[var(--line)]">
+                    <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">{t.galleryComingSoon}</p>
+                  </div>
+                )}
                 <div className="p-5">
                   <h2 className="project-card-title font-serif text-[1.35rem] leading-tight md:text-2xl">
                     {item.title[lang]}

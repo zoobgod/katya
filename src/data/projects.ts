@@ -38,8 +38,8 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: 'ocean',
-    title: { en: 'OCEAN', ru: 'OCEAN' },
+    slug: 'zen',
+    title: { en: 'ZEN', ru: 'ZEN' },
     place: { en: 'Undisclosed', ru: 'Скрытая локация' },
     year: '2024',
     summary: {
@@ -47,15 +47,11 @@ export const projects: Project[] = [
       ru: 'Спокойная роспись, вдохновленная океаном, с акцентом на глубину, плавность и мягкие переходы.',
     },
     description: {
-      en: 'OCEAN explores wave-like movement through layered blue-green tones and visible hand-painted texture. The composition stays open and breathable, so the wall feels expansive without becoming visually heavy. Matte finishes keep reflections low and preserve the softness of the palette.',
-      ru: 'OCEAN исследует волнообразное движение через многослойные сине-зеленые тона и видимую ручную фактуру. Композиция остается воздушной, поэтому стена ощущается просторной и не перегружает интерьер. Матовые покрытия приглушают блики и сохраняют мягкость палитры.',
+      en: 'ZEN explores wave-like movement through layered blue-green tones and visible hand-painted texture. The composition stays open and breathable, so the wall feels expansive without becoming visually heavy. Matte finishes keep reflections low and preserve the softness of the palette.',
+      ru: 'ZEN исследует волнообразное движение через многослойные сине-зеленые тона и видимую ручную фактуру. Композиция остается воздушной, поэтому стена ощущается просторной и не перегружает интерьер. Матовые покрытия приглушают блики и сохраняют мягкость палитры.',
     },
-    image:
-      'https://www.dropbox.com/scl/fi/b9bkwhua14y6vuv18yck2/OCEANMAIN.JPG?rlkey=9jmhonczkwocbgwe9l90ij9ua&st=ncw94ln1&raw=1',
-    detailImages: [
-      'https://www.dropbox.com/scl/fi/semxw6674a8kszcflfnwl/OCEAN3.JPG?rlkey=sjzwqjiqftysh6pq01ql6c1rs&st=0eh99ndo&raw=1',
-      'https://www.dropbox.com/scl/fi/ka713unqiweleshupulnb/OCEAN2.JPG?rlkey=ct1t3tbwcjsy5a9zyox6jbt4w&st=ka4rax80&raw=1',
-    ],
+    image: '',
+    detailImages: [],
   },
   {
     slug: 'persia',
