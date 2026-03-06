@@ -439,6 +439,56 @@ img {
   background: var(--panel-hover);
 }
 
+.stock-price-corner-large {
+  width: fit-content;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+}
+
+.stock-open-link {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  font-size: 0.67rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.stock-open-link:hover {
+  color: var(--ink);
+}
+
+.inquiry-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.inquiry-action-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.34rem 0.72rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--muted);
+  background: var(--panel-soft);
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.inquiry-action-link:hover {
+  border-color: var(--line-strong);
+  color: var(--ink);
+  background: var(--panel-hover);
+}
+
 .anchor-section {
   scroll-margin-top: calc(var(--header-height) + 1.5rem);
 }

@@ -337,3 +337,7 @@ export const inStockItems: InStockItem[] = [
     image: 'https://www.dropbox.com/scl/fi/j0f196aj7bo8eshnnnsrv/Po-nocham-vdvoem.JPG?rlkey=twrrk3g0q1kf2xvgy4hkzst1a&st=3iekna2i&raw=1',
   },
 ]
+
+export const inStockBySlug: Record<string, InStockItem> = Object.fromEntries(
+  inStockItems.map((item) => [item.slug, item]),
+)

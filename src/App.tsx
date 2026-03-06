@@ -18,12 +18,12 @@ import {
   useLocation,
   useParams,
 } from 'react-router-dom'
-import { inStockItems } from './data/inStock'
+import { inStockBySlug, inStockItems } from './data/inStock'
 import { projects, projectsBySlug } from './data/projects'
 
 const HEADER_OFFSET = 104
-const CONTACT_EMAIL = 'zoobx@vk.com'
-const CONTACT_TELEGRAM = '@egellans'
+const CONTACT_EMAIL = 'katya@shmakova.com'
+const CONTACT_TELEGRAM = '@shmakovvka'
 const LANG_STORAGE_KEY = 'katya-lang'
 
 const ui = {
@@ -65,11 +65,18 @@ const ui = {
     inStockTitle: 'In stock',
     inStockIntro: 'A curated set of available paintings and studies.',
     availableNow: 'Available now',
+    inStockArtworkLabel: 'Artwork',
+    mediumLabel: 'Medium',
+    dimensionsLabel: 'Dimensions',
     priceLabel: 'Price',
     discussProject: 'Discuss a project',
     projectGallery: 'Project Gallery',
     galleryComingSoon: 'Gallery coming soon',
     moreProjects: 'More Projects',
+    moreInStock: 'More In Stock',
+    viewPainting: 'View painting',
+    askInTelegram: 'Ask in Telegram',
+    askByEmail: 'Ask by email',
     previousImage: 'Previous image',
     nextImage: 'Next image',
     openDetailImage: 'Open detail image',
@@ -116,11 +123,18 @@ const ui = {
     inStockTitle: 'В наличии',
     inStockIntro: 'Подборка работ, которые доступны на данный момент.',
     availableNow: 'Доступно',
+    inStockArtworkLabel: 'Работа',
+    mediumLabel: 'Техника',
+    dimensionsLabel: 'Размер',
     priceLabel: 'Цена',
     discussProject: 'Обсудить проект',
     projectGallery: 'Галерея проекта',
     galleryComingSoon: 'Галерея скоро появится',
     moreProjects: 'Другие проекты',
+    moreInStock: 'Другие работы в наличии',
+    viewPainting: 'Открыть работу',
+    askInTelegram: 'Написать в телеграм',
+    askByEmail: 'Написать на почту',
     previousImage: 'Предыдущее изображение',
     nextImage: 'Следующее изображение',
     openDetailImage: 'Открыть изображение',
@@ -153,6 +167,36 @@ function readInitialLang(): Lang {
   }
 
   return window.navigator.language.toLowerCase().startsWith('ru') ? 'ru' : 'en'
+}
+
+function getInquiryMessage(title: string, lang: Lang) {
+  if (lang === 'ru') {
+    return `Здравствуйте! Меня интересует работа «${title}».`
+  }
+
+  return `Hello! I am interested in the artwork "${title}".`
+}
+
+function getTelegramLink(title: string, lang: Lang) {
+  const message = getInquiryMessage(title, lang)
+  return `https://t.me/shmakovvka?text=${encodeURIComponent(message)}`
+}
+
+function getMailtoLink(title: string, lang: Lang) {
+  const subject = lang === 'ru' ? `Запрос по работе: ${title}` : `Artwork inquiry: ${title}`
+  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+    getInquiryMessage(title, lang),
+  )}`
+}
+
+function pickRandomItems<T>(items: T[], count: number): T[] {
+  const shuffled = [...items]
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1))
+    ;[shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]]
+  }
+
+  return shuffled.slice(0, count)
 }
 
 function App() {
@@ -283,6 +327,15 @@ function App() {
           path="/in-stock"
           element={
             <InStockPage
+              lang={lang}
+              setLang={setLang}
+            />
+          }
+        />
+        <Route
+          path="/in-stock/:slug"
+          element={
+            <InStockItemPage
               lang={lang}
               setLang={setLang}
             />
@@ -576,7 +629,7 @@ function HomePage({
 
           <div className="contact-fluid">
             <a
-              href="https://t.me/egellans"
+              href="https://t.me/shmakovvka"
               target="_blank"
               rel="noreferrer"
               className="contact-link"
@@ -678,78 +731,97 @@ function InStockPage({
 
         <section className="py-12">
           <div className="grid gap-6 md:grid-cols-2">
-            {inStockItems.map((item, index) => (
-              <motion.article
-                key={item.slug}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-10% 0px' }}
-                transition={{ duration: 0.36, delay: index * 0.03 }}
-                className="tile-pop surface-card overflow-hidden rounded-3xl border border-[var(--line)]"
-              >
-                {item.isPlaceholder || !item.image ? (
-                  <div className="group block">
-                    <div className="placeholder-surface flex aspect-[4/5] items-center justify-center border-b border-dashed border-[var(--line)]">
-                      <p className="text-xs uppercase tracking-[0.24em] text-[var(--muted)]">{t.placeholder}</p>
-                    </div>
-                    <div className="space-y-3 p-5 md:p-6">
-                      <div className="flex items-start justify-between gap-4">
-                        <h3 className="project-card-title font-serif text-[1.35rem] leading-tight md:text-2xl">
-                          {item.title[lang]}
-                        </h3>
-                        <p className="shrink-0 pt-0.5 text-right text-sm text-[var(--muted)] md:pt-0">
-                          {item.year}
-                        </p>
+            {inStockItems.map((item, index) => {
+              const itemTitle = item.title[lang]
+              const detailsPath = `/in-stock/${encodeURIComponent(item.slug)}`
+              const telegramLink = getTelegramLink(itemTitle, lang)
+              const mailtoLink = getMailtoLink(itemTitle, lang)
+
+              return (
+                <motion.article
+                  key={item.slug}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-10% 0px' }}
+                  transition={{ duration: 0.36, delay: index * 0.03 }}
+                  className="tile-pop surface-card overflow-hidden rounded-3xl border border-[var(--line)]"
+                >
+                  {item.isPlaceholder || !item.image ? (
+                    <div className="group block">
+                      <div className="placeholder-surface flex aspect-[4/5] items-center justify-center border-b border-dashed border-[var(--line)]">
+                        <p className="text-xs uppercase tracking-[0.24em] text-[var(--muted)]">{t.placeholder}</p>
                       </div>
-                      <p className="text-sm text-[var(--muted)]">{item.medium[lang]}</p>
-                      <div className="stock-meta-row text-sm text-[var(--muted)]">
-                        <p>{item.size}</p>
-                        <a
-                          href="#contact"
-                          onClick={onAnchorClick('contact')}
-                          className="stock-price-corner"
-                          aria-label={`${t.priceLabel}: ${item.price[lang]} / ${t.navContact}`}
-                        >
-                          {t.priceLabel}: {item.price[lang]}
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="group block">
-                    <FluidImage
-                      key={item.image}
-                      src={item.image}
-                      alt={`${item.title[lang]} ${t.altProjectPreview}`}
-                      className="aspect-[4/5]"
-                      imageClassName="h-full w-full object-cover"
-                    />
-                    <div className="space-y-3 p-5 md:p-6">
-                      <div className="flex items-start justify-between gap-4">
-                        <h3 className="project-card-title font-serif text-[1.35rem] leading-tight md:text-2xl">
-                          {item.title[lang]}
-                        </h3>
-                        <p className="shrink-0 pt-0.5 text-right text-sm text-[var(--muted)] md:pt-0">
-                          {item.year}
-                        </p>
-                      </div>
-                      <p className="text-sm text-[var(--muted)]">{item.medium[lang]}</p>
-                      <div className="stock-meta-row text-sm text-[var(--muted)]">
-                        <p>{item.size}</p>
-                        <a
-                          href="#contact"
-                          onClick={onAnchorClick('contact')}
-                          className="stock-price-corner"
-                          aria-label={`${t.priceLabel}: ${item.price[lang]} / ${t.navContact}`}
-                        >
-                          {t.priceLabel}: {item.price[lang]}
-                        </a>
+                      <div className="space-y-3 p-5 md:p-6">
+                        <div className="flex items-start justify-between gap-4">
+                          <h3 className="project-card-title font-serif text-[1.35rem] leading-tight md:text-2xl">
+                            {itemTitle}
+                          </h3>
+                          <p className="shrink-0 pt-0.5 text-right text-sm text-[var(--muted)] md:pt-0">
+                            {item.year}
+                          </p>
+                        </div>
+                        <p className="text-sm text-[var(--muted)]">{item.medium[lang]}</p>
+                        <div className="stock-meta-row text-sm text-[var(--muted)]">
+                          <p>{item.size}</p>
+                          <a
+                            href="#contact"
+                            onClick={onAnchorClick('contact')}
+                            className="stock-price-corner"
+                            aria-label={`${t.priceLabel}: ${item.price[lang]} / ${t.navContact}`}
+                          >
+                            {t.priceLabel}: {item.price[lang]}
+                          </a>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )}
-              </motion.article>
-            ))}
+                  ) : (
+                    <div className="group block">
+                      <Link to={detailsPath} className="block">
+                        <FluidImage
+                          key={item.image}
+                          src={item.image}
+                          alt={`${itemTitle} ${t.altProjectPreview}`}
+                          className="aspect-[4/5]"
+                          imageClassName="h-full w-full object-cover"
+                        />
+                      </Link>
+                      <div className="space-y-3 p-5 md:p-6">
+                        <div className="flex items-start justify-between gap-4">
+                          <a
+                            href={telegramLink}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="project-card-title font-serif text-[1.35rem] leading-tight md:text-2xl hover:text-[var(--muted)]"
+                            aria-label={`${itemTitle} / ${t.askInTelegram}`}
+                          >
+                            {itemTitle}
+                          </a>
+                          <p className="shrink-0 pt-0.5 text-right text-sm text-[var(--muted)] md:pt-0">
+                            {item.year}
+                          </p>
+                        </div>
+                        <p className="text-sm text-[var(--muted)]">{item.medium[lang]}</p>
+                        <div className="stock-meta-row text-sm text-[var(--muted)]">
+                          <Link to={detailsPath} className="hover:text-[var(--ink)]">
+                            {item.size}
+                          </Link>
+                          <a
+                            href={mailtoLink}
+                            className="stock-price-corner"
+                            aria-label={`${t.priceLabel}: ${item.price[lang]} / ${t.askByEmail}`}
+                          >
+                            {t.priceLabel}: {item.price[lang]}
+                          </a>
+                        </div>
+                        <Link to={detailsPath} className="stock-open-link">
+                          {t.viewPainting}
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+                </motion.article>
+              )
+            })}
           </div>
         </section>
 
@@ -761,7 +833,7 @@ function InStockPage({
 
           <div className="contact-fluid">
             <a
-              href="https://t.me/egellans"
+              href="https://t.me/shmakovvka"
               target="_blank"
               rel="noreferrer"
               className="contact-link"
@@ -772,6 +844,188 @@ function InStockPage({
             </a>
 
             <a href={`mailto:${CONTACT_EMAIL}`} className="contact-link" aria-label={t.labelEmail}>
+              <p className="contact-label">{t.labelEmail}</p>
+              <p className="contact-value">{CONTACT_EMAIL}</p>
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <SiteFooter lang={lang} />
+    </div>
+  )
+}
+
+function InStockItemPage({
+  lang,
+  setLang,
+}: {
+  lang: Lang
+  setLang: (nextLang: Lang) => void
+}) {
+  const { slug } = useParams()
+  const decodedSlug = useMemo(() => (slug ? decodeURIComponent(slug) : ''), [slug])
+  const item = decodedSlug ? inStockBySlug[decodedSlug] : undefined
+  const t = ui[lang]
+  const relatedInStock = useMemo(() => {
+    if (!item || item.isPlaceholder) {
+      return []
+    }
+
+    return pickRandomItems(
+      inStockItems.filter((entry) => entry.slug !== item.slug && !entry.isPlaceholder && entry.image),
+      2,
+    )
+  }, [item])
+
+  if (!item || item.isPlaceholder || !item.image) {
+    return <Navigate to="/in-stock" replace />
+  }
+
+  const itemTitle = item.title[lang]
+  const telegramLink = getTelegramLink(itemTitle, lang)
+  const mailtoLink = getMailtoLink(itemTitle, lang)
+
+  return (
+    <div className="relative min-h-screen bg-[var(--canvas)] text-[var(--ink)]">
+      <div className="site-backdrop pointer-events-none fixed inset-0 -z-10" />
+
+      <header className="safe-x fixed inset-x-0 top-0 z-40 mx-auto flex h-20 max-w-7xl items-center justify-between backdrop-blur-md">
+        <Link to="/" className="site-brand shrink-0 font-serif tracking-wide">
+          Katya
+        </Link>
+
+        <div className="flex min-w-0 flex-1 items-center justify-end gap-2 md:gap-4">
+          <Link
+            to="/in-stock"
+            className="project-back-link inline-flex shrink-0 items-center gap-1 text-[var(--muted)] hover:text-[var(--ink)]"
+          >
+            <ArrowLeft size={16} />
+            <span className="hidden sm:inline">{t.navInStock}</span>
+            <span className="sm:hidden">{t.backToGalleryShort}</span>
+          </Link>
+          <Link
+            to="/#gallery"
+            className="project-back-link inline-flex shrink-0 items-center text-[var(--muted)] hover:text-[var(--ink)]"
+          >
+            {t.navGallery}
+          </Link>
+
+          <LanguageSwitch lang={lang} setLang={setLang} />
+        </div>
+      </header>
+
+      <main className="safe-x mx-auto max-w-7xl pb-12 pt-28">
+        <section className="border-b border-[var(--line)] pb-12">
+          <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[var(--muted)]">{t.inStockArtworkLabel}</p>
+          <h1 className="font-serif text-4xl leading-[0.95] break-words sm:text-5xl md:text-7xl">
+            <a href={telegramLink} target="_blank" rel="noreferrer" className="hover:text-[var(--muted)]">
+              {itemTitle}
+            </a>
+          </h1>
+          <p className="mt-4 text-sm uppercase tracking-[0.16em] text-[var(--muted)]">{item.year}</p>
+        </section>
+
+        <section className="grid gap-8 border-b border-[var(--line)] py-12 md:grid-cols-12 md:gap-12">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            className="overflow-hidden rounded-3xl md:col-span-7"
+          >
+            <FluidImage
+              key={item.image}
+              src={item.image}
+              alt={`${itemTitle} ${t.altProjectPreview}`}
+              className="aspect-[5/6] md:aspect-auto md:h-full"
+              imageClassName="h-full w-full object-cover"
+              loading="eager"
+            />
+          </motion.div>
+
+          <aside className="space-y-6 md:col-span-5 md:pt-6">
+            <p className="text-xs uppercase tracking-[0.18em] text-[var(--muted)]">{t.shortDescription}</p>
+            <div className="space-y-3 text-base text-[var(--muted)]">
+              <p>
+                {t.mediumLabel}: {item.medium[lang]}
+              </p>
+              <p>
+                {t.dimensionsLabel}: {item.size}
+              </p>
+            </div>
+            <a href={mailtoLink} className="stock-price-corner stock-price-corner-large">
+              {t.priceLabel}: {item.price[lang]}
+            </a>
+            <div className="inquiry-actions">
+              <a href={telegramLink} target="_blank" rel="noreferrer" className="inquiry-action-link">
+                {t.askInTelegram}
+              </a>
+              <a href={mailtoLink} className="inquiry-action-link">
+                {t.askByEmail}
+              </a>
+            </div>
+          </aside>
+        </section>
+
+        <section className="py-12">
+          <p className="mb-6 text-xs uppercase tracking-[0.18em] text-[var(--muted)]">{t.moreInStock}</p>
+          <div className="grid gap-6 md:grid-cols-2">
+            {relatedInStock.map((relatedItem) => {
+              const relatedTitle = relatedItem.title[lang]
+              const relatedPath = `/in-stock/${encodeURIComponent(relatedItem.slug)}`
+              return (
+                <article
+                  key={relatedItem.slug}
+                  className="tile-pop surface-card group overflow-hidden rounded-3xl border border-[var(--line)]"
+                >
+                  <Link to={relatedPath} className="block">
+                    <FluidImage
+                      key={relatedItem.image}
+                      src={relatedItem.image || ''}
+                      alt={`${relatedTitle} ${t.altProjectPreview}`}
+                      className="aspect-[16/10]"
+                      imageClassName="h-full w-full object-cover"
+                    />
+                  </Link>
+                  <div className="space-y-2 p-5">
+                    <a
+                      href={getTelegramLink(relatedTitle, lang)}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="project-card-title font-serif text-[1.35rem] leading-tight md:text-2xl hover:text-[var(--muted)]"
+                    >
+                      {relatedTitle}
+                    </a>
+                    <p className="text-sm text-[var(--muted)]">{relatedItem.size}</p>
+                    <a href={getMailtoLink(relatedTitle, lang)} className="stock-price-corner">
+                      {t.priceLabel}: {relatedItem.price[lang]}
+                    </a>
+                  </div>
+                </article>
+              )
+            })}
+          </div>
+        </section>
+
+        <section id="contact" className="anchor-section border-t border-[var(--line)] py-18">
+          <div className="mb-8 flex items-end justify-between gap-4">
+            <h2 className="font-serif text-4xl md:text-5xl">{t.navContact}</h2>
+            <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">{t.contactKicker}</p>
+          </div>
+
+          <div className="contact-fluid">
+            <a
+              href={getTelegramLink(itemTitle, lang)}
+              target="_blank"
+              rel="noreferrer"
+              className="contact-link"
+              aria-label={t.labelTelegram}
+            >
+              <p className="contact-label">{t.labelTelegram}</p>
+              <p className="contact-value">{CONTACT_TELEGRAM}</p>
+            </a>
+
+            <a href={mailtoLink} className="contact-link" aria-label={t.labelEmail}>
               <p className="contact-label">{t.labelEmail}</p>
               <p className="contact-value">{CONTACT_EMAIL}</p>
             </a>
@@ -913,14 +1167,22 @@ function ProjectPage({
   const decodedSlug = useMemo(() => (slug ? decodeURIComponent(slug) : ''), [slug])
   const project = decodedSlug ? projectsBySlug[decodedSlug] : undefined
   const t = ui[lang]
+  const relatedProjects = useMemo(() => {
+    if (!project || project.isPlaceholder) {
+      return []
+    }
+
+    return pickRandomItems(
+      projects.filter((item) => item.slug !== project.slug && !item.isPlaceholder),
+      2,
+    )
+  }, [project])
 
   if (!project || project.isPlaceholder) {
     return <Navigate to="/" replace />
   }
 
-  const relatedProjects = projects
-    .filter((item) => item.slug !== project.slug && !item.isPlaceholder)
-    .slice(0, 2)
+  const projectMailto = getMailtoLink(project.title[lang], lang)
 
   return (
     <div className="relative min-h-screen bg-[var(--canvas)] text-[var(--ink)]">
@@ -990,7 +1252,7 @@ function ProjectPage({
             <p className="font-serif text-2xl leading-tight sm:text-3xl">{project.summary[lang]}</p>
             <p className="text-base leading-relaxed text-[var(--muted)]">{project.description[lang]}</p>
             <a
-              href={`mailto:${CONTACT_EMAIL}`}
+              href={projectMailto}
               className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[var(--muted)] hover:text-[var(--ink)]"
             >
               {t.discussProject}

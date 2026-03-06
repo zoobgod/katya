@@ -18,16 +18,16 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: 'project-88',
-    title: { en: 'Project 88', ru: 'Проект 88' },
+    title: { en: 'INC 88', ru: 'INC 88' },
     place: { en: 'Moscow', ru: 'Москва' },
-    year: '2025',
+    year: '2022',
     summary: {
-      en: 'Vibrant abstract composition blending pastel pinks, teals, and layered organic forms with a stylized figure.',
-      ru: 'Яркая абстрактная композиция, где пастельные розовые и бирюзовые тона соединяются со слоистыми органическими формами и стилизованной фигурой.',
+      en: 'A bold composition where pastel tones merge with layered organic forms and a stylized figure.',
+      ru: 'Броская композиция, где пастельные тона соединяются со слоистыми органическими формами и стилизованной фигурой.',
     },
     description: {
-      en: 'Project 88 is a contemporary mixed-style painting that combines fluid abstraction with graphic illustration. Soft turquoise and mint tones build a dreamlike base, while bold pathways and geometric accents add rhythm and movement. A simplified character anchors the composition and gives the work a narrative center.',
-      ru: 'Проект 88 — современная работа на стыке пластичной абстракции и графичной иллюстрации. Мягкие бирюзовые и мятные оттенки создают почти сновидческую основу, а контрастные линии и геометрические акценты задают ритм и движение. Упрощенный персонаж удерживает композицию и добавляет ей сюжетный центр.',
+      en: 'INC 88 is a contemporary work at the intersection of fluid abstraction and graphic illustration. Soft turquoise and mint tones create an almost dreamlike base, while contrasting lines and geometric accents set rhythm and movement. A simplified character anchors the composition and gives it a narrative center. The mural was executed in a private interior in Moscow from the artist’s original sketch. Scope: one wall. Technique and materials: brushwork, fine-art acrylic, and protective varnish. The project was completed in 3 days.',
+      ru: 'INC 88 — современная работа на стыке пластичной абстракции и графичной иллюстрации. Мягкие бирюзовые и мятные оттенки создают почти сновидческую основу, а контрастные линии и геометрические акценты задают ритм и движение. Упрощенный персонаж удерживает композицию и добавляет ей сюжетный центр. Роспись выполнена в частном помещении в Москве по эскизу автора. Объем работы — одна стена. Техника и материалы: работа кистями, художественный акрил и защитный лак. Проект был реализован за 3 дня.',
     },
     image:
     'https://www.dropbox.com/scl/fi/6uhujaa85q91yg6kn4tuz/88MAINMAIN.JPG?rlkey=yxta460yr88qhuddi6cecsfsw&st=pcfzvvwu&raw=1',
@@ -39,16 +39,16 @@ export const projects: Project[] = [
   },
   {
     slug: 'persia',
-    title: { en: 'PERSIA', ru: 'PERSIA' },
-    place: { en: 'Undisclosed', ru: 'Не раскрывается' },
-    year: '2025',
+    title: { en: 'Persiana', ru: 'Persiana' },
+    place: { en: 'Moscow', ru: 'Москва' },
+    year: '2023',
     summary: {
-      en: 'Persia-inspired wall composition with layered ornament and flowing structure.',
-      ru: 'Роспись, вдохновленная персидскими мотивами, с многослойным орнаментом и текучей структурой.',
+      en: 'A painting and mural inspired by Persian motifs, with layered ornament and a fluid structure.',
+      ru: 'Картина и роспись, вдохновленные персидскими мотивами, с многослойным орнаментом и текучей структурой.',
     },
     description: {
-      en: 'PERSIA blends decorative rhythm with abstract depth, drawing on ornamental movement rather than literal motifs. The wall shifts from structured line passages to soft color fields, creating detail up close and calm from distance. The final finish keeps tones muted and tactile.',
-      ru: 'PERSIA сочетает декоративный ритм и абстрактную глубину, опираясь на пластичность орнамента, а не на буквальные символы. Роспись переходит от четких линейных фрагментов к мягким цветовым полям: вблизи много деталей, издалека — спокойный общий силуэт. Финальная отделка сохраняет тактильность и приглушенность тонов.',
+      en: 'Persiana transitions from clear linear fragments to soft color fields: up close it reveals a large amount of detail, and from distance it keeps a calm, unified silhouette. The mural on a wooden panel combines decorative rhythm and abstract depth, relying on the plasticity of ornament rather than literal symbols. The final surface finish preserves tactile quality and texture. The works were created for a restaurant in Moscow from the artist’s own sketch. The project was completed in 4 days.',
+      ru: 'Картина переходит от четких линейных фрагментов к мягким цветовым полям: вблизи раскрывается большое количество деталей, издалека сохраняется спокойный и цельный силуэт. Роспись на деревянной панели сочетает декоративный ритм и абстрактную глубину, опираясь на пластичность орнамента, а не на буквальные символы. Финальная отделка поверхности сохраняет тактильность и фактуру. Произведения созданы для ресторана в Москве по собственному эскизу. Проект реализован за 4 дня.',
     },
     image:
       'https://www.dropbox.com/scl/fi/shy5tnflppbysvngu53k1/PERSIAMAIN.JPG?rlkey=9hp25fxx7eot0q8b3ldgvkwg7&st=93nec1oj&raw=1',
@@ -63,15 +63,15 @@ export const projects: Project[] = [
   {
     slug: 'kitaeast',
     title: { en: 'KITAEAST', ru: 'KITAEAST' },
-    place: { en: 'KITAEAST', ru: 'KITAEAST' },
+    place: { en: 'Surgut', ru: 'Сургут' },
     year: '2023',
     summary: {
-      en: 'China-inspired wall painting developed for a restaurant interior.',
-      ru: 'Роспись в китайской эстетике, разработанная специально для интерьера ресторана.',
+      en: 'A mural in Chinese aesthetics with strong compositional direction and active tonal transitions.',
+      ru: 'Роспись в китайской эстетике, с выраженным направлением композиции и активными тональными переходами.',
     },
     description: {
-      en: 'KITAEAST was produced as a site-specific restaurant mural with a strong directional flow and warm tonal transitions. The composition supports the dining space without competing with lighting and service movement. The project was executed in stages outside opening hours to avoid disruption.',
-      ru: 'KITAEAST — это роспись, созданная под конкретный ресторанный интерьер, с выраженным направлением композиции и теплыми тональными переходами. Работа поддерживает атмосферу зала и не конфликтует с освещением и динамикой обслуживания. Проект выполнялся поэтапно вне часов работы, чтобы не мешать процессам заведения.',
+      en: 'The work supports the atmosphere of the dining hall and does not conflict with lighting or service flow. Composition and tones were selected to read as a whole while preserving the lively feel of an old Chinese street. The mural was executed in a venue in Surgut using sketches provided by the interior designers. Scope: five walls, four columns, and a decorative panel around the kitchen perimeter, plus decorative treatment of three additional columns and poster placement in the hall. Technique and materials: brushwork, fine-art acrylic, wall paint, and protective varnish. The project was completed in stages over 14 days.',
+      ru: 'Работа поддерживает атмосферу зала и не конфликтует с освещением и динамикой обслуживания. Композиция и оттенки подобраны так, чтобы читаться цельно, но сохранять живость имитации китайской улочки. Роспись выполнена в заведении в Сургуте по эскизам, предоставленным дизайнерами. Объем проекта: пять стен, четыре столба и декоративная панель по периметру кухни, а также декоративное оформление трех столбов и размещение постеров по залу. Техника и материалы: работа кистями, художественный акрил, краска для стен и защитный лак. Работа выполнялась поэтапно и заняла 14 дней.',
     },
     image:
       'https://www.dropbox.com/scl/fi/iilm991wm5v8xxsgmjau3/KITAEASTMAIN.jpg?rlkey=rrllf8dq4viwbppbgxzd3ska4&st=b6myh2qo&raw=1',
@@ -84,15 +84,15 @@ export const projects: Project[] = [
   {
     slug: 'flamo',
     title: { en: 'FLAMO', ru: 'FLAMO' },
-    place: { en: 'Undisclosed', ru: 'Скрытая локация' },
-    year: '2024',
+    place: { en: 'Kazan', ru: 'Казань' },
+    year: '2025',
     summary: {
-      en: 'A mural balancing precise line detail with broad textured brushwork.',
-      ru: 'Роспись, где точная линейная графика сочетается с широкими фактурными мазками.',
+      en: 'A unique author mural where precise linear graphics emphasize the philosophy and mythology of the venue.',
+      ru: 'Уникальная авторская роспись, где точная линейная графика подчеркивает философию заведения и его мифологическую основу.',
     },
     description: {
-      en: 'FLAMO is built around contrast: controlled ornamental strokes against loose painterly fields. The structure allows the wall to read as one gesture while still revealing details in close view. Color choices were kept restrained to preserve atmosphere and material texture.',
-      ru: 'FLAMO построен на контрасте: контролируемые орнаментальные линии против свободных живописных масс. Такая структура позволяет воспринимать стену как единый жест, но при этом открывает множество деталей вблизи. Палитра намеренно сдержанная, чтобы сохранить атмосферу и материальность фактуры.',
+      en: 'FLAMO is built on contrast: controlled ornamental lines against free painterly masses. This structure lets the wall read as a single gesture while opening many details at close range. The palette is intentionally restrained to preserve atmosphere and material texture. The mural was executed in a venue in Kazan from original sketches and mythology created specifically for this space. Scope: one arch and three walls. Technique and materials: brushwork, fine-art acrylic, and protective varnish. Photos were taken during the construction phase. The project was completed in 9 days.',
+      ru: 'FLAMO построен на контрасте: контролируемые орнаментальные линии против свободных живописных масс. Такая структура позволяет воспринимать стену как единый жест, но при этом открывает множество деталей вблизи. Палитра намеренно сдержанная, чтобы сохранить атмосферу и материальность фактуры. Роспись выполнена в заведении в Казани по собственным эскизам и созданной мифологии для этого пространства. Объем работы — арка и три стены. Техника и материалы: работа кистью, художественный акрил и защитный лак. Фотографии сделаны на этапе строительных работ. Проект реализован за 9 дней.',
     },
     image:
       'https://www.dropbox.com/scl/fi/698tg20c7w11pmw4iyk4g/FLAMOMAIN.jpg?rlkey=vei5u2jp7kngg1x07ggz5a31h&st=l0fqopmn&raw=1',
@@ -105,15 +105,15 @@ export const projects: Project[] = [
   {
     slug: 'zen',
     title: { en: 'ZEN', ru: 'ZEN' },
-    place: { en: 'Undisclosed', ru: 'Скрытая локация' },
-    year: '2024',
+    place: { en: 'Moscow', ru: 'Москва' },
+    year: '2022',
     summary: {
-      en: 'A calm ocean-inspired mural built around depth, flow, and soft transitions.',
-      ru: 'Спокойная роспись, вдохновленная океаном, с акцентом на глубину, плавность и мягкие переходы.',
+      en: 'An entrance-group mural inspired by ancient temple imagery and Buddhist wall painting aesthetics.',
+      ru: 'Роспись входной группы, вдохновленная древними храмовыми изображениями и эстетикой буддийских настенных росписей.',
     },
     description: {
-      en: 'ZEN explores wave-like movement through layered blue-green tones and visible hand-painted texture. The composition stays open and breathable, so the wall feels expansive without becoming visually heavy. Matte finishes keep reflections low and preserve the softness of the palette.',
-      ru: 'ZEN исследует волнообразное движение через многослойные сине-зеленые тона и видимую ручную фактуру. Композиция остается воздушной, поэтому стена ощущается просторной и не перегружает интерьер. Матовые покрытия приглушают блики и сохраняют мягкость палитры.',
+      en: 'The composition is built as a dense panel with many deity figures, creating a ritual atmosphere and deep decorative environment. The core palette uses rich reds and golds that form a warm ceremonial glow. The mural includes more than 40 beings, each with unique ornament in the clothing. Details were executed with gold leaf, raised golden contours, and multilayer hand painting, making the work highly meticulous and detailed. The mural was created in a venue in Moscow from a sketch based on ancient temple painting. Technique: brushwork, fine-art acrylic, gold leaf, and protective varnish. The project was completed in 18 days.',
+      ru: 'Композиция построена как насыщенное панно с множеством фигур божеств, создающих ощущение ритуального пространства и глубокой декоративной среды. Основная палитра — насыщенные красные и золотые оттенки, которые формируют торжественное и теплое свечение стены. В композиции изображено более 40 существ, каждое с уникальным орнаментом на одежде. Детали выполнены с использованием потали, объемных золотых контуров и многослойной ручной росписи, что делает работу особенно кропотливой и детализированной. Роспись создана в заведении в Москве по эскизу, основанному на древней храмовой росписи. Техника: работа кистями, художественный акрил, поталь и защитный лак. Проект реализован за 18 дней.',
     },
     image:
       'https://www.dropbox.com/scl/fi/2t220iguieagmzx17lwjx/ZENMAIN.JPG?rlkey=5o97ztef2s7l8xm89qn9kqsc4&st=xc5ach3p&raw=1',
