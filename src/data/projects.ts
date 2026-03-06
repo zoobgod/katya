@@ -169,8 +169,13 @@ export const projects: Project[] = [
       ru: 'DEPO — роспись, созданная под конкретное пространство, на основе выразительных линий, мягких тональных переходов и фактурной кистевой работы. Композиция читается цельно с расстояния, но сохраняет ручные детали вблизи. Многослойность и матовая отделка помогают удержать глубину без визуальной тяжести.',
     },
     image:
-      'https://www.dropbox.com/scl/fi/wyyxoq54dufawuz9r4fvr/DEPOMAIN.JPG?rlkey=wid9qf6diddkj3czmktcvsl8h&st=yp6tfn7s&raw=1',
-    detailImages: [],
+      'https://www.dropbox.com/scl/fi/uleqd2wqgwnuffxrub30r/DEPO-6.JPG?rlkey=epx6rc5wo7c9lyovdqvfc4smw&st=bwwj81dn&raw=1',
+    detailImages: [
+      'https://www.dropbox.com/scl/fi/oirsvl4gtbbpe0gn505r3/DEPO-2-3.JPG?rlkey=qb2zbp41gz6fyxqni72qslj0t&st=p332b9k8&raw=1',
+      'https://www.dropbox.com/scl/fi/w6esa5fim2r5yb7nhombf/DEPO-5.JPG?rlkey=dx3s8hau6t9o2flqtidagoj86&st=ro49mowe&raw=1',
+      'https://www.dropbox.com/scl/fi/mia66mpbb9jg46vv5rj3z/DEPO-4.JPG?rlkey=h42n4c3n1ntgukhpofv8p70qd&st=rbucmm8s&raw=1',
+      
+    ],
   },
   {
     slug: 'CHICKO',
