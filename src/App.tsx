@@ -39,14 +39,14 @@ const ui = {
     navContact: 'Contact me',
     heroRole: 'Painter / Muralist',
     heroDescription:
-      'Hand-painted walls, murals, and textured surfaces for homes, studios, and intimate public spaces.',
+      'Hand-painted wall art and murals for homes, studios, and public spaces.',
     heroCta: 'View selected works',
-    heroNote: 'Soft palettes, botanical forms, and layered brushwork built for calm interiors.',
+    heroNote: 'Diverse palettes, botanical forms, and layered brushwork for interiors.',
     aboutTitle: 'About artist',
     aboutTextOne:
-      'Katya creates site-specific painting for walls and architectural surfaces. Every piece is made by hand, with no digital prints and no repetition.',
+      'Katya works with wall painting and canvas painting, creating works for interiors and private collections. Every piece is made by hand, without digital printing and repetition.',
     aboutTextTwo:
-      'Her practice combines mural painting, faux plaster textures, and fine line ornament inspired by plants, stone, and faded European interiors.',
+      'Her practice combines mural painting, vivid contemporary solutions, and fine linear ornament inspired by nature, myths, and the atmosphere of faded European interiors.',
     galleryTitle: 'Gallery',
     selectedProjects: 'Selected Projects',
     placeholder: 'Placeholder',
@@ -100,14 +100,14 @@ const ui = {
     navContact: 'Связаться',
     heroRole: 'Художница / Муралистка',
     heroDescription:
-      'Ручная роспись стен, муралы и фактурные поверхности для домов, студий и камерных общественных пространств.',
+      'Ручная роспись стен и муралы для домов, студий и общественных пространств.',
     heroCta: 'Смотреть работы',
-    heroNote: 'Мягкие палитры, ботанические формы и многослойная кистевая работа для спокойных интерьеров.',
+    heroNote: 'Разнообразные палитры, ботанические формы и многослойная кистевая работа для интерьеров.',
     aboutTitle: 'О художнице',
     aboutTextOne:
-      'Катя создает росписи под конкретное пространство — для стен и архитектурных поверхностей. Каждая работа выполняется вручную, без цифровой печати и повторов.',
+      'Катя работает с росписью стен и живописью на холсте, создавая произведения для интерьеров и частных коллекций. Каждая работа выполняется вручную, без цифровой печати и повторов.',
     aboutTextTwo:
-      'В практике сочетаются муральная живопись, имитация штукатурных фактур и тонкая линейная орнаментика, вдохновленная природой, камнем и выцветшими европейскими интерьерами.',
+      'В практике сочетаются муральная живопись, яркие современные решения и тонкая линейная орнаментика, вдохновленная природой, мифами и атмосферой выцветших европейских интерьеров.',
     galleryTitle: 'Галерея',
     selectedProjects: 'Избранные проекты',
     placeholder: 'Плейсхолдер',

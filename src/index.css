@@ -665,8 +665,9 @@ img {
   }
 
   .theme-toggle-btn {
-    padding: 0.2rem 0.4rem 0.2rem 0.25rem;
-    gap: 0.26rem;
+    padding: 0.2rem;
+    gap: 0;
+    justify-content: center;
   }
 
   .theme-toggle-core {
@@ -675,8 +676,7 @@ img {
   }
 
   .theme-toggle-text {
-    font-size: 0.52rem;
-    letter-spacing: 0.08em;
+    display: none;
   }
 
   .safe-x {
