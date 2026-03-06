@@ -25,6 +25,7 @@ const HEADER_OFFSET = 104
 const CONTACT_EMAIL = 'katya@shmakova.com'
 const CONTACT_TELEGRAM = '@shmakovvka'
 const LANG_STORAGE_KEY = 'katya-lang'
+const THEME_STORAGE_KEY = 'katya-theme'
 
 const ui = {
   en: {
@@ -84,6 +85,9 @@ const ui = {
     altProjectPreview: 'project preview',
     altDetail: 'detail',
     languageLabel: 'Language',
+    themeLabel: 'Theme',
+    switchToDark: 'Switch to black theme',
+    switchToLight: 'Switch to white theme',
   },
   ru: {
     metaTitle: 'Катя Шмакова | Художница и роспись стен',
@@ -142,11 +146,15 @@ const ui = {
     altProjectPreview: 'превью проекта',
     altDetail: 'деталь',
     languageLabel: 'Язык',
+    themeLabel: 'Тема',
+    switchToDark: 'Переключить на черную тему',
+    switchToLight: 'Переключить на белую тему',
   },
 } as const
 
 type Lang = keyof typeof ui
 type Dictionary = (typeof ui)[Lang]
+type Theme = 'light' | 'dark'
 
 type FluidImageProps = {
   src: string
@@ -167,6 +175,19 @@ function readInitialLang(): Lang {
   }
 
   return window.navigator.language.toLowerCase().startsWith('ru') ? 'ru' : 'en'
+}
+
+function readInitialTheme(): Theme {
+  if (typeof window === 'undefined') {
+    return 'light'
+  }
+
+  const savedTheme = window.localStorage.getItem(THEME_STORAGE_KEY)
+  if (savedTheme === 'light' || savedTheme === 'dark') {
+    return savedTheme
+  }
+
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 }
 
 function getInquiryMessage(title: string, lang: Lang) {
@@ -204,6 +225,7 @@ function App() {
   const lenisRef = useRef<Lenis | null>(null)
   const [showLoader, setShowLoader] = useState(true)
   const [lang, setLang] = useState<Lang>(readInitialLang)
+  const [theme, setTheme] = useState<Theme>(readInitialTheme)
 
   const t = ui[lang]
 
@@ -217,6 +239,12 @@ function App() {
       descriptionTag.setAttribute('content', t.metaDescription)
     }
   }, [lang, t.metaDescription, t.metaTitle])
+
+  useEffect(() => {
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme)
+    document.documentElement.dataset.theme = theme
+    document.documentElement.style.colorScheme = theme
+  }, [theme])
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -311,6 +339,8 @@ function App() {
             <HomePage
               lang={lang}
               setLang={setLang}
+              theme={theme}
+              setTheme={setTheme}
             />
           }
         />
@@ -320,6 +350,8 @@ function App() {
             <ProjectPage
               lang={lang}
               setLang={setLang}
+              theme={theme}
+              setTheme={setTheme}
             />
           }
         />
@@ -329,6 +361,8 @@ function App() {
             <InStockPage
               lang={lang}
               setLang={setLang}
+              theme={theme}
+              setTheme={setTheme}
             />
           }
         />
@@ -338,6 +372,8 @@ function App() {
             <InStockItemPage
               lang={lang}
               setLang={setLang}
+              theme={theme}
+              setTheme={setTheme}
             />
           }
         />
@@ -407,6 +443,52 @@ function LanguageSwitch({
   )
 }
 
+function ThemeToggle({
+  lang,
+  theme,
+  setTheme,
+}: {
+  lang: Lang
+  theme: Theme
+  setTheme: (nextTheme: Theme) => void
+}) {
+  const t = ui[lang]
+  const isDark = theme === 'dark'
+  const nextTheme = isDark ? 'light' : 'dark'
+
+  return (
+    <button
+      type="button"
+      onClick={() => setTheme(nextTheme)}
+      className="theme-toggle-btn"
+      aria-label={isDark ? t.switchToLight : t.switchToDark}
+      title={isDark ? t.switchToLight : t.switchToDark}
+    >
+      <span className={`theme-toggle-core ${isDark ? 'is-dark' : 'is-light'}`} aria-hidden />
+      <span className="theme-toggle-text">{t.themeLabel}</span>
+    </button>
+  )
+}
+
+function HeaderControls({
+  lang,
+  setLang,
+  theme,
+  setTheme,
+}: {
+  lang: Lang
+  setLang: (nextLang: Lang) => void
+  theme: Theme
+  setTheme: (nextTheme: Theme) => void
+}) {
+  return (
+    <div className="header-controls">
+      <ThemeToggle lang={lang} theme={theme} setTheme={setTheme} />
+      <LanguageSwitch lang={lang} setLang={setLang} />
+    </div>
+  )
+}
+
 function FluidImage({
   src,
   alt,
@@ -433,9 +515,13 @@ function FluidImage({
 function HomePage({
   lang,
   setLang,
+  theme,
+  setTheme,
 }: {
   lang: Lang
   setLang: (nextLang: Lang) => void
+  theme: Theme
+  setTheme: (nextTheme: Theme) => void
 }) {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null)
   const location = useLocation()
@@ -503,7 +589,7 @@ function HomePage({
             </a>
           </nav>
 
-          <LanguageSwitch lang={lang} setLang={setLang} />
+          <HeaderControls lang={lang} setLang={setLang} theme={theme} setTheme={setTheme} />
         </div>
       </header>
 
@@ -655,9 +741,13 @@ function HomePage({
 function InStockPage({
   lang,
   setLang,
+  theme,
+  setTheme,
 }: {
   lang: Lang
   setLang: (nextLang: Lang) => void
+  theme: Theme
+  setTheme: (nextTheme: Theme) => void
 }) {
   const location = useLocation()
   const t = ui[lang]
@@ -717,7 +807,7 @@ function InStockPage({
             </a>
           </nav>
 
-          <LanguageSwitch lang={lang} setLang={setLang} />
+          <HeaderControls lang={lang} setLang={setLang} theme={theme} setTheme={setTheme} />
         </div>
       </header>
 
@@ -859,9 +949,13 @@ function InStockPage({
 function InStockItemPage({
   lang,
   setLang,
+  theme,
+  setTheme,
 }: {
   lang: Lang
   setLang: (nextLang: Lang) => void
+  theme: Theme
+  setTheme: (nextTheme: Theme) => void
 }) {
   const { slug } = useParams()
   const decodedSlug = useMemo(() => (slug ? decodeURIComponent(slug) : ''), [slug])
@@ -911,7 +1005,7 @@ function InStockItemPage({
             {t.navGallery}
           </Link>
 
-          <LanguageSwitch lang={lang} setLang={setLang} />
+          <HeaderControls lang={lang} setLang={setLang} theme={theme} setTheme={setTheme} />
         </div>
       </header>
 
@@ -953,16 +1047,18 @@ function InStockItemPage({
                 {t.dimensionsLabel}: {item.size}
               </p>
             </div>
-            <a href={mailtoLink} className="stock-price-corner stock-price-corner-large">
-              {t.priceLabel}: {item.price[lang]}
-            </a>
-            <div className="inquiry-actions">
-              <a href={telegramLink} target="_blank" rel="noreferrer" className="inquiry-action-link">
-                {t.askInTelegram}
+            <div className="in-stock-cta-shell">
+              <a href={mailtoLink} className="stock-price-corner stock-price-corner-large">
+                {t.priceLabel}: {item.price[lang]}
               </a>
-              <a href={mailtoLink} className="inquiry-action-link">
-                {t.askByEmail}
-              </a>
+              <div className="inquiry-actions">
+                <a href={telegramLink} target="_blank" rel="noreferrer" className="inquiry-action-link">
+                  {t.askInTelegram}
+                </a>
+                <a href={mailtoLink} className="inquiry-action-link">
+                  {t.askByEmail}
+                </a>
+              </div>
             </div>
           </aside>
         </section>
@@ -1159,9 +1255,13 @@ function ProjectShowcaseGallery({
 function ProjectPage({
   lang,
   setLang,
+  theme,
+  setTheme,
 }: {
   lang: Lang
   setLang: (nextLang: Lang) => void
+  theme: Theme
+  setTheme: (nextTheme: Theme) => void
 }) {
   const { slug } = useParams()
   const decodedSlug = useMemo(() => (slug ? decodeURIComponent(slug) : ''), [slug])
@@ -1209,7 +1309,7 @@ function ProjectPage({
             {t.navInStock}
           </Link>
 
-          <LanguageSwitch lang={lang} setLang={setLang} />
+          <HeaderControls lang={lang} setLang={setLang} theme={theme} setTheme={setTheme} />
         </div>
       </header>
 
